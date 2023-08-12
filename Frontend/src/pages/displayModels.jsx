@@ -5,8 +5,11 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../css/slider.css";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function DisplayModels() {
+  const { state } = useLocation();
+  const { type } = state;
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -90,6 +93,7 @@ export default function DisplayModels() {
           gap: 3,
         }}
       >
+        <Typography variant="h2">{type.toUpperCase()}</Typography>
         <Carousel
           infinite={true}
           containerClass="carousel-container"

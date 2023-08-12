@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -11,10 +11,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import { host } from "./utility/host";
 import Profile from "./pages/profile";
-import Feedback from "./pages/feedback";
 import DisplayModels from "./pages/displayModels";
 
 function App() {
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       if (localStorage.getItem("token")) {
@@ -23,10 +23,11 @@ function App() {
         });
         if (verify) {
           sessionStorage.setItem("userId", verify.data.id);
+          navigate("/dashboard");
         }
-      }
+      } else navigate("/");
     })();
-  });
+  }, []);
   return (
     <>
       <NavBar />
@@ -38,7 +39,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/feedback" element={<Feedback />} />
         <Route path="/displayModels" element={<DisplayModels />} />
       </Routes>
       <Footer />

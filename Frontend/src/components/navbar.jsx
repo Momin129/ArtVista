@@ -14,29 +14,31 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DropDown from "./dropdown";
 
 function NavBar() {
+  const userId = sessionStorage.getItem("userId");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showOn, setShowOn] = useState("home");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (sessionStorage.getItem("userId")) {
+    if (userId) {
       setShowOn("user");
     }
-  }, [showOn, sessionStorage.getItem("userId")]);
+  }, [showOn, userId]);
 
   const navLeftItems = [
     { name: "Home", link: "/", show: "home" },
     { name: "About", link: "/about", show: "home" },
     { name: "Dashboard", link: "/dashboard", show: "user" },
-    { name: "Feedback", link: "/feedback", show: "user" },
   ];
 
   const navRightItems = [
     { name: "Contact", link: "/contact", show: "home" },
     { name: "Register", link: "/register", show: "home" },
     { name: "Profile", link: "/profile", show: "user" },
+    { name: "Contact", link: "/contact", show: "user" },
     { name: "Logout", link: "/", show: "user" },
   ];
 
@@ -45,7 +47,8 @@ function NavBar() {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center" }}>
+      <Button onClick={handleDrawerToggle}>Close</Button>
       <List>
         {navLeftItems.map(
           (item, index) =>
@@ -54,6 +57,7 @@ function NavBar() {
                 key={index}
                 disablePadding
                 onClick={() => {
+                  handleDrawerToggle();
                   navigate(item.link);
                 }}
               >
@@ -61,7 +65,7 @@ function NavBar() {
                   <ListItemText primary={item.name} />
                 </ListItemButton>
               </ListItem>
-            ),
+            )
         )}
       </List>
       <Divider />
@@ -77,6 +81,7 @@ function NavBar() {
                 key={index}
                 disablePadding
                 onClick={() => {
+                  handleDrawerToggle();
                   navigate(item.link);
                 }}
               >
@@ -84,9 +89,10 @@ function NavBar() {
                   <ListItemText primary={item.name} />
                 </ListItemButton>
               </ListItem>
-            ),
+            )
         )}
       </List>
+      {showOn == "user" && <DropDown style={"sm"} />}
     </Box>
   );
 
@@ -130,9 +136,10 @@ function NavBar() {
                   >
                     {item.name}
                   </Button>
-                ),
+                )
             )}
           </Box>
+          {showOn == "user" && <DropDown style={"md"} />}
           <Typography variant="h4" component="div">
             ArtVista
           </Typography>
@@ -154,7 +161,7 @@ function NavBar() {
                   >
                     {item.name}
                   </Button>
-                ),
+                )
             )}
           </Box>
         </Toolbar>

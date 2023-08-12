@@ -10,7 +10,7 @@ export default function FirstSection() {
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting);
       },
-      { rootMargin: "0px" },
+      { rootMargin: "0px" }
     );
     observer.observe(ref.current);
 
@@ -57,8 +57,6 @@ export default function FirstSection() {
                 </Box>
               </Typography>
             </Fade>
-          </Box>
-          <Box>
             <Fade
               in={isIntersecting}
               style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
@@ -71,15 +69,18 @@ export default function FirstSection() {
                   fontWeight: "bolder",
                   fontSize: { md: 36 },
                   fontFamily: "sans-serif",
-                  paddingX: { md: 15 },
+                  paddingX: { xs: 5, md: 13 },
                   "&:hover": { backgroundColor: "#2dfdc6" },
                 }}
-                onClick={() => naviagte("/displayModels")}
+                onClick={() =>
+                  naviagte("/displayModels", { state: { type: "demo" } })
+                }
               >
                 Get Demo
               </Button>
             </Fade>
           </Box>
+          <Box></Box>
         </Grid>
         <Grid
           item
