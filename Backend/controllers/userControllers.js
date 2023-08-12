@@ -2,6 +2,24 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 
+// chekc if email and mobile number already exists or not
+const emailMobileExists = async (req, res) => {
+  const email = req.body.email;
+  const mobile = req.body.mobile;
+
+  if (email) {
+    const emailExists = await User.findOne({ email });
+    console.log(emailExists);
+    if (emailExists) res.status(400).json({ message: "Email aready exists." });
+    else res.status(200).json({ message: "" });
+  }
+  if (mobile) {
+    const emailExists = await User.findOne({ mobile });
+    if (emailExists) res.status(400).json({ message: "Number aready exists." });
+    else res.status(200).json({ message: "" });
+  }
+};
+
 // register a new user
 const register = async (req, res) => {
   const { fullname, email, mobile, password } = req.body;
@@ -27,24 +45,6 @@ const register = async (req, res) => {
       .json({ message: "Some error occured please try again later." });
 };
 
-// chekc if email and mobile number already exists or not
-const emailMobileExists = async (req, res) => {
-  const email = req.body.email;
-  const mobile = req.body.mobile;
-
-  if (email) {
-    const emailExists = await User.findOne({ email });
-    console.log(emailExists);
-    if (emailExists) res.status(400).json({ message: "Email aready exists." });
-    else res.status(200).json({ message: "" });
-  }
-  if (mobile) {
-    const emailExists = await User.findOne({ mobile });
-    if (emailExists) res.status(400).json({ message: "Number aready exists." });
-    else res.status(200).json({ message: "" });
-  }
-};
-
 // to login a user
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -61,6 +61,18 @@ const login = async (req, res) => {
   }
 };
 
+const getUserDetails = async (req, res) => {
+  const userId = req.query.userId;
+  const user = await User.findById(userId);
+  if (user)
+    res.status(200).json({
+      fullname: user.fullname,
+      mobile: user.mobile,
+      email: user.email,
+    });
+  else res.status(400).json({ message: "Something went wrong." });
+};
+
 // verify if user is loged in or not
 const verifyUser = async (req, res) => {
   const token = req.body.token;
@@ -74,4 +86,10 @@ const generateToken = (id) => {
     expiresIn: "60d",
   });
 };
-module.exports = { register, emailMobileExists, login, verifyUser };
+module.exports = {
+  register,
+  emailMobileExists,
+  login,
+  verifyUser,
+  getUserDetails,
+};

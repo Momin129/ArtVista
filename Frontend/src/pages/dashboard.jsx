@@ -62,8 +62,6 @@ export default function Dashboard() {
             marginTop: 3,
             height: "90%",
             padding: 2,
-            overflowY: "auto",
-            scrollbarWidth: "thin",
           }}
         >
           {show && <Favourites />}

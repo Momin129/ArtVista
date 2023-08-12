@@ -5,6 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Box, Button } from "@mui/material";
 
 function createData(name, date, status) {
   return { name, date, status };
@@ -96,47 +97,52 @@ images.forEach((item) => {
 
 export default function Uploads() {
   return (
-    <TableContainer component={Paper} sx={{ overflowY: "auto" }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead sx={{ backgroundColor: "#2dfdc6" }}>
-          <TableRow>
-            <TableCell sx={{ fontWeight: "bold" }} align="center">
-              Upload Item
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="center">
-              Date of Upload
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="center">
-              Status
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody sx={{ backgroundColor: "#0b042f" }}>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-              }}
-            >
-              <TableCell
-                sx={{ color: "white" }}
-                align="center"
-                component="th"
-                scope="row"
-              >
-                {row.name}
-              </TableCell>
-              <TableCell sx={{ color: "white" }} align="center">
-                {row.date}
-              </TableCell>
-              <TableCell sx={{ color: "white" }} align="center">
-                {row.status}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Box sx={{ overflowY: "auto", scrollbarWidth: "thin", height: 1 }}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead sx={{ backgroundColor: "#2dfdc6" }}>
+              <TableRow>
+                <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  Upload Item
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  Date of Upload
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  Status
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody sx={{ backgroundColor: "#0b042f" }}>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell
+                    sx={{ color: "white" }}
+                    align="center"
+                    component="th"
+                    scope="row"
+                  >
+                    {row.name}
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }} align="center">
+                    {row.date}
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }} align="center">
+                    {row.status}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      <Button variant="contained">Upload New</Button>
+    </>
   );
 }

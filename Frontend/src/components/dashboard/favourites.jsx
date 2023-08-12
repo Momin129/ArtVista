@@ -35,7 +35,9 @@ const images = [
 ];
 export default function Favourites() {
   return (
-    <Box sx={{ padding: 1 }}>
+    <Box
+      sx={{ padding: 1, height: 1, overflowY: "auto", scrollbarWidth: "thin" }}
+    >
       <Typography
         sx={{
           textAlign: "center",
