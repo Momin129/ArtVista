@@ -6,6 +6,8 @@ const {
   login,
   verifyUser,
   getUserDetails,
+  updateUserDetails,
+  changePassword,
 } = require("../controllers/userControllers");
 
 router.post("/register", register);
@@ -13,5 +15,6 @@ router.post("/validate", emailMobileExists);
 router.post("/login", login);
 router.post("/verify", verifyUser);
 router.get("/getUserDetails", getUserDetails);
-
+router.post("/updateUserDetails", updateUserDetails);
+router.post("/changePassword", changePassword);
 module.exports = router;

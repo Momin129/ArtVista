@@ -4,19 +4,25 @@ const bcryptjs = require("bcryptjs");
 
 // chekc if email and mobile number already exists or not
 const emailMobileExists = async (req, res) => {
+  const id = req.body.id;
   const email = req.body.email;
   const mobile = req.body.mobile;
 
   if (email) {
     const emailExists = await User.findOne({ email });
-    console.log(emailExists);
-    if (emailExists) res.status(400).json({ message: "Email aready exists." });
-    else res.status(200).json({ message: "" });
+    if (emailExists) {
+      if (id && emailExists._id.equals(id))
+        res.status(200).json({ message: "" });
+      else res.status(400).json({ message: "Email aready exists." });
+    } else res.status(200).json({ message: "" });
   }
   if (mobile) {
-    const emailExists = await User.findOne({ mobile });
-    if (emailExists) res.status(400).json({ message: "Number aready exists." });
-    else res.status(200).json({ message: "" });
+    const mobileExists = await User.findOne({ mobile });
+    if (mobileExists) {
+      if (id && mobileExists._id.equals(id))
+        res.status(200).json({ message: "" });
+      else res.status(400).json({ message: "Number aready exists." });
+    } else res.status(200).json({ message: "" });
   }
 };
 
@@ -55,12 +61,46 @@ const login = async (req, res) => {
     if (isValid) {
       res.status(200).json({
         id: isUser._id,
-        token: generateToken(isUser._id),
+        role: isUser.role,
+        token: generateToken(isUser._id, isUser.role),
       });
     } else res.status(400).json({ message: "Incorrect password" });
   }
 };
 
+// update details
+const updateUserDetails = async (req, res) => {
+  const { id, fullname, email, mobile } = req.body;
+  try {
+    const update = await User.findByIdAndUpdate(
+      { _id: id },
+      { fullname: fullname, email: email, mobile: mobile }
+    );
+    res.status(200).json({ message: "Details updated" });
+  } catch (err) {
+    res.status(400).json({ message: "Some error occured." });
+  }
+};
+
+// change password
+const changePassword = async (req, res) => {
+  const { id, password } = req.body;
+
+  const salt = await bcryptjs.genSalt(10);
+  const hashedPassword = await bcryptjs.hash(password, salt);
+
+  try {
+    const update = await User.findByIdAndUpdate(
+      { _id: id },
+      { password: hashedPassword }
+    );
+    res.status(200).json({ message: "Password updated" });
+  } catch (err) {
+    res.status(400).json({ message: "Some error occured." });
+  }
+};
+
+// get all user details
 const getUserDetails = async (req, res) => {
   const userId = req.query.userId;
   const user = await User.findById(userId);
@@ -81,8 +121,8 @@ const verifyUser = async (req, res) => {
 };
 
 // to generate a login token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const generateToken = (id, role) => {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET, {
     expiresIn: "60d",
   });
 };
@@ -92,4 +132,6 @@ module.exports = {
   login,
   verifyUser,
   getUserDetails,
+  updateUserDetails,
+  changePassword,
 };

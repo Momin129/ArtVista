@@ -69,7 +69,7 @@ export default function Register() {
   const handleBlur = async (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    let returnMsg = await validateForm(name, value);
+    let returnMsg = await validateForm(undefined, name, value);
     if (name == "confirmPassword" && returnMsg == "") {
       if (value != inputs.password) returnMsg = "*Password does not match";
     }

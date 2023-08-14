@@ -1,49 +1,14 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { host } from "../utility/host";
+import { Box, Typography, Button } from "@mui/material";
 
-const Style = {
-  border: 1,
-  color: "white",
-  borderColor: "#2dfdc6",
-  borderRadius: 3,
-  width: { xs: "100%", md: "80%" },
-  "& fieldset": {
-    border: "none",
-  },
-  "& .MuiFormLabel-root.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInputBase-input": { color: "white" },
-  input: { color: "white" },
-  label: { color: "white" },
-  "& .MuiFormHelperText-root": {
-    whiteSpace: "pre-line",
-  },
-  "& .MuiInputBase-input.Mui-disabled": {
-    WebkitTextFillColor: "white",
-  },
-};
+import InputFileds from "../components/user/inputFileds";
+import { useState } from "react";
+import ChangePassword from "../components/user/changePassword";
+
 export default function Profile() {
-  const [disabled, setDisabled] = useState(true);
-  const [inputs, setInputs] = useState([
-    { fullname: "", mobile: "", email: "", password: "Password" },
-  ]);
-  useEffect(() => {
-    (async () => {
-      try {
-        const result = await axios.get(`${host}/api/user/getUserDetails`, {
-          params: { userId: sessionStorage.getItem("userId") },
-        });
-        for (let item in result.data) {
-          setInputs((values) => ({ ...values, [item]: result.data[item] }));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const [openPass, setOpenPass] = useState(false);
+  const handleClose = () => {
+    setOpenPass(false);
+  };
   return (
     <Box
       sx={{
@@ -58,90 +23,53 @@ export default function Profile() {
         paddingX: { xs: 1, sm: 0 },
       }}
     >
+      <ChangePassword open={openPass} handleClose={handleClose} />
       <Box
         sx={{
-          height: "60%",
-          width: { xs: "90%", md: "40%" },
-          boxShadow: "5px 5px 10px 0 #2fdfc6",
-          padding: 5,
+          height: "auto",
+          width: { md: 600 },
+          border: 2,
+          borderColor: "#2dfdc6",
+          borderRadius: 5,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
           gap: 3,
+          padding: { xs: 5, md: 0 },
+          paddingY: { xs: 5, md: 5 },
         }}
       >
-        <Typography sx={{ fontSize: { xs: 36, md: 64 }, fontWeight: "bold" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: 36, md: 64 },
+            fontWeight: "bold",
+            borderBottom: 1,
+            borderBottomColor: "#2dfdc6",
+          }}
+        >
           My Profile
         </Typography>
-        <TextField
-          label="Name"
-          name="fullname"
-          type="text"
-          value={inputs.fullname || ""}
-          sx={Style}
-          disabled={disabled}
-        />
-        <TextField
-          label="Email"
-          name="email"
-          type="text"
-          value={inputs.email || ""}
-          sx={Style}
-          disabled={disabled}
-        />
-        <TextField
-          label="Mobile"
-          name="mobile"
-          type="text"
-          value={inputs.mobile || ""}
-          sx={Style}
-          disabled={disabled}
-        />
-        <TextField
-          label="Password"
-          name="password"
-          type="password"
-          value={inputs.password || "Password"}
-          sx={Style}
-          disabled={disabled}
-        />
-        {!disabled && (
-          <TextField
-            label="Confirm Password"
-            name="ConfirmPassword"
-            type="password"
-            value={inputs.ConfirmPassword || ""}
-            sx={Style}
-            disabled={disabled}
-          />
-        )}
-
-        {disabled ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+          }}
+        >
+          <InputFileds />
           <Button
-            variant="contained"
             sx={{
-              backgroundColor: "#2fdfc6",
-              color: "#050215",
+              backgroundColor: "#2dfdc6",
+              color: "black",
               fontWeight: "bold",
+              "&:hover": { backgroundColor: "#02ca95" },
             }}
-            onClick={() => setDisabled(false)}
+            onClick={() => setOpenPass(true)}
           >
-            Update
+            Change Password
           </Button>
-        ) : (
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#2fdfc6",
-              color: "#050215",
-              fontWeight: "bold",
-            }}
-            onClick={() => setDisabled(true)}
-          >
-            Save
-          </Button>
-        )}
+        </Box>
       </Box>
     </Box>
   );

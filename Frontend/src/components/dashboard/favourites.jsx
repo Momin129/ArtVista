@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 const images = [
   {
     url: "/demo/demo1.jpg",
@@ -35,9 +35,7 @@ const images = [
 ];
 export default function Favourites() {
   return (
-    <Box
-      sx={{ padding: 1, height: 1, overflowY: "auto", scrollbarWidth: "thin" }}
-    >
+    <>
       <Typography
         sx={{
           textAlign: "center",
@@ -47,68 +45,43 @@ export default function Favourites() {
       >
         Favourites
       </Typography>
-      {images.length == 0 ? (
-        <Typography variant="h3">NO FAVOURITES</Typography>
-      ) : (
-        <Grid container spacing={2}>
-          {images.map((image, index) => (
-            <Grid item key={index} xs={12} sm={6} lg={4}>
-              <Box
+      <Box
+        sx={{
+          padding: 1,
+          height: 1,
+          overflowY: "auto",
+          scrollbarWidth: "thin",
+        }}
+      >
+        {images.length == 0 ? (
+          <Typography variant="h3">NO FAVOURITES</Typography>
+        ) : (
+          <Grid container spacing={2}>
+            {images.map((image, index) => (
+              <Grid
+                key={index}
+                item
+                lg={4}
+                xs={12}
+                sm={6}
                 sx={{
-                  width: { xs: 250, md: 350 },
-                  height: { xs: 250, md: 350 },
-                  overflow: "hidden",
-                  backgroundColor: "#2dfdc6",
-                  padding: 1,
-                  borderTopLeftRadius: 10,
-                  borderTopRightRadius: 10,
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src={image.url}
-                  sx={{
-                    width: 1,
-                    height: 1,
-                    objectFit: "fill",
-                  }}
-                ></Box>
-              </Box>
-              <Typography
-                variant="h5"
-                sx={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  backgroundColor: "#2dfdc6",
-                  color: "black",
-                  width: { xs: 250, md: 350 },
-                  borderBottomLeftRadius: 10,
-                  borderBottomRightRadius: 10,
                   display: "flex",
                   justifyContent: "center",
-                  flexDirection: "column",
-                  paddingY: 1,
+                  alignItems: "center",
                 }}
               >
-                {image.title}
-                <Button
-                  variant="contained"
-                  sx={{
-                    width: "50%",
-                    margin: "0 auto",
-                    backgroundColor: "#050215",
-                    color: "white",
-                    fontWeight: "bold",
-                    "&:hover": { backgroundColor: "#050215" },
-                  }}
-                >
-                  View
-                </Button>
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
-      )}
-    </Box>
+                <Box sx={{ width: 400, height: 400 }}>
+                  <Box
+                    component="img"
+                    src={image.url}
+                    sx={{ width: 1, height: 1, objectFit: "contain" }}
+                  ></Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Box>
+    </>
   );
 }

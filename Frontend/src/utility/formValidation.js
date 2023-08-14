@@ -1,7 +1,7 @@
 import axios from "axios";
 import { host } from "./host";
 
-export async function validateForm(name, value) {
+export async function validateForm(userId, name, value) {
   let msg = "";
 
   if (value.length == 0) return "*Field can't be empty";
@@ -17,6 +17,7 @@ export async function validateForm(name, value) {
     if (value.length != 10) msg = "\n*Number should be of 10 digits.";
     try {
       await axios.post(`${host}/api/user/validate`, {
+        id: userId,
         mobile: value,
       });
     } catch (error) {
@@ -28,6 +29,7 @@ export async function validateForm(name, value) {
     } else {
       try {
         await axios.post(`${host}/api/user/validate`, {
+          id: userId,
           email: value,
         });
       } catch (error) {

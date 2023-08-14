@@ -67,7 +67,11 @@ export default function Login() {
         .then((result) => {
           localStorage.setItem("token", result.data.token);
           sessionStorage.setItem("userId", result.data.id);
-          navigate("/dashboard");
+          sessionStorage.setItem("role", result.data.role);
+          console.log(result.data.role);
+          result.data.role == "user"
+            ? navigate("/dashboard")
+            : navigate("/admin");
         })
         .catch((err) => {
           setMsg(err.response.data.message);

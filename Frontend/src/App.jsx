@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { host } from "./utility/host";
 import Profile from "./pages/profile";
 import DisplayModels from "./pages/displayModels";
+import AdminDashboard from "./pages/admin/adminDashboard";
+import UploadModel from "./pages/admin/uploadModel";
 
 function App() {
   const navigate = useNavigate();
@@ -23,7 +25,10 @@ function App() {
         });
         if (verify) {
           sessionStorage.setItem("userId", verify.data.id);
-          navigate("/dashboard");
+          sessionStorage.setItem("role", verify.data.role);
+          verify.data.role == "user"
+            ? navigate("/dashboard")
+            : navigate("/admin");
         }
       } else navigate("/");
     })();
@@ -40,6 +45,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/displayModels" element={<DisplayModels />} />
+        <Route path="/admin" element={<AdminDashboard />}>
+          <Route path="/admin/upload" element={<UploadModel />} />
+        </Route>
       </Routes>
       <Footer />
     </>

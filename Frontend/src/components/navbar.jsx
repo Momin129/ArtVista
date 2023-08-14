@@ -17,33 +17,44 @@ import { useNavigate } from "react-router-dom";
 import DropDown from "./dropdown";
 
 function NavBar() {
-  const userId = sessionStorage.getItem("userId");
+  const role = sessionStorage.getItem("role");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showOn, setShowOn] = useState("home");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userId) {
-      setShowOn("user");
-    }
-  }, [showOn, userId]);
+    if (role) {
+      if (role == "user") setShowOn("user");
+      else setShowOn("admin");
+    } else setShowOn("home");
+  }, [showOn, role]);
 
   const navLeftItems = [
     { name: "Home", link: "/", show: "home" },
     { name: "About", link: "/about", show: "home" },
     { name: "Dashboard", link: "/dashboard", show: "user" },
+    { name: "Dashboard", link: "/admin", show: "admin" },
   ];
 
   const navRightItems = [
     { name: "Contact", link: "/contact", show: "home" },
-    { name: "Register", link: "/register", show: "home" },
+    { name: "Login/Register", link: "/login", show: "home" },
     { name: "Profile", link: "/profile", show: "user" },
     { name: "Contact", link: "/contact", show: "user" },
+    { name: "Upload", link: "/admin/upload", show: "admin" },
     { name: "Logout", link: "/", show: "user" },
+    { name: "Logout", link: "/", show: "admin" },
   ];
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
+    sessionStorage.removeItem("role");
+    setShowOn("home");
   };
 
   const drawer = (
@@ -82,6 +93,9 @@ function NavBar() {
                 disablePadding
                 onClick={() => {
                   handleDrawerToggle();
+                  if (item.name.toLowerCase() == "logout") {
+                    handleLogout();
+                  }
                   navigate(item.link);
                 }}
               >
@@ -152,9 +166,7 @@ function NavBar() {
                     sx={{ color: "#fff", fontWeight: "bold" }}
                     onClick={() => {
                       if (item.name.toLowerCase() == "logout") {
-                        localStorage.removeItem("token");
-                        sessionStorage.removeItem("userId");
-                        setShowOn("home");
+                        handleLogout();
                       }
                       navigate(item.link);
                     }}
