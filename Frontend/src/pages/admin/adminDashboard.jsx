@@ -14,6 +14,8 @@ export default function AdminDashboard() {
         paddingY: { xs: 2, sm: 0 },
         paddingX: { xs: 1, sm: 0 },
       }}
-    ></Box>
+    >
+      Dashboard
+    </Box>
   );
 }

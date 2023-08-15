@@ -45,9 +45,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/displayModels" element={<DisplayModels />} />
-        <Route path="/admin" element={<AdminDashboard />}>
-          <Route path="/admin/upload" element={<UploadModel />} />
-        </Route>
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/upload" element={<UploadModel />} />
       </Routes>
       <Footer />
     </>

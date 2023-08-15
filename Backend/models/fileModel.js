@@ -5,6 +5,10 @@ const fileSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbnail: {
+    type: String,
+    required: true,
+  },
   info: {
     type: String,
     required: true,
