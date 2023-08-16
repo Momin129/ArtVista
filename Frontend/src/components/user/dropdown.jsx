@@ -23,16 +23,16 @@ export default function SelectType({ inputs, handleChange }) {
 
   return (
     <FormControl sx={registeStyle}>
-      <InputLabel id="demo-simple-select-label">Type of model</InputLabel>
+      <InputLabel>Type of model</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        name="type"
         value={inputs.type || ""}
         onChange={handleChange}
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value="painting">Painting</MenuItem>
+        <MenuItem value="sculpture">Sculpture</MenuItem>
+        <MenuItem value="artifact">Artifact</MenuItem>
+        <MenuItem value="demo">Demo</MenuItem>
       </Select>
     </FormControl>
   );
