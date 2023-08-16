@@ -34,6 +34,36 @@ const addModel = async (req, res) => {
   else res.status(400).json({ message: "Something went wrong" });
 };
 
+const removeModel = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.query.id);
+  try {
+    bucket.delete(id);
+    res.json("Success");
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+const getModelsData = async (req, res) => {
+  const type = req.query.type;
+  let Schema;
+  if (type == "painting") Schema = Paintings;
+  else if (type == "sculpture") Schema = Sculptures;
+  else if (type == "artifact") Schema = Artifacts;
+  else Schema = Demo;
+
+  const getmodel = await Schema.find();
+  if (getmodel) res.status(200).json({ data: getmodel });
+  else res.status(400).json({ message: "something went wrong" });
+};
+
+const getModel = async (req, res) => {
+  const id = new mongoose.Types.ObjectId(req.query.id);
+  const file = await bucket.find({ _id: id }).toArray();
+  if (!file.length) res.json({ message: "Not a file!" });
+  else bucket.openDownloadStreamByName(file[0].filename).pipe(res);
+};
+
 const storage = new GridFsStorage({
   url: process.env.MONGO_URI,
   file: (req, file) => {
@@ -46,4 +76,4 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-module.exports = { upload, addModel };
+module.exports = { upload, addModel, getModelsData, getModel, removeModel };

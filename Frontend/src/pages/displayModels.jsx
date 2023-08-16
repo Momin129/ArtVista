@@ -4,14 +4,17 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../css/slider.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { host } from "../utility/host";
 
 export default function DisplayModels() {
   const { state } = useLocation();
   const { type } = state;
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
+  const [images, setImages] = useState([]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -34,49 +37,21 @@ export default function DisplayModels() {
       items: 1,
     },
   };
-  const images = [
-    {
-      url: "/demo/demo1.jpg",
-      title: "Title 1",
-      content:
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec convallis purus sit amet lacus commodo mollis. Etiam eleifend tortor eget porta dapibus. Integer id efficitur purus. Duis sed metus quis nunc rhoncus posuere ac a libero. Vestibulum dapibus volutpat egestas. Aenean suscipit, risus non commodo consectetur, turpis nisl viverra turpis, cursus placerat nisi neque vitae lorem. Integer ut pellentesque neque. Maecenas volutpat eros vitae auctor ullamcorper. In hac habitasse platea dictumst. Proin vel pulvinar orci. Curabitur tincidunt et libero sed pretium. Vestibulum fermentum nulla non velit bibendum, vel malesuada quam cursus. Vivamus molestie sodales elit vitae finibus. Phasellus consectetur odio imperdiet ullamcorper gravida. Phasellus a mattis quam, non eleifend tortor. Mauris risus ex, commodo ac auctor quis, malesuada quis urna. Nulla consectetur turpis eu nisi laoreet venenatis. Ut condimentum, massa ac fermentum consequat, augue dolor placerat leo, vitae auctor turpis justo at augue. Nulla id commodo neque. ",
-    },
-    {
-      url: "/demo/demo2.jpg",
-      title: "Title 2",
-      content: "This is content of image 2",
-    },
-    {
-      url: "/demo/demo3.jpg",
-      title: "Title 3",
-      content: "This is content of image 3",
-    },
-    {
-      url: "/demo/demo4.jpg",
-      title: "Title 4",
-      content: "This is content of image 4",
-    },
-    {
-      url: "/demo/demo5.jpg",
-      title: "Title 5",
-      content: "This is content of image 5",
-    },
-    {
-      url: "/demo/demo6.jpg",
-      title: "Title 6",
-      content: "This is content of image 6",
-    },
-    {
-      url: "/demo/demo7.jpg",
-      title: "Title 7",
-      content: "This is content of image 7",
-    },
-    {
-      url: "/demo/demo8.jpg",
-      title: "Title 8",
-      content: "This is content of image 8",
-    },
-  ];
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await axios.get(`${host}/api/model/getmodels`, {
+          params: { type: "demo" },
+        });
+        console.log(data.data.data);
+        setImages(data.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  });
+
   return (
     <>
       <Box
@@ -103,12 +78,14 @@ export default function DisplayModels() {
             <Box
               key={index}
               sx={{
-                width: { xs: 300, md: 200 },
-                height: { xs: 300, md: 200 },
+                width: { xs: 200, md: 200 },
+                height: { xs: 200, md: 200 },
                 borderRadius: 2,
-                overflow: "hidden",
-                margin: "0 auto",
                 cursor: "pointer",
+                margin: "0 auto",
+                border: 1,
+                overflow: "hidden",
+                borderColor: "#2dfdc6",
               }}
               onClick={() => {
                 setIndex(index);
@@ -116,7 +93,7 @@ export default function DisplayModels() {
             >
               <Box
                 component={"img"}
-                src={image.url}
+                src={image.thumbnail}
                 sx={{ height: 1, width: 1, objectFit: "fill" }}
               ></Box>
             </Box>
@@ -182,10 +159,10 @@ export default function DisplayModels() {
               component="h2"
               sx={{ borderBottom: 1 }}
             >
-              {images[index].title}
+              {/* {images[index].title} */}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {images[index].content}
+              {/* {images[index].content} */}
             </Typography>
           </Box>
         </Modal>

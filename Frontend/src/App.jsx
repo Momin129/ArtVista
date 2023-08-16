@@ -14,6 +14,7 @@ import Profile from "./pages/profile";
 import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
+import Demo from "./pages/demo";
 
 function App() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function App() {
         <Route path="/displayModels" element={<DisplayModels />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/upload" element={<UploadModel />} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
       <Footer />
     </>

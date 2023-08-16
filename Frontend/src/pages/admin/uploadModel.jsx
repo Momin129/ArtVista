@@ -7,7 +7,7 @@ import {
   Alert,
   InputLabel,
 } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { host } from "../../utility/host";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
@@ -30,10 +30,13 @@ const upload = {
 };
 
 export default function UploadModel() {
+  const [file, setFile] = useState();
   const [inputs, setInputs] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+  const thumbnail = useRef();
+  const model = useRef();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -41,18 +44,17 @@ export default function UploadModel() {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleThumbnail = (event) =>{
+  const handleThumbnail = (event) => {
     const data = new FileReader();
-    data.addEventListener('load',()=>{
-      setInputs(values=>({...values,[event.target.name]:data.result}))
-    })
     data.readAsDataURL(event.target.files[0]);
-  }
-  const handleFile = (event)=>{
-    const name = event.target.name;
-    const value = event.target.files[0];
-    setInputs((values) => ({ ...values, [name]: value }));
-  }
+    data.addEventListener("load", () => {
+      setInputs((values) => ({ ...values, [event.target.name]: data.result }));
+    });
+  };
+
+  const handleFile = (event) => {
+    setFile(event.target.files[0]);
+  };
 
   const handleSubmit = async () => {
     if (
@@ -66,13 +68,27 @@ export default function UploadModel() {
       setOpen(true);
       setSuccess(false);
     } else {
+      const formData = new FormData();
+      formData.append("title", inputs.title);
+      formData.append("thumbnail", inputs.thumbnail);
+      formData.append("info", inputs.info);
+      formData.append("type", inputs.type);
+      formData.append("file", file);
+
       try {
-        await axios.post(`${host}/api/model/upload`,inputs).then((result)=>{
-          setMsg(result.data.message);
-          setSuccess(true);
-          setOpen(true);
-        })
+        await axios
+          .post(`${host}/api/model/upload`, formData)
+          .then((result) => {
+            setMsg(result.data.message);
+            setSuccess(true);
+            setOpen(true);
+          });
+        for (let item in inputs)
+          setInputs((values) => ({ ...values, [item]: "" }));
+        thumbnail.current.value = "";
+        model.current.value = "";
       } catch (error) {
+        console.log(error);
         setMsg(error.response.data.message);
         setSuccess(true);
         setOpen(true);
@@ -125,10 +141,16 @@ export default function UploadModel() {
           sx={upload}
         />
         <SelectType inputs={inputs} handleChange={handleChange} />
-        <InputLabel sx={{color:'white'}}>Thumbnail for model</InputLabel>
-        <TextField name="thumbnail" type="file" sx={upload} onChange={handleThumbnail} />
-        <InputLabel sx={{color:'white'}}>Model File</InputLabel>
-        <TextField name="file" type="file" sx={upload} onChange={handleFile} />
+        <InputLabel sx={{ color: "white" }}>Thumbnail for model</InputLabel>
+        <TextField
+          ref={thumbnail}
+          name="thumbnail"
+          type="file"
+          sx={upload}
+          onChange={handleThumbnail}
+        />
+        <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
+        <TextField ref={model} type="file" sx={upload} onChange={handleFile} />
         <Button
           variant="contained"
           sx={{
