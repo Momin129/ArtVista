@@ -13,7 +13,7 @@ function Controls() {
 
 function Model() {
   const { scene } = useGLTF(
-    "http://localhost:5000/api/model/getmodel?id=64dcb2367295e207e0b92051"
+    "http://localhost:4242/uploads/cat.glb"
   );
 
   return (

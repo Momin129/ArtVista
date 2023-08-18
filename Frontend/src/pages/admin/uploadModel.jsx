@@ -8,7 +8,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import { useRef, useState } from "react";
-import { host } from "../../utility/host";
+import { StorageHost } from "../../utility/host";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
 
@@ -76,8 +76,9 @@ export default function UploadModel() {
       formData.append("file", file);
 
       try {
+        console.log(`${StorageHost}/api/upload`);
         await axios
-          .post(`${host}/api/model/upload`, formData)
+          .post(`${StorageHost}/api/upload`, formData)
           .then((result) => {
             setMsg(result.data.message);
             setSuccess(true);
@@ -90,7 +91,7 @@ export default function UploadModel() {
       } catch (error) {
         console.log(error);
         setMsg(error.response.data.message);
-        setSuccess(true);
+        setSuccess(false);
         setOpen(true);
       }
     }
@@ -165,7 +166,7 @@ export default function UploadModel() {
         </Button>
       </Box>
       <Snackbar
-        autoHideDuration={8000}
+        autoHideDuration={5000}
         open={open}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         onClose={() => setOpen(false)}

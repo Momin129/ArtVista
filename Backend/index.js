@@ -12,7 +12,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use("/api/user", require("./routes/userRoutes"));
 app.use("/api", require("./routes/contactRoutes"));
-app.use("/api/model", require("./routes/fileRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Server started at PORT: ${process.env.PORT}`);
