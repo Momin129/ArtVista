@@ -7,7 +7,7 @@ import {
   Alert,
   InputLabel,
 } from "@mui/material";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { StorageHost } from "../../utility/host";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
@@ -31,12 +31,11 @@ const upload = {
 
 export default function UploadModel() {
   const [file, setFile] = useState();
+  const [thumbnail, setThumbnail] = useState();
   const [inputs, setInputs] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
-  const thumbnail = useRef();
-  const model = useRef();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -45,11 +44,7 @@ export default function UploadModel() {
   };
 
   const handleThumbnail = (event) => {
-    const data = new FileReader();
-    data.readAsDataURL(event.target.files[0]);
-    data.addEventListener("load", () => {
-      setInputs((values) => ({ ...values, [event.target.name]: data.result }));
-    });
+    setThumbnail(event.target.files[0]);
   };
 
   const handleFile = (event) => {
@@ -61,8 +56,7 @@ export default function UploadModel() {
       inputs.length == 0 ||
       inputs.title.length == 0 ||
       inputs.info.length == 0 ||
-      inputs.type.length == 0 ||
-      inputs.thumbnail.length == 0
+      inputs.type.length == 0
     ) {
       setMsg("Please fill all fields");
       setOpen(true);
@@ -70,7 +64,7 @@ export default function UploadModel() {
     } else {
       const formData = new FormData();
       formData.append("title", inputs.title);
-      formData.append("thumbnail", inputs.thumbnail);
+      formData.append("thumbnail", thumbnail);
       formData.append("info", inputs.info);
       formData.append("type", inputs.type);
       formData.append("file", file);
@@ -86,8 +80,6 @@ export default function UploadModel() {
           });
         for (let item in inputs)
           setInputs((values) => ({ ...values, [item]: "" }));
-        thumbnail.current.value = "";
-        model.current.value = "";
       } catch (error) {
         console.log(error);
         setMsg(error.response.data.message);
@@ -144,14 +136,13 @@ export default function UploadModel() {
         <SelectType inputs={inputs} handleChange={handleChange} />
         <InputLabel sx={{ color: "white" }}>Thumbnail for model</InputLabel>
         <TextField
-          ref={thumbnail}
           name="thumbnail"
           type="file"
           sx={upload}
           onChange={handleThumbnail}
         />
         <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
-        <TextField ref={model} type="file" sx={upload} onChange={handleFile} />
+        <TextField type="file" sx={upload} onChange={handleFile} />
         <Button
           variant="contained"
           sx={{

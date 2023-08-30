@@ -72,7 +72,9 @@ export default function FirstSection() {
                   paddingX: { xs: 5, md: 13 },
                   "&:hover": { backgroundColor: "#2dfdc6" },
                 }}
-                onClick={() => naviagte("/demo", { state: { type: "demo" } })}
+                onClick={() =>
+                  naviagte("/displayModels", { state: { type: "demo" } })
+                }
               >
                 Get Demo
               </Button>
