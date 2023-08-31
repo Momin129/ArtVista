@@ -45,10 +45,18 @@ export default function SecondSection() {
               style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
             >
               <Box
-                component={"img"}
-                sx={{ width: { xs: 350, md: 600 } }}
-                src="/images/secondSection.jpg"
-              ></Box>
+                sx={{
+                  width: { md: 500 },
+                  height: { md: 600 },
+                  overflow: "hidden",
+                }}
+              >
+                <Box
+                  component={"img"}
+                  sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+                  src="/images/secondSection.jpg"
+                ></Box>
+              </Box>
             </Fade>
           </Box>
         </Grid>

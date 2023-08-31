@@ -53,10 +53,18 @@ export default function About() {
           }}
         >
           <Box
-            component={"img"}
-            src="/images/about1.jpg"
-            sx={{ width: { xs: 350, md: 500 } }}
-          ></Box>
+            sx={{
+              width: { md: 500 },
+              height: { md: 600 },
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component={"img"}
+              src="/images/about1.jpg"
+              sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+            ></Box>
+          </Box>
         </Grid>
       </Grid>
       <Grid container sx={{ paddingY: 5 }}>
@@ -72,10 +80,18 @@ export default function About() {
           }}
         >
           <Box
-            component={"img"}
-            src="/images/about2.jpg"
-            sx={{ width: { xs: 350, md: 500 } }}
-          ></Box>
+            sx={{
+              width: { md: 500 },
+              height: { md: 600 },
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component={"img"}
+              src="/images/about2.jpg"
+              sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+            ></Box>
+          </Box>
         </Grid>
 
         <Grid
@@ -150,10 +166,18 @@ export default function About() {
           }}
         >
           <Box
-            component={"img"}
-            src="/images/about3.jpg"
-            sx={{ width: { xs: 350, md: 500 } }}
-          ></Box>
+            sx={{
+              width: { md: 500 },
+              height: { md: 600 },
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component={"img"}
+              src="/images/about3.jpg"
+              sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+            ></Box>
+          </Box>
         </Grid>
       </Grid>
       <Grid container sx={{ paddingY: 5 }}>
@@ -169,10 +193,18 @@ export default function About() {
           }}
         >
           <Box
-            component={"img"}
-            src="/images/about4.jpg"
-            sx={{ width: { xs: 350, md: 500 } }}
-          ></Box>
+            sx={{
+              width: { md: 500 },
+              height: { md: 600 },
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component={"img"}
+              src="/images/about4.jpg"
+              sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+            ></Box>
+          </Box>
         </Grid>
 
         <Grid

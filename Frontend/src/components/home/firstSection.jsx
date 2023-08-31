@@ -94,10 +94,18 @@ export default function FirstSection() {
             style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
           >
             <Box
-              component={"img"}
-              src="/images/firstSection.jpg"
-              sx={{ width: { xs: 350, md: 500 }, marginTop: 2 }}
-            ></Box>
+              sx={{
+                width: { md: 500 },
+                height: { md: 600 },
+                overflow: "hidden",
+              }}
+            >
+              <Box
+                component={"img"}
+                src="/images/firstSection.jpg"
+                sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+              ></Box>
+            </Box>
           </Fade>
         </Grid>
       </Grid>

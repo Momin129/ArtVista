@@ -1,10 +1,19 @@
 import { Box, Button } from "@mui/material";
 import Uploads from "../components/dashboard/uploads";
-import { useState } from "react";
 import Favourites from "../components/dashboard/favourites";
+import { useEffect, useState } from "react";
+import { fetchFavourites } from "../utility/api";
 
 export default function Dashboard() {
   const [show, setShow] = useState(true);
+  const [favourites, setFavourites] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const model = await fetchFavourites();
+      setFavourites(model);
+    })();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -19,7 +28,7 @@ export default function Dashboard() {
     >
       <Box
         sx={{
-          width: { xs: "90%", md: "70%" },
+          width: { xs: "100%", md: "70%" },
           height: { xs: "80%", md: "80%" },
           padding: 5,
         }}
@@ -64,7 +73,9 @@ export default function Dashboard() {
             padding: 2,
           }}
         >
-          {show && <Favourites />}
+          {show && (
+            <Favourites favourites={favourites} setFavourites={setFavourites} />
+          )}
           {!show && <Uploads />}
         </Box>
       </Box>

@@ -13,7 +13,6 @@ function Controls() {
 }
 
 function Model({ path }) {
-  console.log("in model", path);
   const { scene } = useGLTF(`http://localhost:4242/${path}`);
 
   return (
@@ -31,7 +30,6 @@ function Model({ path }) {
 }
 
 export default function GenerateModel({ currentModel }) {
-  console.log("In generate model", currentModel);
   return (
     <Box sx={{ width: 1, height: 1 }}>
       <Canvas style={{ padding: 5, backgroundColor: "#050215" }}>

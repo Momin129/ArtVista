@@ -1,8 +1,18 @@
 import { Box, Grid, Fade, Typography } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
+import { fetchLatestModels } from "../../utility/api";
 
 export default function FourthSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [latest, setLatest] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const model = await fetchLatestModels();
+      setLatest(model);
+    })();
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -56,277 +66,50 @@ export default function FourthSection() {
             </Fade>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
+        {latest.map((item, index) => (
+          <Grid
+            key={index}
+            item
+            xs={12}
+            md={4}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box>
+              <Fade
+                in={isIntersecting}
+                style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
               >
                 <Box
-                  component={"img"}
-                  src="/images/painting.jpg"
-                  width={400}
-                ></Box>
-                <Typography
                   sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
+                    width: { xs: 350, md: 400 },
+                    height: { xs: 350, md: 400 },
+                    overflow: "hidden",
+                    position: "relative",
                   }}
                 >
-                  Paintings
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src="/images/sculpture.jpg"
-                  width={400}
-                ></Box>
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sculptures
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src="/images/artifact.png"
-                  width={400}
-                ></Box>
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sculptures
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 4,
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src="/images/painting.jpg"
-                  width={400}
-                ></Box>
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Paintings
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src="/images/sculpture.jpg"
-                  width={400}
-                ></Box>
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sculptures
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Box
-                sx={{
-                  width: { xs: 350, md: 400 },
-                  height: { xs: 350, md: 400 },
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Box
-                  component={"img"}
-                  src="/images/artifact.png"
-                  width={400}
-                ></Box>
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
-                    fontSize: 48,
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sculptures
-                </Typography>
-              </Box>
-            </Fade>
-          </Box>
-        </Grid>
+                  <Box component={"img"} src={item.thumbnail} width={400}></Box>
+                  <Typography
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      color: "#2dfdc6",
+                      fontSize: 48,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                </Box>
+              </Fade>
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
