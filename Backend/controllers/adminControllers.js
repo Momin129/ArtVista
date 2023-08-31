@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const {
   Paintings,
   Sculptures,
@@ -32,4 +31,23 @@ const getNumbers = async (req, res) => {
   }
 };
 
-module.exports = { getNumbers };
+const getAllDetails = async (req, res) => {
+  try {
+    const type = req.query.type;
+    let Schema;
+    if (type == "painting") Schema = Paintings;
+    else if (type == "sculpture") Schema = Sculptures;
+    else if (type == "artifact") Schema = Artifacts;
+    else if (type == "user") Schema = User;
+    else if (type == "contact") Schema = Contact;
+    else Schema = Demo;
+
+    const data = await Schema.find();
+    res.status(200).json(data);
+  } catch (error) {
+    res.json(error);
+    console.log(error);
+  }
+};
+
+module.exports = { getNumbers, getAllDetails };

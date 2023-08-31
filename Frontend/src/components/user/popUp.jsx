@@ -8,12 +8,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: { xs: 350, md: 500 },
+  height: { xs: 350, md: 500 },
+  overflow: "auto",
   bgcolor: "#050215",
   border: "2px solid #2fdfc6",
   borderRadius: 3,
   color: "white",
   p: 4,
+  scrollbarWidth: "thin",
+  scrollbarColor: "#2fdfc6 #050215",
 };
 
 // eslint-disable-next-line react/prop-types
@@ -36,7 +40,10 @@ export default function PopUp({ open, handleClose, currentModel }) {
           >
             {currentModel.title}
           </Typography>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+          <Typography
+            id="keep-mounted-modal-description"
+            sx={{ mt: 2, textAlign: "justify" }}
+          >
             {currentModel.info}
           </Typography>
         </Box>

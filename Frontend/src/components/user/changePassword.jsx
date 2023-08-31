@@ -21,6 +21,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const changePasswordStyle = {
+  border: 1,
+  color: "white",
+  borderColor: "#2dfdc6",
+  borderRadius: 3,
+  width: { xs: "100%", md: "80%" },
+  "& fieldset": {
+    border: "none",
+  },
+  "& .MuiFormLabel-root.Mui-focused": {
+    color: "white",
+  },
+  "& .MuiInputBase-input": { color: "white" },
+  input: { color: "white" },
+  label: { color: "white" },
+  "& .MuiFormHelperText-root": {
+    whiteSpace: "pre-line",
+  },
+};
+
 export default function ChangePassword({ open, handleClose }) {
   const [inputs, setInputs] = useState([{ password: "", confirmPassword: "" }]);
   const [disable, setDisable] = useState(true);
@@ -83,12 +103,24 @@ export default function ChangePassword({ open, handleClose }) {
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        PaperProps={{
+          style: {
+            backgroundColor: "#050215",
+            color: "white",
+            border: 2,
+            borderColor: "#2fdfc6",
+          },
+        }}
       >
         <DialogTitle>{"Change Password"}</DialogTitle>
         <DialogContent>
           <Box
             id="alert-dialog-slide-description"
-            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
           >
             <TextField
               error={error.password == "" ? false : true}
@@ -99,11 +131,7 @@ export default function ChangePassword({ open, handleClose }) {
               value={inputs.password || ""}
               onChange={handleChange}
               onBlur={handleBlur}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  whiteSpace: "pre-line",
-                },
-              }}
+              sx={changePasswordStyle}
             />
             <TextField
               error={error.confirmPassword == "" ? false : true}
@@ -114,11 +142,7 @@ export default function ChangePassword({ open, handleClose }) {
               value={inputs.confirmPassword || ""}
               onChange={handleChange}
               onBlur={handleBlur}
-              sx={{
-                "& .MuiFormHelperText-root": {
-                  whiteSpace: "pre-line",
-                },
-              }}
+              sx={changePasswordStyle}
             />
           </Box>
         </DialogContent>

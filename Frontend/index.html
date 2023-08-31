@@ -21,6 +21,17 @@
       body,
       #root {
         height: 100%;
+        scrollbar-width: thin;
+        scrollbar-color: #2fdfc6 #050215;
+
+        ::-webkit-scrollbar {
+          width: 8px;
+          background-color: #050215;
+        }
+        ::-webkit-scrollbar-thumb {
+          background-color: #2fdfc6;
+          border-radius: 5px;
+        }
       }
     </style>
   </head>

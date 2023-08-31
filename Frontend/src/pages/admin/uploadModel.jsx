@@ -31,7 +31,6 @@ const upload = {
 
 export default function UploadModel() {
   const [file, setFile] = useState();
-  const [thumbnail, setThumbnail] = useState();
   const [inputs, setInputs] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -44,7 +43,11 @@ export default function UploadModel() {
   };
 
   const handleThumbnail = (event) => {
-    setThumbnail(event.target.files[0]);
+    const data = new FileReader();
+    data.readAsDataURL(event.target.files[0]);
+    data.addEventListener("load", () => {
+      setInputs((values) => ({ ...values, [event.target.name]: data.result }));
+    });
   };
 
   const handleFile = (event) => {
@@ -64,7 +67,7 @@ export default function UploadModel() {
     } else {
       const formData = new FormData();
       formData.append("title", inputs.title);
-      formData.append("thumbnail", thumbnail);
+      formData.append("thumbnail", inputs.thumbnail);
       formData.append("info", inputs.info);
       formData.append("type", inputs.type);
       formData.append("file", file);
@@ -132,6 +135,8 @@ export default function UploadModel() {
           value={inputs.info || ""}
           onChange={handleChange}
           sx={upload}
+          multiline
+          rows={5}
         />
         <SelectType inputs={inputs} handleChange={handleChange} />
         <InputLabel sx={{ color: "white" }}>Thumbnail for model</InputLabel>
