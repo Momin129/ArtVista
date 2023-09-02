@@ -1,5 +1,5 @@
 import axios from "axios";
-import { host } from "./host";
+import { StorageHost, host } from "./host";
 
 export const fetchFavourites = async () => {
   const list = [];
@@ -29,5 +29,67 @@ export const fetchLatestModels = async () => {
     return latestModel.data;
   } catch (error) {
     console.log("Error", error);
+  }
+};
+
+export const fetchUserUploads = async () => {
+  try {
+    const userId = sessionStorage.getItem("userId");
+    const userUploads = await axios.get(`${StorageHost}/api/userUploads`, {
+      params: { userId: userId },
+    });
+    return userUploads.data.userUploads;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchUploadRequests = async () => {
+  try {
+    const requestList = await axios.get(`${host}/api/admin/uploadRequest`);
+    for (let item = 0; item < requestList.data.length; item++) {
+      const email = await axios.get(`${host}/api/admin/uploadEmail`, {
+        params: { userId: requestList.data[item].userId },
+      });
+      requestList.data[item].email = email.data;
+    }
+    return requestList.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchAproveRequest = async (id) => {
+  try {
+    const response = await axios.post(`${host}/api/admin/aproveRequest`, {
+      id: id,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchRejectRequest = async (id, filename) => {
+  console.log(id);
+  try {
+    const response = await axios.post(`${StorageHost}/api/rejectRequest`, {
+      id: id,
+      filename: filename,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteUserUpload = async (id) => {
+  try {
+    const response = await axios.get(`${StorageHost}/api/deleteUserUploads`, {
+      params: { id: id },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
 };

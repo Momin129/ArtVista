@@ -25,6 +25,7 @@ export default function DisplayModels() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const hadleFavourite = async () => {
     const userId = sessionStorage.getItem("userId");
@@ -139,9 +140,6 @@ export default function DisplayModels() {
               padding: 1,
               scrollbarWidth: "thin",
               scrollbarColor: "#2fdfc6 #050215",
-              border: 3,
-              borderColor: "#2fdfc6",
-              borderRadius: 2,
             }}
           >
             {images.map((image, index) => (
@@ -153,9 +151,12 @@ export default function DisplayModels() {
                   width: 250,
                   height: { xs: 300, md: 250 },
                   marginLeft: { xs: 2, md: 3 },
+                  border: selectedIndex == index ? 2 : 0,
+                  borderColor: "#2fdfc6",
                 }}
                 onClick={() => {
                   handleCurrentModel(image);
+                  setSelectedIndex(index);
                 }}
               ></Box>
             ))}

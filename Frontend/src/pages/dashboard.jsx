@@ -2,15 +2,27 @@ import { Box, Button } from "@mui/material";
 import Uploads from "../components/dashboard/uploads";
 import Favourites from "../components/dashboard/favourites";
 import { useEffect, useState } from "react";
-import { fetchFavourites } from "../utility/api";
+import { fetchFavourites, fetchUserUploads } from "../utility/api";
 
 export default function Dashboard() {
   const [show, setShow] = useState(true);
   const [favourites, setFavourites] = useState([]);
+  const [list, setList] = useState([]);
+  const [lastUploaded, setLastUploaded] = useState("");
+
   useEffect(() => {
     (async () => {
       const model = await fetchFavourites();
       setFavourites(model);
+    })();
+    (async () => {
+      try {
+        const list = await fetchUserUploads();
+        setList(list);
+        list.length > 0 && setLastUploaded(list.slice(-1)[0].status);
+      } catch (error) {
+        console.log(error);
+      }
     })();
   }, []);
 
@@ -76,7 +88,13 @@ export default function Dashboard() {
           {show && (
             <Favourites favourites={favourites} setFavourites={setFavourites} />
           )}
-          {!show && <Uploads />}
+          {!show && (
+            <Uploads
+              list={list}
+              lastUploaded={lastUploaded}
+              setList={setList}
+            />
+          )}
         </Box>
       </Box>
     </Box>

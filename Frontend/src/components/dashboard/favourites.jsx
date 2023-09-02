@@ -66,9 +66,8 @@ export default function Favourites({ favourites, setFavourites }) {
           overflowY: "auto",
           scrollbarWidth: "thin",
           scrollbarColor: "#2fdfc6 #050215",
-          border: 2,
-          borderRadius: 3,
-          borderColor: "#2fdfc6",
+          borderBottom: 2,
+          borderBottomColor: "#2fdfc6",
         }}
       >
         {favourites.length == 0 ? (

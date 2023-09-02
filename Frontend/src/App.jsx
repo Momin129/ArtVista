@@ -14,6 +14,7 @@ import Profile from "./pages/profile";
 import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
+import Upload from "./components/user/upload";
 
 function App() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/upload" element={<Upload />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/displayModels" element={<DisplayModels />} />
         <Route path="/admin" element={<AdminDashboard />} />

@@ -91,7 +91,11 @@ export default function FourthSection() {
                     position: "relative",
                   }}
                 >
-                  <Box component={"img"} src={item.thumbnail} width={400}></Box>
+                  <Box
+                    component={"img"}
+                    src={item != null ? item.thumbnail : "/demo/demo1.jpg"}
+                    width={400}
+                  ></Box>
                   <Typography
                     sx={{
                       position: "absolute",
@@ -103,7 +107,7 @@ export default function FourthSection() {
                       fontWeight: "bold",
                     }}
                   >
-                    {item.title}
+                    {item != null ? item.title : "Title"}
                   </Typography>
                 </Box>
               </Fade>

@@ -64,7 +64,6 @@ const getFavouritesList = async (req, res) => {
   const userId = new mongoose.Types.ObjectId(req.query.userId);
   try {
     const favList = await favSchema.find({ userId: userId });
-    console.log(favList);
     res.json(favList);
   } catch (error) {
     res.status(400).json({ message: "Somethign went wrong" });

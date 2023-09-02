@@ -16,7 +16,9 @@ const getLatestModels = async (req, res) => {
     .sort({ $natural: -1 })
     .select("title thumbnail -_id");
 
-  latestModels.push(latestPainting[0], latestSculpture[0], latestArtifact[0]);
+  if (latestPainting[0].length > 0) latestModels.push(latestPainting[0]);
+  if (latestSculpture[0].length > 0) latestModels.push(latestSculpture[0]);
+  if (latestArtifact[0].length > 0) latestModels.push(latestArtifact[0]);
 
   res.json(latestModels);
 };
