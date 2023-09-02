@@ -1,8 +1,8 @@
 import { Box, Button } from "@mui/material";
-import Uploads from "../components/dashboard/uploads";
-import Favourites from "../components/dashboard/favourites";
+import Uploads from "../../components/user/dashboard/uploads";
+import Favourites from "../../components/user/dashboard/favourites";
 import { useEffect, useState } from "react";
-import { fetchFavourites, fetchUserUploads } from "../utility/api";
+import { fetchFavourites, fetchUserUploads } from "../../utility/api";
 
 export default function Dashboard() {
   const [show, setShow] = useState(true);

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
-import PopUpModel from "../user/popUpModel";
+import PopUpModel from "../popUpModel";
 import axios from "axios";
-import { host } from "../../utility/host";
+import { host } from "../../../utility/host";
 
 export default function Favourites({ favourites, setFavourites }) {
   const [currentModel, setCurrentModel] = useState({

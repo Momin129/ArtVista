@@ -1,8 +1,8 @@
 import { Box, Grid } from "@mui/material";
-import FirstSection from "../components/about/firstSection";
-import SecondSection from "../components/about/secondSection";
-import ThirdSection from "../components/about/thirdSection";
-import FourthSection from "../components/about/fourthSection";
+import FirstSection from "../../components/about/firstSection";
+import SecondSection from "../../components/about/secondSection";
+import ThirdSection from "../../components/about/thirdSection";
+import FourthSection from "../../components/about/fourthSection";
 
 export default function About() {
   return (

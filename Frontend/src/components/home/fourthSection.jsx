@@ -12,7 +12,6 @@ export default function FourthSection() {
       setLatest(model);
     })();
   }, []);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

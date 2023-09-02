@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { deleteUserUpload } from "../../utility/api";
+import { deleteUserUpload } from "../../../utility/api";
 
 export default function Uploads({ list, lastUploaded, setList }) {
   const navigate = useNavigate();

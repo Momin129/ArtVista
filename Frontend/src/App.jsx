@@ -1,20 +1,21 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import NavBar from "./components/navbar";
-import Home from "./pages/home";
-import About from "./pages/about";
+import Home from "./pages/main/home";
+import About from "./pages/main/about";
 import Contact from "./pages/contact";
-import Register from "./pages/register";
-import Login from "./pages/login";
-import Dashboard from "./pages/dashboard";
+import Register from "./pages/main/register";
+import Login from "./pages/main/login";
+import Dashboard from "./pages/user/dashboard";
 import Footer from "./components/footer";
 import axios from "axios";
 import { useEffect } from "react";
 import { host } from "./utility/host";
-import Profile from "./pages/profile";
+import Profile from "./pages/user/profile";
 import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
 import Upload from "./components/user/upload";
+import Feedbacks from "./pages/admin/feedbacks";
 
 function App() {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ function App() {
         <Route path="/displayModels" element={<DisplayModels />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/upload" element={<UploadModel />} />
+        <Route path="/admin/feedbacks" element={<Feedbacks />} />
       </Routes>
       <Footer />
     </>

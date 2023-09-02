@@ -155,6 +155,7 @@ export default function ChangePassword({ open, handleClose }) {
             variant="contained"
             color="success"
             disabled={disable}
+            sx={{ "&:disabled": { backgroundColor: "grey" } }}
           >
             Submit
           </Button>

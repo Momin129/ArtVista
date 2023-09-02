@@ -1,8 +1,8 @@
 import { Box, Typography, Button } from "@mui/material";
 
-import InputFileds from "../components/user/inputFileds";
+import InputFileds from "../../components/user/inputFileds";
 import { useState } from "react";
-import ChangePassword from "../components/user/changePassword";
+import ChangePassword from "../../components/user/changePassword";
 
 export default function Profile() {
   const [openPass, setOpenPass] = useState(false);

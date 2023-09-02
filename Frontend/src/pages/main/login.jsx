@@ -7,7 +7,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import { host } from "../utility/host";
+import { host } from "../../utility/host";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

@@ -7,8 +7,8 @@ import {
   Alert,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import { validateForm } from "../utility/formValidation";
-import { host } from "../utility/host";
+import { validateForm } from "../../utility/formValidation";
+import { host } from "../../utility/host";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

@@ -42,6 +42,7 @@ function NavBar() {
     { name: "Profile", link: "/profile", show: "user" },
     { name: "Contact", link: "/contact", show: "user" },
     { name: "Upload", link: "/admin/upload", show: "admin" },
+    { name: "Feedbacks", link: "/admin/feedbacks", show: "admin" },
     { name: "Logout", link: "/", show: "user" },
     { name: "Logout", link: "/", show: "admin" },
   ];
