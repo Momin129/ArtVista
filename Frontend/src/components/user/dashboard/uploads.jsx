@@ -29,6 +29,15 @@ export default function Uploads({ list, lastUploaded, setList }) {
 
   return (
     <>
+      <Typography
+        sx={{
+          textAlign: "center",
+          fontSize: { xs: 48, md: 64 },
+          fontWeight: "bold",
+        }}
+      >
+        Uploads
+      </Typography>
       <Box sx={{ overflowY: "auto", scrollbarWidth: "thin", height: 1 }}>
         {list.length > 0 ? (
           <TableContainer component={Paper}>

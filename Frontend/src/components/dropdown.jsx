@@ -25,6 +25,7 @@ export default function DropDown({ style }) {
     backgroundColor: "white",
     padding: 2,
     borderRadius: 2,
+    width: "max-content",
   };
   const positionSm = {
     display: "flex",
@@ -36,6 +37,13 @@ export default function DropDown({ style }) {
     padding: 2,
     borderRadius: 2,
   };
+
+  const dropDownList = [
+    { buttonName: "Paintings", type: "painting" },
+    { buttonName: "Sculptures", type: "sculpture" },
+    { buttonName: "Artifacts", type: "artifact" },
+    { buttonName: "User Models", type: "user" },
+  ];
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -50,35 +58,23 @@ export default function DropDown({ style }) {
         </Button>
         {open && (
           <Box sx={style == "md" ? positionMd : positionSm}>
-            <Button
-              sx={{ color: "black" }}
-              onClick={() => {
-                setOpen(false);
-                navigate("/displayModels", { state: { type: "painting" } });
-              }}
-            >
-              Paintings
-            </Button>
-            <Divider sx={{ width: 1 }} />
-            <Button
-              sx={{ color: "black" }}
-              onClick={() => {
-                setOpen(false);
-                navigate("/displayModels", { state: { type: "sculpture" } });
-              }}
-            >
-              Sculptures
-            </Button>
-            <Divider sx={{ width: 1 }} />
-            <Button
-              sx={{ color: "black" }}
-              onClick={() => {
-                setOpen(false);
-                navigate("/displayModels", { state: { type: "artifact" } });
-              }}
-            >
-              Artifacts
-            </Button>
+            {dropDownList.map((item, index) => (
+              <>
+                <Button
+                  key={index}
+                  sx={{ color: "black" }}
+                  onClick={() => {
+                    setOpen(false);
+                    navigate("/displayModels", {
+                      state: { type: item.type },
+                    });
+                  }}
+                >
+                  {item.buttonName}
+                </Button>
+                <Divider sx={{ width: 1 }} />
+              </>
+            ))}
           </Box>
         )}
       </Box>

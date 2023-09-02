@@ -93,3 +93,12 @@ export const deleteUserUpload = async (id) => {
     console.log(error);
   }
 };
+
+export const getFeedbacks = async () => {
+  try {
+    const response = await axios.get(`${host}/api/admin/getFeedbacks`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

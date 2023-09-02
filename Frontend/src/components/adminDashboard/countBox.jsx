@@ -27,8 +27,10 @@ export default function CountBox({ name, count }) {
       {name == "Sculptures" && <SelfImprovementIcon sx={{ fontSize: 84 }} />}
       {name == "Artifacts" && <ViewInArIcon sx={{ fontSize: 84 }} />}
       {name == "Demo" && <AppsIcon sx={{ fontSize: 84 }} />}
-      {name == "Contact" && <ContactsIcon sx={{ fontSize: 84 }} />}
-      <Typography sx={{ fontSize: { xs: 20, md: 20 } }}>{name}</Typography>
+      {name == "Feedbacks" && <ContactsIcon sx={{ fontSize: 84 }} />}
+      <Typography sx={{ fontSize: { xs: 20, md: 20 }, fontWeight: "bold" }}>
+        {name}
+      </Typography>
       <Typography sx={{ fontSize: { xs: 48, md: 48 }, fontWeight: "bold" }}>
         {count}
       </Typography>

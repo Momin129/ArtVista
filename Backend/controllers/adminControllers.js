@@ -27,11 +27,30 @@ const getNumbers = async (req, res) => {
         { name: "Sculptures", count: noOfSculpture },
         { name: "Artifacts", count: noOfArtifact },
         { name: "Demo", count: noOfDemo },
-        { name: "Contact", count: noOfContact },
+        { name: "Feedbacks", count: noOfContact },
       ],
     });
   } catch (err) {
     res.status(400).json({ message: "Something went wrong" });
+  }
+};
+
+const getFeedbacks = async (req, res) => {
+  try {
+    const Feedbacks = await Contact.find({ reply: false });
+    res.status(200).json(Feedbacks);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Something went wrong." });
+  }
+};
+
+const sendReply = async (req, res) => {
+  const { id, email, reply } = req.body;
+  try {
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Something went wrong." });
   }
 };
 
@@ -93,4 +112,5 @@ module.exports = {
   getUploadRequest,
   getUploadEmail,
   aproveRequest,
+  getFeedbacks,
 };

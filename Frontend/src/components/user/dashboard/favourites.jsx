@@ -61,7 +61,7 @@ export default function Favourites({ favourites, setFavourites }) {
       <Box
         sx={{
           padding: 3,
-          height: 1,
+          height: { xs: "100%", md: "80%" },
           width: "100%",
           overflowY: "auto",
           scrollbarWidth: "thin",
@@ -89,11 +89,12 @@ export default function Favourites({ favourites, setFavourites }) {
               >
                 <Box
                   sx={{
-                    border: 1,
-                    borderColor: "#2fdfc6",
+                    borderRadius: 2,
+                    backgroundColor: "#2fdfc6",
                     display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     flexDirection: "column",
-                    gap: 2,
                     padding: 1,
                   }}
                 >
@@ -106,13 +107,28 @@ export default function Favourites({ favourites, setFavourites }) {
                       height: { xs: 300, md: 250 },
                     }}
                   ></Box>
+                  <Typography
+                    sx={{
+                      color: "#050215",
+                      fontSize: 20,
+                      fontWeight: "bold",
+                      textAlign: "center",
+                      wordWrap: "break-word",
+                      width: 250,
+                      height: 30,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {model.title}
+                  </Typography>
                   <Button
                     variant="contained"
                     sx={{
-                      backgroundColor: "#2fdfc6",
-                      color: "#050215",
+                      backgroundColor: "#050215",
+                      color: "#2fdfc6",
                       fontWeight: "bold",
-                      "&:hover": { backgroundColor: "#2fdfc6" },
+                      "&:hover": { backgroundColor: "#050215" },
+                      width: "100%",
                     }}
                     onClick={() => {
                       handleCurrentModel(model, index);
