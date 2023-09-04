@@ -38,7 +38,6 @@ export const fetchUserUploads = async () => {
     const userUploads = await axios.get(`${StorageHost}/api/userUploads`, {
       params: { userId: userId },
     });
-    console.log(userUploads);
     return userUploads.data.userUploads;
   } catch (error) {
     console.log(error);
