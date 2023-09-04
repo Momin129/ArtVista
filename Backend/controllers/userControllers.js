@@ -1,6 +1,8 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
+const { generateOTP } = require("../utility/randomOtp");
+const { SendMail } = require("../utility/mail");
 
 // chekc if email and mobile number already exists or not
 const emailMobileExists = async (req, res) => {
@@ -113,6 +115,19 @@ const getUserDetails = async (req, res) => {
   else res.status(400).json({ message: "Something went wrong." });
 };
 
+const sendOTP = async (req, res) => {
+  const email = req.body.email;
+  const OTP = generateOTP();
+  const options = {
+    from: process.env.MAIL,
+    to: email,
+    subject: "OTP Verifaction from ArtVista",
+    html: `<h1>OTP</h1><br/><p>Your OTP for registring into ArtVista: ${OTP}</p>`,
+  };
+
+  SendMail(options, OTP, res);
+};
+
 // verify if user is loged in or not
 const verifyUser = async (req, res) => {
   const token = req.body.token;
@@ -134,4 +149,5 @@ module.exports = {
   getUserDetails,
   updateUserDetails,
   changePassword,
+  sendOTP,
 };

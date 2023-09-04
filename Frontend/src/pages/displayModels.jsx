@@ -68,6 +68,7 @@ export default function DisplayModels() {
   };
 
   useEffect(() => {
+    setLoading(true);
     (async () => {
       try {
         const result = await axios.get(`${StorageHost}/api/getModel`, {

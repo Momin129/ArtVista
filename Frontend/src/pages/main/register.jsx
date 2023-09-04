@@ -1,16 +1,10 @@
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-  Snackbar,
-  Alert,
-} from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { validateForm } from "../../utility/formValidation";
-import { host } from "../../utility/host";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
+import OTPMail from "../../components/register/otpMail";
+import { setOTP } from "../../utility/api/register";
 
 const registeStyle = {
   border: 1,
@@ -36,7 +30,12 @@ export default function Register() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState([]);
   const [disabled, setDisabled] = useState(true);
-  const [open, setOpen] = useState(false);
+  const [otp, setOtp] = useState(false);
+  const [otpMessage, setOtpMessage] = useState("");
+  const handleOpenOTP = () => setOtp(true);
+
+  const otpHandlers = { otp, otpMessage, setOtp };
+  const inputHandlers = { inputs, setInputs, setDisabled };
 
   const [error, setError] = useState({
     fullname: "",
@@ -56,10 +55,6 @@ export default function Register() {
     } else setDisabled(true);
   }, [inputs, error]);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -77,25 +72,11 @@ export default function Register() {
   };
 
   const handleSubmit = async () => {
-    let obj = {
-      fullname: inputs.fullname,
-      email: inputs.email,
-      mobile: inputs.mobile,
-      password: inputs.password,
-    };
-    let url = `${host}/api/user/register`;
-
-    axios
-      .post(url, obj)
-      .then(() => {
-        for (let item in inputs)
-          setInputs((values) => ({ ...values, [item]: "" }));
-        setDisabled(false);
-        setOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    handleOpenOTP();
+    (async () => {
+      const response = await setOTP(inputs.email);
+      setOtpMessage(response);
+    })();
   };
   return (
     <Box
@@ -222,21 +203,8 @@ export default function Register() {
           Sign In
         </Button>
       </Box>
-      <Snackbar
-        autoHideDuration={8000}
-        open={open}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        onClose={handleClose}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          Registration Successfull.
-        </Alert>
-      </Snackbar>
+
+      <OTPMail otpHandlers={otpHandlers} inputHandlers={inputHandlers} />
     </Box>
   );
 }

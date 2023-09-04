@@ -71,7 +71,9 @@ export default function Favourites({ favourites, setFavourites }) {
         }}
       >
         {favourites.length == 0 ? (
-          <Typography variant="h3">NO FAVOURITES</Typography>
+          <Typography variant="h3" sx={{ textAlign: "center" }}>
+            NO FAVOURITES
+          </Typography>
         ) : (
           <Grid container spacing={2}>
             {favourites.map((model, index) => (

@@ -6,9 +6,10 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { host } from "../utility/host";
 import axios from "axios";
+import { getUserDetails } from "../utility/api/userDetails";
 
 const contact = {
   border: 1,
@@ -32,6 +33,17 @@ export default function Contact() {
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("userId")) {
+      (async () => {
+        const response = await getUserDetails();
+        setInputs((values) => ({ ...values, ["fullname"]: response.fullname }));
+        setInputs((values) => ({ ...values, ["email"]: response.email }));
+      })();
+    }
+  }, []);
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -144,7 +156,7 @@ export default function Contact() {
         </Button>
       </Box>
       <Snackbar
-        autoHideDuration={8000}
+        autoHideDuration={4000}
         open={open}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         onClose={() => setOpen(false)}

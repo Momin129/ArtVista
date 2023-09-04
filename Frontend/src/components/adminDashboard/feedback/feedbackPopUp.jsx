@@ -1,8 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Button, TextField } from "@mui/material";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
+import {
+  Button,
+  TextField,
+  Snackbar,
+  Alert,
+  Box,
+  Modal,
+  Typography,
+} from "@mui/material";
+
+import { useState } from "react";
+import { sendReply } from "../../../utility/api/admin";
 
 const style = {
   position: "absolute",
@@ -23,6 +31,15 @@ const style = {
 
 // eslint-disable-next-line react/prop-types
 export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
+  const [reply, setReply] = useState("");
+  const [openMessage, setOpen] = useState(false);
+  const handleReply = async () => {
+    const response = await sendReply(currentFeedback, reply);
+    if (response) {
+      setOpen(true);
+      handleClose();
+    }
+  };
   return (
     <div>
       <Modal keepMounted open={open} onClose={handleClose}>
@@ -84,6 +101,7 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
           <TextField
             multiline
             rows={5}
+            value={reply}
             label="Reply"
             sx={{
               border: 1,
@@ -101,6 +119,7 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
               input: { color: "white" },
               label: { color: "white" },
             }}
+            onChange={(e) => setReply(e.target.value)}
           />
           <Button
             variant="contained"
@@ -112,11 +131,27 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
               marginTop: 3,
               width: "100%",
             }}
+            onClick={handleReply}
           >
             Send
           </Button>
         </Box>
       </Modal>
+      <Snackbar
+        autoHideDuration={4000}
+        open={openMessage}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        onClose={() => setOpen(false)}
+      >
+        <Alert
+          onClose={() => setOpen(false)}
+          severity={"success"}
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Reply sent successfully
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -9,6 +9,7 @@ const Contact = require("../models/contactModel");
 const { UserUpload } = require("../models/userUploadModel");
 const fs = require("fs");
 const mongoose = require("mongoose");
+const { SendReply } = require("../utility/mail");
 const baseUrl = "http://localhost:4242";
 
 const getNumbers = async (req, res) => {
@@ -48,6 +49,13 @@ const getFeedbacks = async (req, res) => {
 const sendReply = async (req, res) => {
   const { id, email, reply } = req.body;
   try {
+    const options = {
+      from: email,
+      to: process.env.MAIL,
+      subject: "Response from ArtVista",
+      html: `<p>${reply}</p>`,
+    };
+    SendReply(options, id, res);
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Something went wrong." });
@@ -113,4 +121,5 @@ module.exports = {
   getUploadEmail,
   aproveRequest,
   getFeedbacks,
+  sendReply,
 };
