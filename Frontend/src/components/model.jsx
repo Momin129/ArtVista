@@ -3,6 +3,7 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { Center, Float, OrbitControls, useGLTF } from "@react-three/drei";
 import { Box } from "@mui/material";
+import { major } from "../sx/colors";
 
 function Controls() {
   const {
@@ -33,7 +34,7 @@ function Model({ path }) {
 export default function GenerateModel({ currentModel }) {
   return (
     <Box sx={{ width: 1, height: 1 }}>
-      <Canvas style={{ padding: 5, backgroundColor: "#050215" }}>
+      <Canvas style={{ padding: 5, backgroundColor: major}}>
         <ambientLight />
         <Model path={currentModel} />
       </Canvas>

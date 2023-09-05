@@ -2,8 +2,8 @@
 import { Box, Typography, TextField, Divider, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import { validateForm } from "../../utility/formValidation";
+import { inputField, minorButton } from "../../sx/button";
 
 export default function InputFileds() {
   const userId = sessionStorage.getItem("userId");
@@ -111,7 +111,7 @@ export default function InputFileds() {
           helperText={error.fullname}
           name="fullname"
           value={inputs.fullname || ""}
-          sx={Style}
+          sx={inputField}
           disabled={inputDisable}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -127,7 +127,7 @@ export default function InputFileds() {
           helperText={error.email}
           name="email"
           value={inputs.email || ""}
-          sx={Style}
+          sx={inputField}
           disabled={inputDisable}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -143,7 +143,7 @@ export default function InputFileds() {
           helperText={error.mobile}
           name="mobile"
           value={inputs.mobile || ""}
-          sx={Style}
+          sx={inputField}
           disabled={inputDisable}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -153,12 +153,7 @@ export default function InputFileds() {
       {inputDisable ? (
         <Button
           variant="contained"
-          sx={{
-            backgroundColor: "#2dfdc6",
-            color: "black",
-            fontWeight: "bold",
-            "&:hover": { backgroundColor: "#02ca95" },
-          }}
+          sx={[minorButton]}
           onClick={() => setInputDisable(false)}
         >
           Update Details
@@ -179,13 +174,10 @@ export default function InputFileds() {
           </Button>
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: "#2dfdc6",
-              color: "black",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#02ca95" },
-              "&:disabled": { backgroundColor: "grey", color: "white" },
-            }}
+            sx={[
+              minorButton,
+              { "&:disabled": { backgroundColor: "grey", color: "white" } },
+            ]}
             disabled={buttonDisable}
             onClick={() => {
               handleSubmit();

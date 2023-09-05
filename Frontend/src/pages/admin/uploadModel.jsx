@@ -10,23 +10,10 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
+import { inputField, minorButton } from "../../sx/button";
+import { size, centerAlign, stack, roundBorder } from "../../sx/container";
+import { minor } from "../../sx/colors";
 
-const upload = {
-  border: 1,
-  color: "white",
-  borderColor: "#2dfdc6",
-  borderRadius: 3,
-  width: { xs: "100%", md: "80%" },
-  "& fieldset": {
-    border: "none",
-  },
-  "& .MuiFormLabel-root.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInputBase-input": { color: "white" },
-  input: { color: "white" },
-  label: { color: "white" },
-};
 
 export default function UploadModel() {
   const [file, setFile] = useState();
@@ -91,29 +78,12 @@ export default function UploadModel() {
   };
   return (
     <Box
-      sx={{
-        height: 1,
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
+      sx={[size, centerAlign, stack]}
     >
       <Box
-        sx={{
-          width: { md: 600 },
-          border: 2,
-          borderColor: "#2dfdc6",
-          borderRadius: 5,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 3,
-          padding: { xs: 2, md: 1 },
-        }}
+        sx={[roundBorder, centerAlign, stack, {
+          width: { md: 600 }, gap: 3, padding: { xs: 2, md: 1 },
+        }]}
       >
         <Typography sx={{ fontSize: { xs: 48, md: 64 } }}>
           Upload Model
@@ -124,7 +94,7 @@ export default function UploadModel() {
           name="title"
           value={inputs.title || ""}
           onChange={handleChange}
-          sx={upload}
+          sx={inputField}
         />
         <TextField
           label="Information about the model"
@@ -132,7 +102,7 @@ export default function UploadModel() {
           name="info"
           value={inputs.info || ""}
           onChange={handleChange}
-          sx={upload}
+          sx={inputField}
           multiline
           rows={5}
         />
@@ -141,19 +111,14 @@ export default function UploadModel() {
         <TextField
           name="thumbnail"
           type="file"
-          sx={upload}
+          sx={inputField}
           onChange={handleThumbnail}
         />
         <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
-        <TextField type="file" sx={upload} onChange={handleFile} />
+        <TextField type="file" sx={inputField} onChange={handleFile} />
         <Button
           variant="contained"
-          sx={{
-            backgroundColor: "#2dfdc6",
-            "&:hover": { backgroundColor: "#2dfdc6" },
-            color: "black",
-            fontWeight: "bold",
-          }}
+          sx={[minorButton]}
           onClick={handleSubmit}
         >
           Submit

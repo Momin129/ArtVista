@@ -1,5 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { centerAlign } from "../sx/container";
+import { major } from "../sx/colors";
 const navItems = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
@@ -11,16 +13,12 @@ export default function Footer() {
 
   return (
     <Box
-      sx={{
-        backgroundColor: "#050215",
+      sx={[centerAlign,{
+        backgroundColor: major,
         color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         paddingY: 5,
-        flexDirection: "column",
         borderTop: 1,
-      }}
+      }]}
     >
       <Typography sx={{ fontSize: 36, fontWeight: "bold" }}>
         ArtVista

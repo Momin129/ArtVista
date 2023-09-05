@@ -15,30 +15,13 @@ import {
 import { useState, useEffect } from "react";
 import { validateForm } from "../../utility/formValidation";
 import axios from "axios";
+import { inputField } from "../../sx/button";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const changePasswordStyle = {
-  border: 1,
-  color: "white",
-  borderColor: "#2dfdc6",
-  borderRadius: 3,
-  width: { xs: "100%", md: "80%" },
-  "& fieldset": {
-    border: "none",
-  },
-  "& .MuiFormLabel-root.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInputBase-input": { color: "white" },
-  input: { color: "white" },
-  label: { color: "white" },
-  "& .MuiFormHelperText-root": {
-    whiteSpace: "pre-line",
-  },
-};
+
 
 export default function ChangePassword({ open, handleClose }) {
   const [inputs, setInputs] = useState([{ password: "", confirmPassword: "" }]);
@@ -130,7 +113,7 @@ export default function ChangePassword({ open, handleClose }) {
               value={inputs.password || ""}
               onChange={handleChange}
               onBlur={handleBlur}
-              sx={changePasswordStyle}
+              sx={inputField}
             />
             <TextField
               error={error.confirmPassword == "" ? false : true}
@@ -141,7 +124,7 @@ export default function ChangePassword({ open, handleClose }) {
               value={inputs.confirmPassword || ""}
               onChange={handleChange}
               onBlur={handleBlur}
-              sx={changePasswordStyle}
+              sx={inputField}
             />
           </Box>
         </DialogContent>

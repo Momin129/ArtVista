@@ -3,6 +3,9 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import PopUpModel from "../popUpModel";
 import axios from "axios";
+import { centerAlign, stack } from "../../../sx/container";
+import { majorButton } from "../../../sx/button";
+import { major, minor } from "../../../sx/colors";
 
 export default function Favourites({ favourites, setFavourites }) {
   const [currentModel, setCurrentModel] = useState({
@@ -70,9 +73,9 @@ export default function Favourites({ favourites, setFavourites }) {
           width: "100%",
           overflowY: "auto",
           scrollbarWidth: "thin",
-          scrollbarColor: "#2fdfc6 #050215",
+          scrollbarColor: `${minor} ${major}`,
           borderBottom: 2,
-          borderBottomColor: "#2fdfc6",
+          borderBottomColor: minor,
         }}
       >
         {favourites.length == 0 ? (
@@ -88,22 +91,18 @@ export default function Favourites({ favourites, setFavourites }) {
                 lg={4}
                 xs={12}
                 sm={6}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+                sx={[centerAlign]}
               >
                 <Box
-                  sx={{
-                    borderRadius: 2,
-                    backgroundColor: "#2fdfc6",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    padding: 1,
-                  }}
+                  sx={[
+                    centerAlign,
+                    stack,
+                    {
+                      borderRadius: 2,
+                      backgroundColor: minor,
+                      padding: 1,
+                    },
+                  ]}
                 >
                   <Box
                     key={index}
@@ -116,7 +115,7 @@ export default function Favourites({ favourites, setFavourites }) {
                   ></Box>
                   <Typography
                     sx={{
-                      color: "#050215",
+                      color: major,
                       fontSize: 20,
                       fontWeight: "bold",
                       textAlign: "center",
@@ -130,13 +129,7 @@ export default function Favourites({ favourites, setFavourites }) {
                   </Typography>
                   <Button
                     variant="contained"
-                    sx={{
-                      backgroundColor: "#050215",
-                      color: "#2fdfc6",
-                      fontWeight: "bold",
-                      "&:hover": { backgroundColor: "#050215" },
-                      width: "100%",
-                    }}
+                    sx={[majorButton, { width: 1 }]}
                     onClick={() => {
                       handleCurrentModel(model, index);
                       handleOpen();

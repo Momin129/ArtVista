@@ -7,6 +7,12 @@ const minorButton = {
   "&:hover": { backgroundColor: minor },
 };
 
+const majorButton = {
+  backgroundColor: major,
+  color: minor,
+  fontWeight: "bold",
+  "&:hover": { backgroundColor: major },
+};
 const inputField = {
   border: 1,
   color: "white",
@@ -25,5 +31,8 @@ const inputField = {
   "& .MuiFormHelperText-root": {
     whiteSpace: "pre-line",
   },
+  "& .MuiInputBase-input.MuiOutlinedInput-input.Mui-disabled": {
+    "-webkit-text-fill-color": "white",
+  },
 };
-export { minorButton, inputField };
+export { minorButton, majorButton, inputField };

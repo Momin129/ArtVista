@@ -10,6 +10,8 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { deleteUserUpload } from "../../../utility/api";
+import { major, minor } from "../../../sx/colors";
+import { minorButton } from "../../../sx/button";
 
 export default function UploadsList({ list, lastUploaded, setList }) {
   const navigate = useNavigate();
@@ -55,13 +57,13 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody sx={{ backgroundColor: "#050215" }}>
+              <TableBody sx={{ backgroundColor: major }}>
                 {list.map((row, index) => (
                   <TableRow
                     key={index}
                     sx={{
                       borderBottom: 2,
-                      borderColor: "#2fdfc6",
+                      borderColor: minor,
                       "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
@@ -115,14 +117,10 @@ export default function UploadsList({ list, lastUploaded, setList }) {
       </Box>
       <Button
         variant="contained"
-        sx={{
-          backgroundColor: "#2fdfc6",
-          color: "#050215",
-          fontWeight: "bold",
-          "&:hover": { backgroundColor: "#2fdfc6" },
+        sx={[minorButton,{
           "&:disabled": { backgroundColor: "grey" },
           marginTop: 3,
-        }}
+        }]}
         onClick={() => {
           if (list.length > 0) {
             if (lastUploaded == "Pending")
@@ -136,7 +134,7 @@ export default function UploadsList({ list, lastUploaded, setList }) {
         Upload New
       </Button>
       <Typography
-        sx={{ fontWeight: "bold", color: "#2fdfc6", textAlign: "center" }}
+        sx={{ fontWeight: "bold", color: minor, textAlign: "center" }}
       >
         {uploadMsg}
       </Typography>
