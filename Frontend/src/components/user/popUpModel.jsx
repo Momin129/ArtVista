@@ -40,13 +40,7 @@ export default function PopUpModel({
 
   return (
     <div>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
+      <Modal keepMounted open={open} onClose={handleClose}>
         <Box sx={style}>
           <Typography
             id="keep-mounted-modal-title"

@@ -11,7 +11,7 @@ import PopUp from "../components/user/popUp";
 
 export default function DisplayModels() {
   const { state } = useLocation();
-  const { type } = state;
+  const { type, searchModel } = state;
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentModel, setCurrentModel] = useState({
@@ -87,7 +87,7 @@ export default function DisplayModels() {
         );
         setImages(result.data.getmodel);
 
-        const model = result.data.getmodel[0];
+        const model = searchModel ? searchModel : result.data.getmodel[0];
         const userId = sessionStorage.getItem("userId");
         const favourites = await axios.get(
           `${import.meta.env.VITE_HOST}/api/favourites`,
@@ -104,13 +104,19 @@ export default function DisplayModels() {
           path: model.path,
           favourite: favourites.data.status,
         }));
+        if (searchModel) {
+          const index = result.data.getmodel.findIndex(
+            (item) => item._id === searchModel._id
+          );
+          setSelectedIndex(index);
+        }
         setLoading(false);
       } catch (error) {
         setLoading(false);
         console.log(error);
       }
     })();
-  }, [type]);
+  }, [type, searchModel]);
   return (
     <>
       {loading ? (

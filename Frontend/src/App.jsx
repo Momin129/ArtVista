@@ -15,6 +15,7 @@ import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
 import Upload from "./components/user/upload";
 import Feedbacks from "./pages/admin/feedbacks";
+import SearchPage from "./pages/user/searchPage";
 
 function App() {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/displayModels" element={<DisplayModels />} />
+        <Route path="/searchPage" element={<SearchPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/upload" element={<UploadModel />} />
         <Route path="/admin/feedbacks" element={<Feedbacks />} />

@@ -178,7 +178,7 @@ function NavBar() {
                 )
             )}
           </Box>
-          <SearchBox />
+          {showOn == "user" && <SearchBox />}
         </Toolbar>
       </AppBar>
       <Toolbar />
