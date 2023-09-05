@@ -3,7 +3,6 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import PopUpModel from "../popUpModel";
 import axios from "axios";
-import { host } from "../../../utility/host";
 
 export default function Favourites({ favourites, setFavourites }) {
   const [currentModel, setCurrentModel] = useState({
@@ -18,9 +17,12 @@ export default function Favourites({ favourites, setFavourites }) {
 
   const handleCurrentModel = async (model, index) => {
     const userId = sessionStorage.getItem("userId");
-    const favourite = await axios.get(`${host}/api/favourites`, {
-      params: { modelId: model._id, userId: userId },
-    });
+    const favourite = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/favourites`,
+      {
+        params: { modelId: model._id, userId: userId },
+      }
+    );
     setCurrentModel((prev) => ({
       ...prev,
       _id: model._id,
@@ -35,10 +37,13 @@ export default function Favourites({ favourites, setFavourites }) {
   const handleFavourite = async () => {
     const userId = sessionStorage.getItem("userId");
     const modelId = currentModel._id;
-    const remove = await axios.post(`${host}/api/removeFavourtie`, {
-      userId,
-      modelId,
-    });
+    const remove = await axios.post(
+      `${import.meta.env.VITE_HOST}/api/removeFavourtie`,
+      {
+        userId,
+        modelId,
+      }
+    );
     if (remove.data.status == false) {
       setFavourites((products) =>
         products.filter((_, index) => index !== currentModel.index)

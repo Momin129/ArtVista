@@ -7,7 +7,6 @@ import {
   Alert,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { host } from "../utility/host";
 import axios from "axios";
 import { getUserDetails } from "../utility/api/userDetails";
 
@@ -66,7 +65,7 @@ export default function Contact() {
         email: inputs.email,
         comment: inputs.comment,
       };
-      const url = `${host}/api/contact`;
+      const url = `${import.meta.env.VITE_HOST}/api/contact`;
       await axios
         .post(url, obj)
         .then((result) => {

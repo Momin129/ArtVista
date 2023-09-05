@@ -9,7 +9,6 @@ import Dashboard from "./pages/user/dashboard";
 import Footer from "./components/footer";
 import axios from "axios";
 import { useEffect } from "react";
-import { host } from "./utility/host";
 import Profile from "./pages/user/profile";
 import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
@@ -22,9 +21,12 @@ function App() {
   useEffect(() => {
     (async () => {
       if (localStorage.getItem("token")) {
-        const verify = await axios.post(`${host}/api/user/verify`, {
-          token: localStorage.getItem("token"),
-        });
+        const verify = await axios.post(
+          `${import.meta.env.VITE_HOST}/api/user/verify`,
+          {
+            token: localStorage.getItem("token"),
+          }
+        );
         if (verify) {
           sessionStorage.setItem("userId", verify.data.id);
           sessionStorage.setItem("role", verify.data.role);

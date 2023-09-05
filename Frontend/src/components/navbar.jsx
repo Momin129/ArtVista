@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DropDown from "./dropdown";
+import SearchBox from "./user/searchBox";
 
 function NavBar() {
   const role = sessionStorage.getItem("role");
@@ -177,6 +178,7 @@ function NavBar() {
                 )
             )}
           </Box>
+          <SearchBox />
         </Toolbar>
       </AppBar>
       <Toolbar />

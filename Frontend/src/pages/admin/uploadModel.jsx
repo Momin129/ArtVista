@@ -8,7 +8,6 @@ import {
   InputLabel,
 } from "@mui/material";
 import { useState } from "react";
-import { StorageHost } from "../../utility/host";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
 
@@ -73,9 +72,8 @@ export default function UploadModel() {
       formData.append("file", file);
 
       try {
-        console.log(`${StorageHost}/api/upload`);
         await axios
-          .post(`${StorageHost}/api/upload`, formData)
+          .post(`${import.meta.env.VITE_STORAGE_HOST}/api/upload`, formData)
           .then((result) => {
             setMsg(result.data.message);
             setSuccess(true);

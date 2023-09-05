@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { StorageHost } from "../../utility/host";
 import axios from "axios";
 
 const upload = {
@@ -76,7 +75,7 @@ export default function Upload() {
 
       try {
         await axios
-          .post(`${StorageHost}/api/userUpload`, formData)
+          .post(`${import.meta.env.VITE_STORAGE_HOST}/api/userUpload`, formData)
           .then((result) => {
             setMsg(result.data.message);
             setSuccess(true);

@@ -15,7 +15,6 @@ import {
 import { useState, useEffect } from "react";
 import { validateForm } from "../../utility/formValidation";
 import axios from "axios";
-import { host } from "../../utility/host";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -68,7 +67,7 @@ export default function ChangePassword({ open, handleClose }) {
   const handleSubmit = async () => {
     const userId = sessionStorage.getItem("userId");
     const obj = { id: userId, password: inputs.password };
-    let url = `${host}/api/user/changePassword`;
+    let url = `${import.meta.env.VITE_HOST}/api/user/changePassword`;
     axios
       .post(url, obj)
       .then((result) => {

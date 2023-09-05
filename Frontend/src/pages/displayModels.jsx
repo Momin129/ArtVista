@@ -6,7 +6,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { StorageHost, host } from "../utility/host";
 import GenerateModel from "../components/model";
 import PopUp from "../components/user/popUp";
 
@@ -31,20 +30,26 @@ export default function DisplayModels() {
     const userId = sessionStorage.getItem("userId");
     const modelId = currentModel._id;
     if (currentModel.favourite) {
-      const remove = await axios.post(`${host}/api/removeFavourtie`, {
-        userId,
-        modelId,
-      });
+      const remove = await axios.post(
+        `${import.meta.env.VITE_HOST}/api/removeFavourtie`,
+        {
+          userId,
+          modelId,
+        }
+      );
       setCurrentModel((prev) => ({
         ...prev,
         favourite: remove.data.status,
       }));
     } else {
-      const add = await axios.post(`${host}/api/addFavourite`, {
-        userId,
-        modelId,
-        type,
-      });
+      const add = await axios.post(
+        `${import.meta.env.VITE_HOST}/api/addFavourite`,
+        {
+          userId,
+          modelId,
+          type,
+        }
+      );
       setCurrentModel((prev) => ({
         ...prev,
         favourite: add.data.status,
@@ -54,9 +59,12 @@ export default function DisplayModels() {
 
   const handleCurrentModel = async (image) => {
     const userId = sessionStorage.getItem("userId");
-    const favourites = await axios.get(`${host}/api/favourites`, {
-      params: { modelId: image._id, userId: userId },
-    });
+    const favourites = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/favourites`,
+      {
+        params: { modelId: image._id, userId: userId },
+      }
+    );
     setCurrentModel((prev) => ({
       ...prev,
       _id: image._id,
@@ -71,16 +79,22 @@ export default function DisplayModels() {
     setLoading(true);
     (async () => {
       try {
-        const result = await axios.get(`${StorageHost}/api/getModel`, {
-          params: { type: type },
-        });
+        const result = await axios.get(
+          `${import.meta.env.VITE_STORAGE_HOST}/api/getModel`,
+          {
+            params: { type: type },
+          }
+        );
         setImages(result.data.getmodel);
 
         const model = result.data.getmodel[0];
         const userId = sessionStorage.getItem("userId");
-        const favourites = await axios.get(`${host}/api/favourites`, {
-          params: { modelId: model._id, userId: userId },
-        });
+        const favourites = await axios.get(
+          `${import.meta.env.VITE_HOST}/api/favourites`,
+          {
+            params: { modelId: model._id, userId: userId },
+          }
+        );
 
         setCurrentModel((prev) => ({
           ...prev,

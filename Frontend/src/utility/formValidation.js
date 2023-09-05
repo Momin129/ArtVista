@@ -1,5 +1,4 @@
 import axios from "axios";
-import { host } from "./host";
 
 export async function validateForm(userId, name, value) {
   let msg = "";
@@ -16,7 +15,7 @@ export async function validateForm(userId, name, value) {
     }
     if (value.length != 10) msg = "\n*Number should be of 10 digits.";
     try {
-      await axios.post(`${host}/api/user/validate`, {
+      await axios.post(`${import.meta.env.VITE_HOST}/api/user/validate`, {
         id: userId,
         mobile: value,
       });
@@ -28,7 +27,7 @@ export async function validateForm(userId, name, value) {
       msg = "*Invalid email.";
     } else {
       try {
-        await axios.post(`${host}/api/user/validate`, {
+        await axios.post(`${import.meta.env.VITE_HOST}/api/user/validate`, {
           id: userId,
           email: value,
         });

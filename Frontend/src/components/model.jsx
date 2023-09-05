@@ -3,7 +3,7 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import { Center, Float, OrbitControls, useGLTF } from "@react-three/drei";
 import { Box } from "@mui/material";
-import { StorageHost } from "../utility/host";
+
 function Controls() {
   const {
     camera,
@@ -14,7 +14,7 @@ function Controls() {
 }
 
 function Model({ path }) {
-  const { scene } = useGLTF(`${StorageHost}/${path}`);
+  const { scene } = useGLTF(`${import.meta.env.VITE_STORAGE_HOST}/${path}`);
 
   return (
     <>

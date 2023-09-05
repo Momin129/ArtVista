@@ -1,20 +1,25 @@
 import axios from "axios";
-import { StorageHost, host } from "./host";
 
 export const fetchFavourites = async () => {
   const list = [];
   try {
     const userId = sessionStorage.getItem("userId");
-    const favList = await axios.get(`${host}/api/favouritesList`, {
-      params: { userId: userId },
-    });
+    const favList = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/favouritesList`,
+      {
+        params: { userId: userId },
+      }
+    );
     for (let i = 0; i < favList.data.length; i++) {
-      const getmodel = await axios.get(`${host}/api/getModel`, {
-        params: {
-          modelId: favList.data[i].modelId,
-          type: favList.data[i].type,
-        },
-      });
+      const getmodel = await axios.get(
+        `${import.meta.env.VITE_HOST}/api/getModel`,
+        {
+          params: {
+            modelId: favList.data[i].modelId,
+            type: favList.data[i].type,
+          },
+        }
+      );
       list.push(getmodel.data.getmodel[0]);
     }
     return list;
@@ -25,7 +30,9 @@ export const fetchFavourites = async () => {
 
 export const fetchLatestModels = async () => {
   try {
-    const latestModel = await axios.get(`${host}/api/home/getLatestModels`);
+    const latestModel = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/home/getLatestModels`
+    );
     return latestModel.data;
   } catch (error) {
     console.log("Error", error);
@@ -35,10 +42,12 @@ export const fetchLatestModels = async () => {
 export const fetchUserUploads = async () => {
   try {
     const userId = sessionStorage.getItem("userId");
-    const userUploads = await axios.get(`${StorageHost}/api/userUploads`, {
-      params: { userId: userId },
-    });
-    console.log(userUploads);
+    const userUploads = await axios.get(
+      `${import.meta.env.VITE_STORAGE_HOST}/api/userUploads`,
+      {
+        params: { userId: userId },
+      }
+    );
     return userUploads.data.userUploads;
   } catch (error) {
     console.log(error);
@@ -47,11 +56,16 @@ export const fetchUserUploads = async () => {
 
 export const fetchUploadRequests = async () => {
   try {
-    const requestList = await axios.get(`${host}/api/admin/uploadRequest`);
+    const requestList = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/admin/uploadRequest`
+    );
     for (let item = 0; item < requestList.data.length; item++) {
-      const email = await axios.get(`${host}/api/admin/uploadEmail`, {
-        params: { userId: requestList.data[item].userId },
-      });
+      const email = await axios.get(
+        `${import.meta.env.VITE_HOST}/api/admin/uploadEmail`,
+        {
+          params: { userId: requestList.data[item].userId },
+        }
+      );
       requestList.data[item].email = email.data;
     }
     return requestList.data;
@@ -62,9 +76,12 @@ export const fetchUploadRequests = async () => {
 
 export const fetchAproveRequest = async (id) => {
   try {
-    const response = await axios.post(`${host}/api/admin/aproveRequest`, {
-      id: id,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_HOST}/api/admin/aproveRequest`,
+      {
+        id: id,
+      }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -74,10 +91,13 @@ export const fetchAproveRequest = async (id) => {
 export const fetchRejectRequest = async (id, filename) => {
   console.log(id);
   try {
-    const response = await axios.post(`${StorageHost}/api/rejectRequest`, {
-      id: id,
-      filename: filename,
-    });
+    const response = await axios.post(
+      `${import.meta.env.VITE_STORAGE_HOST}/api/rejectRequest`,
+      {
+        id: id,
+        filename: filename,
+      }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -86,9 +106,12 @@ export const fetchRejectRequest = async (id, filename) => {
 
 export const deleteUserUpload = async (id) => {
   try {
-    const response = await axios.get(`${StorageHost}/api/deleteUserUploads`, {
-      params: { id: id },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_STORAGE_HOST}/api/deleteUserUploads`,
+      {
+        params: { id: id },
+      }
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -97,7 +120,9 @@ export const deleteUserUpload = async (id) => {
 
 export const getFeedbacks = async () => {
   try {
-    const response = await axios.get(`${host}/api/admin/getFeedbacks`);
+    const response = await axios.get(
+      `${import.meta.env.VITE_HOST}/api/admin/getFeedbacks`
+    );
     return response.data;
   } catch (error) {
     console.log(error);

@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import CountBox from "../../components/adminDashboard/countBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { host } from "../../utility/host";
 import UplaodTable from "../../components/adminDashboard/uploadTable";
 
 export default function AdminDashboard() {
@@ -11,7 +10,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await axios.get(`${host}/api/admin/getNumbers`);
+        const result = await axios.get(
+          `${import.meta.env.VITE_HOST}/api/admin/getNumbers`
+        );
         setRecords(result.data.records);
       } catch (error) {
         console.log(error);

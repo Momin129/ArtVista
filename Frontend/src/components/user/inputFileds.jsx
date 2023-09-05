@@ -2,7 +2,7 @@
 import { Box, Typography, TextField, Divider, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { host } from "../../utility/host";
+
 import { validateForm } from "../../utility/formValidation";
 
 export default function InputFileds() {
@@ -20,9 +20,12 @@ export default function InputFileds() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await axios.get(`${host}/api/user/getUserDetails`, {
-          params: { userId: sessionStorage.getItem("userId") },
-        });
+        const result = await axios.get(
+          `${import.meta.env.VITE_HOST}/api/user/getUserDetails`,
+          {
+            params: { userId: sessionStorage.getItem("userId") },
+          }
+        );
         for (let item in result.data) {
           setInputs((values) => ({ ...values, [item]: result.data[item] }));
         }
@@ -86,7 +89,7 @@ export default function InputFileds() {
       email: inputs.email,
       mobile: inputs.mobile,
     };
-    let url = `${host}/api/user/updateUserDetails`;
+    let url = `${import.meta.env.VITE_HOST}/api/user/updateUserDetails`;
     axios
       .post(url, obj)
       .then(() => {

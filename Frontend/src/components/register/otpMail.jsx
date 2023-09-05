@@ -9,7 +9,6 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import { host } from "../../utility/host";
 import axios from "axios";
 
 const style = {
@@ -41,7 +40,7 @@ export default function OTPMail({ otpHandlers, inputHandlers }) {
         mobile: inputs.mobile,
         password: inputs.password,
       };
-      let url = `${host}/api/user/register`;
+      let url = `${import.meta.env.VITE_HOST}/api/user/register`;
       axios
         .post(url, obj)
         .then(() => {

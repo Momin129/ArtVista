@@ -7,7 +7,6 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import { host } from "../../utility/host";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -60,7 +59,7 @@ export default function Login() {
         email: inputs.email,
         password: inputs.password,
       };
-      let url = `${host}/api/user/login`;
+      let url = `${import.meta.env.VITE_HOST}/api/user/login`;
 
       axios
         .post(url, obj)
