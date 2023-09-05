@@ -9,23 +9,8 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getUserDetails } from "../utility/api/userDetails";
-
-const contact = {
-  border: 1,
-  color: "white",
-  borderColor: "#2dfdc6",
-  borderRadius: 3,
-  width: { xs: "100%", md: "80%" },
-  "& fieldset": {
-    border: "none",
-  },
-  "& .MuiFormLabel-root.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInputBase-input": { color: "white" },
-  input: { color: "white" },
-  label: { color: "white" },
-};
+import { inputField, minorButton } from "../sx/button";
+import { centerAlign, roundBorder, size, stack } from "../sx/container";
 
 export default function Contact() {
   const [inputs, setInputs] = useState([]);
@@ -83,31 +68,19 @@ export default function Contact() {
     }
   };
   return (
-    <Box
-      sx={{
-        height: 1,
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <Box sx={[size, centerAlign, { padding: { xs: 2 } }]}>
       <Box
-        sx={{
-          height: { md: 600 },
-          width: { md: 600 },
-          border: 2,
-          borderColor: "#2dfdc6",
-          borderRadius: 5,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 3,
-          padding: { xs: 5, md: 0 },
-        }}
+        sx={[
+          roundBorder,
+          centerAlign,
+          stack,
+          {
+            height: { md: 600 },
+            width: { md: 600 },
+            gap: 3,
+            padding: { xs: 5, md: 0 },
+          },
+        ]}
       >
         <Typography sx={{ fontSize: { xs: 48, md: 64 } }}>
           Contact Us
@@ -122,7 +95,7 @@ export default function Contact() {
           name="fullname"
           value={inputs.fullname || ""}
           onChange={handleChange}
-          sx={contact}
+          sx={inputField}
         />
         <TextField
           label="Email"
@@ -130,7 +103,7 @@ export default function Contact() {
           name="email"
           value={inputs.email || ""}
           onChange={handleChange}
-          sx={contact}
+          sx={inputField}
         />
         <TextField
           label="Comment"
@@ -139,18 +112,9 @@ export default function Contact() {
           name="comment"
           value={inputs.comment || ""}
           onChange={handleChange}
-          sx={contact}
+          sx={inputField}
         />
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "#2dfdc6",
-            "&:hover": { backgroundColor: "#2dfdc6" },
-            color: "black",
-            fontWeight: "bold",
-          }}
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" sx={[minorButton]} onClick={handleSubmit}>
           Submit
         </Button>
       </Box>

@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import GenerateModel from "../components/model";
 import PopUp from "../components/user/popUp";
+import { centerAlign, size, stack } from "../sx/container";
+import { major, minor } from "../sx/colors";
 
 export default function DisplayModels() {
   const { state } = useLocation();
@@ -121,35 +123,31 @@ export default function DisplayModels() {
     <>
       {loading ? (
         <Box
-          sx={{
-            backgroundColor: "#050215",
-            color: "white",
-            height: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            paddingX: { xs: 1, md: 5 },
-            paddingY: { xs: 5, md: 0 },
-            gap: 3,
-          }}
+          sx={[
+            size,
+            centerAlign,
+            stack,
+            {
+              paddingX: { xs: 1, md: 5 },
+              paddingY: { xs: 5, md: 0 },
+              gap: 3,
+            },
+          ]}
         >
           <CircularProgress sx={{ color: "#2fdfc6" }} />
         </Box>
       ) : images.length > 0 ? (
         <Box
-          sx={{
-            backgroundColor: "#050215",
-            color: "white",
-            height: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            paddingX: { xs: 1, md: 5 },
-            paddingY: { xs: 5, md: 0 },
-            gap: 3,
-          }}
+          sx={[
+            size,
+            centerAlign,
+            stack,
+            {
+              paddingX: { xs: 1, md: 5 },
+              paddingY: { xs: 5, md: 0 },
+              gap: 3,
+            },
+          ]}
         >
           <Box
             sx={{
@@ -160,7 +158,7 @@ export default function DisplayModels() {
               whiteSpace: "nowrap",
               padding: 1,
               scrollbarWidth: "thin",
-              scrollbarColor: "#2fdfc6 #050215",
+              scrollbarColor: `${minor} ${major}`,
             }}
           >
             {images.map((image, index) => (
@@ -173,7 +171,7 @@ export default function DisplayModels() {
                   height: { xs: 300, md: 250 },
                   marginLeft: { xs: 2, md: 3 },
                   border: selectedIndex == index ? 2 : 0,
-                  borderColor: "#2fdfc6",
+                  borderColor: minor,
                 }}
                 onClick={() => {
                   handleCurrentModel(image);
@@ -186,7 +184,7 @@ export default function DisplayModels() {
             sx={{
               border: 3,
               borderRadius: 3,
-              borderColor: "#2fdfc6",
+              borderColor: minor,
               width: { xs: "90%", md: "30%" },
               height: { xs: "60%", md: "50%" },
               overflow: "hidden",
@@ -221,18 +219,16 @@ export default function DisplayModels() {
         </Box>
       ) : (
         <Box
-          sx={{
-            backgroundColor: "#050215",
-            color: "white",
-            height: 1,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            paddingX: { xs: 1, md: 5 },
-            paddingY: { xs: 5, md: 0 },
-            gap: 3,
-          }}
+          sx={[
+            size,
+            centerAlign,
+            stack,
+            {
+              paddingX: { xs: 1, md: 5 },
+              paddingY: { xs: 5, md: 0 },
+              gap: 3,
+            },
+          ]}
         >
           <Typography sx={{ fontSize: { xs: 36, md: 64 } }}>
             No Data Present

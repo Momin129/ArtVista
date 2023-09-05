@@ -9,26 +9,8 @@ import {
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const registeStyle = {
-  border: 1,
-  color: "white",
-  borderColor: "#2dfdc6",
-  borderRadius: 3,
-  width: { xs: "100%", md: "80%" },
-  "& fieldset": {
-    border: "none",
-  },
-  "& .MuiFormLabel-root.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInputBase-input": { color: "white" },
-  input: { color: "white" },
-  label: { color: "white" },
-  "& .MuiFormHelperText-root": {
-    whiteSpace: "pre-line",
-  },
-};
+import { inputField, minorButton } from "../../sx/button";
+import { centerAlign, roundBorder, size, stack } from "../../sx/container";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -79,33 +61,19 @@ export default function Login() {
     }
   };
   return (
-    <Box
-      sx={{
-        height: { md: 1 },
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        paddingY: { xs: 2, sm: 0 },
-        paddingX: { xs: 1, sm: 0 },
-      }}
-    >
+    <Box sx={[size, centerAlign, { padding: { xs: 2 } }]}>
       <Box
-        sx={{
-          height: { md: 800 },
-          width: { md: 700 },
-          border: 2,
-          borderColor: "#2dfdc6",
-          borderRadius: 5,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 3,
-          padding: { xs: 5, md: 0 },
-        }}
+        sx={[
+          roundBorder,
+          centerAlign,
+          stack,
+          {
+            height: { md: 800 },
+            width: { md: 700 },
+            gap: 3,
+            padding: { xs: 5, md: 0 },
+          },
+        ]}
       >
         <Typography sx={{ fontSize: { xs: 28, md: 48 } }}>
           Log In to Your Account
@@ -121,7 +89,7 @@ export default function Login() {
           type="email"
           label="Email"
           variant="outlined"
-          sx={registeStyle}
+          sx={inputField}
           onChange={handleChange}
         />
 
@@ -131,19 +99,18 @@ export default function Login() {
           type="password"
           label="Password"
           variant="outlined"
-          sx={registeStyle}
+          sx={inputField}
           onChange={handleChange}
         />
 
         <Button
           variant="contained"
-          sx={{
-            backgroundColor: "#2dfdc6",
-            "&:hover": { backgroundColor: "#2dfdc6" },
-            color: "black",
-            fontWeight: "bold",
-            "&:disabled": { backgroundColor: "grey", color: "white" },
-          }}
+          sx={[
+            minorButton,
+            {
+              "&:disabled": { backgroundColor: "grey", color: "white" },
+            },
+          ]}
           onClick={handleSubmit}
         >
           Log In
@@ -151,12 +118,7 @@ export default function Login() {
         <Typography variant="h5">OR</Typography>
         <Button
           variant="contained"
-          sx={{
-            backgroundColor: "#2dfdc6",
-            "&:hover": { backgroundColor: "#2dfdc6" },
-            color: "black",
-            fontWeight: "bold",
-          }}
+          sx={[minorButton]}
           onClick={() => navigate("/register")}
         >
           Sign Up

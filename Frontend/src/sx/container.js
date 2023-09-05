@@ -10,7 +10,7 @@ const centerAlign = {
 
 const stack = { flexDirection: "column" };
 
-const roundBorder = { border: 1, borderColor: minor, borderRadius: 3 };
+const roundBorder = { border: 2, borderColor: minor, borderRadius: 3 };
 
 const card = [
   centerAlign,

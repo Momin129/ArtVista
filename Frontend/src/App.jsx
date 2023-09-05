@@ -13,7 +13,7 @@ import Profile from "./pages/user/profile";
 import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
-import Upload from "./components/user/upload";
+import UploadUserModel from "./components/user/uploadModel";
 import Feedbacks from "./pages/admin/feedbacks";
 import SearchPage from "./pages/user/searchPage";
 
@@ -48,7 +48,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/upload" element={<Upload />} />
+        <Route path="/upload" element={<UploadUserModel />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/displayModels" element={<DisplayModels />} />
         <Route path="/searchPage" element={<SearchPage />} />

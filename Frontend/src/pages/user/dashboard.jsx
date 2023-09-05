@@ -1,9 +1,10 @@
 import { Box, Button } from "@mui/material";
-import Uploads from "../../components/user/dashboard/uploads";
+import UploadsList from "../../components/user/dashboard/uploadsList";
 import Favourites from "../../components/user/dashboard/favourites";
 import { useEffect, useState } from "react";
 import { fetchFavourites, fetchUserUploads } from "../../utility/api";
-
+import { centerAlign, size, stack } from "../../sx/container";
+import { minorButton } from "../../sx/button";
 export default function Dashboard() {
   const [show, setShow] = useState(true);
   const [favourites, setFavourites] = useState([]);
@@ -27,17 +28,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        height: { xs: 1, md: 1 },
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <Box sx={[size, centerAlign, stack]}>
       <Box
         sx={{
           width: { xs: "100%", md: "70%" },
@@ -55,24 +46,14 @@ export default function Dashboard() {
         >
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: "#2dfdc6",
-              color: "black",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#02ca95" },
-            }}
+            sx={[minorButton]}
             onClick={() => setShow(true)}
           >
             Favourites
           </Button>
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: "#2dfdc6",
-              color: "black",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#02ca95" },
-            }}
+            sx={[minorButton]}
             onClick={() => setShow(false)}
           >
             Uploads
@@ -89,7 +70,7 @@ export default function Dashboard() {
             <Favourites favourites={favourites} setFavourites={setFavourites} />
           )}
           {!show && (
-            <Uploads
+            <UploadsList
               list={list}
               lastUploaded={lastUploaded}
               setList={setList}

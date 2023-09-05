@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getFeedbacks } from "../../utility/api";
 import FeedbackTable from "../../components/adminDashboard/feedback/feedbackTable";
+import { centerAlign, size } from "../../sx/container";
 
 export default function Feedbacks() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -12,16 +13,7 @@ export default function Feedbacks() {
     })();
   }, []);
   return (
-    <Box
-      sx={{
-        height: 1,
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Box sx={[size, centerAlign]}>
       <FeedbackTable list={feedbacks} />
     </Box>
   );

@@ -3,6 +3,8 @@ import CountBox from "../../components/adminDashboard/countBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UplaodTable from "../../components/adminDashboard/uploadTable";
+import { major } from "../../sx/colors";
+import { centerAlign } from "../../sx/container";
 
 export default function AdminDashboard() {
   const [records, setRecords] = useState([]);
@@ -22,7 +24,7 @@ export default function AdminDashboard() {
   return (
     <Box
       sx={{
-        backgroundColor: "#050215",
+        backgroundColor: major,
         paddingY: { xs: 2, md: 5 },
       }}
     >
@@ -45,12 +47,7 @@ export default function AdminDashboard() {
                 xs={12}
                 sm={6}
                 md={4}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
+                sx={[centerAlign, { cursor: "pointer" }]}
               >
                 <CountBox name={value.name} count={value.count} />
               </Grid>
