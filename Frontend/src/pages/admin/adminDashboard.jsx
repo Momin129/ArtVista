@@ -3,7 +3,7 @@ import CountBox from "../../components/adminDashboard/countBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UplaodTable from "../../components/adminDashboard/uploadTable";
-import { major } from "../../sx/colors";
+import { major, textColor } from "../../sx/colors";
 import { centerAlign } from "../../sx/container";
 
 export default function AdminDashboard() {
@@ -33,7 +33,7 @@ export default function AdminDashboard() {
           fontSize: { xs: 48, md: 64 },
           fontWeight: "bold",
           textAlign: "center",
-          color: "white",
+          color: textColor,
         }}
       >
         Dashboard
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
           fontSize: { xs: 48, md: 64 },
           fontWeight: "bold",
           textAlign: "center",
-          color: "white",
+          color: textColor,
           marginTop: { xs: 5, md: 20 },
         }}
       >

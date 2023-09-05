@@ -13,6 +13,7 @@ import { useState } from "react";
 import { sendReply } from "../../../utility/api/admin";
 import { roundBorder } from "../../../sx/container";
 import { inputField, minorButton } from "../../../sx/button";
+import { major, minor, textColor } from "../../../sx/colors";
 
 const style = {
   position: "absolute",
@@ -23,12 +24,12 @@ const style = {
   height: "max-content",
   overflow: "auto",
   bgcolor: "#050215",
-  border: "2px solid #2fdfc6",
+  border: `2px solid ${minor}`,
   borderRadius: 3,
-  color: "white",
+  color: textColor,
   p: 4,
   scrollbarWidth: "thin",
-  scrollbarColor: "#2fdfc6 #050215",
+  scrollbarColor: `${minor} ${major}`,
 };
 
 // eslint-disable-next-line react/prop-types
@@ -61,14 +62,7 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
             <Typography variant="h6">{currentFeedback.fullname}</Typography>
           </Box>
 
-          <Box
-            sx={{
-              padding: 2,
-              border: 1,
-              borderRadius: 3,
-              borderColor: "#2fdfc6",
-            }}
-          >
+          <Box sx={[roundBorder, { padding: 2 }]}>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
               Email:
             </Typography>

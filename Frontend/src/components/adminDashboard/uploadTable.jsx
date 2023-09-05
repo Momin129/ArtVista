@@ -14,12 +14,13 @@ import {
   fetchUploadRequests,
 } from "../../utility/api";
 import PopUpModel from "./popUpModel";
+import { major, minor, textColor } from "../../sx/colors";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#2fdfc6",
-    color: "#050215",
-    border: "2px solid #2fdfc6",
+    backgroundColor: minor,
+    color: major,
+    border: `2px solid ${minor}`,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 24,
@@ -27,10 +28,10 @@ const StyledTableCell = styled(TableCell)(() => ({
 
   [`&.${tableCellClasses.body}`]: {
     fontSize: 18,
-    backgroundColor: "#050215",
-    border: "2px solid #2fdfc6",
+    backgroundColor: major,
+    border: `2px solid ${minor}`,
     textAlign: "center",
-    color: "white",
+    color: textColor,
   },
 }));
 
@@ -119,12 +120,7 @@ export default function UplaodTable() {
                   >
                     <Button
                       variant="contained"
-                      sx={{
-                        backgroundColor: "#2fdfc6",
-                        color: "#050215",
-                        fontWeight: "bold",
-                        "&:hover": { backgroundColor: "#2fdfc6" },
-                      }}
+                      sx={[minor]}
                       onClick={() => {
                         handleCurrentModel(row);
                       }}

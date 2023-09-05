@@ -11,6 +11,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { inputField, minorButton } from "../../sx/button";
 import { centerAlign, roundBorder, size, stack } from "../../sx/container";
+import { textColor } from "../../sx/colors";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -108,7 +109,7 @@ export default function Login() {
           sx={[
             minorButton,
             {
-              "&:disabled": { backgroundColor: "grey", color: "white" },
+              "&:disabled": { backgroundColor: "grey", color: textColor },
             },
           ]}
           onClick={handleSubmit}

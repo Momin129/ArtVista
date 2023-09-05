@@ -1,6 +1,7 @@
 import { Box, Grid, Fade, Typography } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { centerAlign, size } from "../../sx/container";
+import { minor } from "../../sx/colors";
 
 export default function ThirdSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -69,7 +70,7 @@ export default function ThirdSection() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
+                    color: minor,
                     fontSize: 48,
                     fontWeight: "bold",
                   }}
@@ -107,7 +108,7 @@ export default function ThirdSection() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
+                    color: minor,
                     fontSize: 48,
                     fontWeight: "bold",
                   }}
@@ -145,7 +146,7 @@ export default function ThirdSection() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    color: "#2dfdc6",
+                    color: minor,
                     fontSize: 48,
                     fontWeight: "bold",
                   }}

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import FeedbackPopUp from "./feedbackPopUp";
-import { major, minor } from "../../../sx/colors";
+import { major, minor, textColor } from "../../../sx/colors";
 import { minorButton } from "../../../sx/button";
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -31,7 +31,7 @@ const StyledTableCell = styled(TableCell)(() => ({
     backgroundColor: major,
     border: `2px solid ${minor}`,
     textAlign: "center",
-    color: "white",
+    color: textColor,
   },
 }));
 

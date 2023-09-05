@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { validateForm } from "../../utility/formValidation";
 import { inputField, minorButton } from "../../sx/button";
+import { minor, textColor } from "../../sx/colors";
 
 export default function InputFileds() {
   const userId = sessionStorage.getItem("userId");
@@ -34,29 +35,6 @@ export default function InputFileds() {
       }
     })();
   }, []);
-
-  const Style = {
-    border: 1,
-    color: "white",
-    borderColor: inputDisable ? "transparent" : "#2fdfc6",
-    borderRadius: 3,
-    width: { xs: "100%", md: "100%" },
-    "& fieldset": {
-      border: "none",
-    },
-    "& .MuiFormLabel-root.Mui-focused": {
-      color: "white",
-    },
-    "& .MuiInputBase-input": { color: "white", fontSize: { xs: 20, md: 32 } },
-    input: { color: "white" },
-    label: { color: "white" },
-    "& .MuiInputBase-input.MuiOutlinedInput-input.Mui-disabled": {
-      "-webkit-text-fill-color": "white",
-    },
-    "& .MuiFormHelperText-root": {
-      whiteSpace: "pre-line",
-    },
-  };
 
   useEffect(() => {
     if (inputs) {
@@ -117,7 +95,7 @@ export default function InputFileds() {
           onBlur={handleBlur}
         />
       </Box>
-      <Divider sx={{ width: 1, borderColor: "#2dfdc6" }} />
+      <Divider sx={{ width: 1, borderColor: minor }} />
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         <Typography sx={{ fontSize: { xs: 20, md: 32 }, fontWeight: "bold" }}>
           Email:
@@ -133,7 +111,7 @@ export default function InputFileds() {
           onBlur={handleBlur}
         />
       </Box>
-      <Divider sx={{ width: 1, borderColor: "#2dfdc6" }} />
+      <Divider sx={{ width: 1, borderColor: minor }} />
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         <Typography sx={{ fontSize: { xs: 20, md: 32 }, fontWeight: "bold" }}>
           Mobile:
@@ -149,7 +127,7 @@ export default function InputFileds() {
           onBlur={handleBlur}
         />
       </Box>
-      <Divider sx={{ width: 1, borderColor: "#2dfdc6" }} />
+      <Divider sx={{ width: 1, borderColor: minor }} />
       {inputDisable ? (
         <Button
           variant="contained"
@@ -162,12 +140,7 @@ export default function InputFileds() {
         <>
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: "#2dfdc6",
-              color: "black",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#02ca95" },
-            }}
+            sx={[minorButton]}
             onClick={() => setInputDisable(true)}
           >
             Cancel
@@ -176,7 +149,7 @@ export default function InputFileds() {
             variant="contained"
             sx={[
               minorButton,
-              { "&:disabled": { backgroundColor: "grey", color: "white" } },
+              { "&:disabled": { backgroundColor: "grey", color: textColor } },
             ]}
             disabled={buttonDisable}
             onClick={() => {

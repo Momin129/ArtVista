@@ -15,7 +15,7 @@ const style = {
   bgcolor: major,
   border: `2px solid ${minor}`,
   borderRadius: 3,
-  color: "white",
+  color: textColor,
   p: 4,
   scrollbarWidth: "thin",
   scrollbarColor: `${minor} ${major}`,
@@ -25,23 +25,16 @@ const style = {
 export default function PopUp({ open, handleClose, currentModel }) {
   return (
     <div>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-      
-      >
+      <Modal keepMounted open={open} onClose={handleClose}>
         <Box sx={style}>
           <Typography
             variant="h6"
             component="h2"
-            sx={{ borderBottom: 1, borderBottomColor: minor}}
+            sx={{ borderBottom: 1, borderBottomColor: minor }}
           >
             {currentModel.title}
           </Typography>
-          <Typography
-            sx={{ mt: 2, textAlign: "justify" }}
-          >
+          <Typography sx={{ mt: 2, textAlign: "justify" }}>
             {currentModel.info}
           </Typography>
         </Box>

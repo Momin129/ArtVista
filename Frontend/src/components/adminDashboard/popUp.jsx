@@ -2,6 +2,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
+import { major, minor, textColor } from "../../sx/colors";
 
 const style = {
   position: "absolute",
@@ -11,39 +12,29 @@ const style = {
   width: { xs: 350, md: 500 },
   height: { xs: 350, md: 500 },
   overflow: "auto",
-  bgcolor: "#050215",
-  border: "2px solid #2fdfc6",
+  bgcolor: major,
+  border: `2px solid ${minor}`,
   borderRadius: 3,
-  color: "white",
+  color: textColor,
   p: 4,
   scrollbarWidth: "thin",
-  scrollbarColor: "#2fdfc6 #050215",
+  scrollbarColor: `${minor} ${major}`,
 };
 
 // eslint-disable-next-line react/prop-types
 export default function PopUp({ open, handleClose, currentModel }) {
   return (
     <div>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
+      <Modal keepMounted open={open} onClose={handleClose}>
         <Box sx={style}>
           <Typography
-            id="keep-mounted-modal-title"
             variant="h6"
             component="h2"
-            sx={{ borderBottom: 1, borderBottomColor: "#2fdfc6" }}
+            sx={{ borderBottom: 1, borderBottomColor: minor }}
           >
             {currentModel.title}
           </Typography>
-          <Typography
-            id="keep-mounted-modal-description"
-            sx={{ mt: 2, textAlign: "justify" }}
-          >
+          <Typography sx={{ mt: 2, textAlign: "justify" }}>
             {currentModel.info}
           </Typography>
         </Box>

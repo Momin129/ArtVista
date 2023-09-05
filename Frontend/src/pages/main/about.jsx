@@ -3,14 +3,15 @@ import FirstSection from "../../components/about/firstSection";
 import SecondSection from "../../components/about/secondSection";
 import ThirdSection from "../../components/about/thirdSection";
 import FourthSection from "../../components/about/fourthSection";
+import { major, textColor } from "../../sx/colors";
 
 export default function About() {
   return (
     <Box
       sx={{
         height: "auto",
-        backgroundColor: "#050215",
-        color: "white",
+        backgroundColor: major,
+        color: textColor,
         paddingY: 15,
         gap: 5,
       }}

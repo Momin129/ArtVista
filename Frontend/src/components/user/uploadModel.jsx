@@ -9,10 +9,9 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {size,centerAlign,stack, roundBorder} from "../../sx/container"
-import {inputField, minorButton} from "../../sx/button";
+import { size, centerAlign, stack, roundBorder } from "../../sx/container";
+import { inputField, minorButton } from "../../sx/button";
 import axios from "axios";
-
 
 export default function UploadUserModel() {
   const navigate = useNavigate();
@@ -80,15 +79,18 @@ export default function UploadUserModel() {
     }
   };
   return (
-    <Box
-      sx={[size,centerAlign,stack]}
-    >
+    <Box sx={[size, centerAlign, stack]}>
       <Box
-        sx={[roundBorder,centerAlign,stack,{
-          width: { md: 600 },
-          gap: 3,
-          padding: { xs: 2, md: 1 },
-        }]}
+        sx={[
+          roundBorder,
+          centerAlign,
+          stack,
+          {
+            width: { md: 600 },
+            gap: 3,
+            padding: { xs: 2, md: 1 },
+          },
+        ]}
       >
         <Typography sx={{ fontSize: { xs: 48, md: 64 } }}>
           Upload Model
@@ -120,11 +122,7 @@ export default function UploadUserModel() {
         />
         <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
         <TextField type="file" sx={inputField} onChange={handleFile} />
-        <Button
-          variant="contained"
-          sx={[minorButton]}
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" sx={[minorButton]} onClick={handleSubmit}>
           Submit
         </Button>
       </Box>

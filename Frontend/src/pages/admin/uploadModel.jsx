@@ -12,8 +12,7 @@ import axios from "axios";
 import SelectType from "../../components/user/dropdown";
 import { inputField, minorButton } from "../../sx/button";
 import { size, centerAlign, stack, roundBorder } from "../../sx/container";
-import { minor } from "../../sx/colors";
-
+import { textColor } from "../../sx/colors";
 
 export default function UploadModel() {
   const [file, setFile] = useState();
@@ -77,13 +76,18 @@ export default function UploadModel() {
     }
   };
   return (
-    <Box
-      sx={[size, centerAlign, stack]}
-    >
+    <Box sx={[size, centerAlign, stack]}>
       <Box
-        sx={[roundBorder, centerAlign, stack, {
-          width: { md: 600 }, gap: 3, padding: { xs: 2, md: 1 },
-        }]}
+        sx={[
+          roundBorder,
+          centerAlign,
+          stack,
+          {
+            width: { md: 600 },
+            gap: 3,
+            padding: { xs: 2, md: 1 },
+          },
+        ]}
       >
         <Typography sx={{ fontSize: { xs: 48, md: 64 } }}>
           Upload Model
@@ -107,20 +111,16 @@ export default function UploadModel() {
           rows={5}
         />
         <SelectType inputs={inputs} handleChange={handleChange} />
-        <InputLabel sx={{ color: "white" }}>Thumbnail for model</InputLabel>
+        <InputLabel sx={{ color: textColor }}>Thumbnail for model</InputLabel>
         <TextField
           name="thumbnail"
           type="file"
           sx={inputField}
           onChange={handleThumbnail}
         />
-        <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
+        <InputLabel sx={{ color: textColor }}>Model File</InputLabel>
         <TextField type="file" sx={inputField} onChange={handleFile} />
-        <Button
-          variant="contained"
-          sx={[minorButton]}
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" sx={[minorButton]} onClick={handleSubmit}>
           Submit
         </Button>
       </Box>

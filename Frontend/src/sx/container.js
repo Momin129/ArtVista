@@ -1,6 +1,6 @@
-import { major, minor } from "./colors";
+import { major, minor, textColor } from "./colors";
 
-const size = { height: 1, backgroundColor: major, color: "white" };
+const size = { height: 1, backgroundColor: major, color: textColor };
 
 const centerAlign = {
   display: "flex",

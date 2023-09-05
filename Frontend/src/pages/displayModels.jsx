@@ -134,7 +134,7 @@ export default function DisplayModels() {
             },
           ]}
         >
-          <CircularProgress sx={{ color: "#2fdfc6" }} />
+          <CircularProgress sx={{ color: minor }} />
         </Box>
       ) : images.length > 0 ? (
         <Box
@@ -197,16 +197,16 @@ export default function DisplayModels() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <InfoIcon
               onClick={handleOpen}
-              sx={{ color: "#2fdfc6", fontSize: 36 }}
+              sx={{ color: minor, fontSize: 36 }}
             />
             {currentModel.favourite ? (
               <FavoriteIcon
-                sx={{ color: "#2fdfc6", fontSize: 36 }}
+                sx={{ color: minor, fontSize: 36 }}
                 onClick={hadleFavourite}
               ></FavoriteIcon>
             ) : (
               <FavoriteBorderIcon
-                sx={{ color: "#2fdfc6", fontSize: 36 }}
+                sx={{ color: minor, fontSize: 36 }}
                 onClick={hadleFavourite}
               />
             )}

@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
+import { major, minor, textColor } from "../../sx/colors";
+import { inputField, minorButton } from "../../sx/button";
 
 const style = {
   position: "absolute",
@@ -18,10 +20,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   p: 4,
-  backgroundColor: "#050215",
-  border: "2px solid #2fdfc6",
+  backgroundColor: major,
+  border: `2px solid ${minor}`,
   borderRadius: 3,
-  color: "white",
+  color: textColor,
 };
 
 export default function OTPMail({ otpHandlers, inputHandlers }) {
@@ -57,12 +59,7 @@ export default function OTPMail({ otpHandlers, inputHandlers }) {
   };
   return (
     <div>
-      <Modal
-        open={otpHandlers.otp}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={otpHandlers.otp} onClose={handleClose}>
         <Box sx={style}>
           <Typography
             sx={{ fontSize: 18, fontWeight: "bold", textAlign: "center" }}
@@ -71,37 +68,11 @@ export default function OTPMail({ otpHandlers, inputHandlers }) {
           </Typography>
           <TextField
             type="text"
-            sx={{
-              border: 1,
-              color: "white",
-              borderColor: "#2dfdc6",
-              borderRadius: 3,
-              width: "100%",
-              "& fieldset": {
-                border: "none",
-              },
-              "& .MuiFormLabel-root.Mui-focused": {
-                color: "white",
-              },
-              "& .MuiInputBase-input": { color: "white" },
-              input: { color: "white" },
-              label: { color: "white" },
-            }}
+            sx={[inputField]}
             placeholder="OTP"
             onChange={(e) => setSubmitOtp(e.target.value)}
           />
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#2fdfc6",
-              color: "#050215",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#2fdfc6" },
-              marginTop: 2,
-              width: 1,
-            }}
-            onClick={handleSubmit}
-          >
+          <Button variant="contained" sx={[minorButton]} onClick={handleSubmit}>
             Submit
           </Button>
         </Box>

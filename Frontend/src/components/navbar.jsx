@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DropDown from "./dropdown";
 import SearchBox from "./user/searchBox";
-import { major } from "../sx/colors";
+import { major, textColor } from "../sx/colors";
 import { centerAlign } from "../sx/container";
 
 function NavBar() {
@@ -142,7 +142,7 @@ function NavBar() {
                 showOn == item.show && (
                   <Button
                     key={index}
-                    sx={{ color: "#fff", fontWeight: "bold" }}
+                    sx={{ color: textColor, fontWeight: "bold" }}
                     onClick={() => {
                       navigate(item.link);
                     }}
@@ -162,7 +162,7 @@ function NavBar() {
                 showOn == item.show && (
                   <Button
                     key={index}
-                    sx={{ color: "#fff", fontWeight: "bold" }}
+                    sx={{ color: textColor, fontWeight: "bold" }}
                     onClick={() => {
                       if (item.name.toLowerCase() == "logout") {
                         handleLogout();

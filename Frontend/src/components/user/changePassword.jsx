@@ -16,12 +16,11 @@ import { useState, useEffect } from "react";
 import { validateForm } from "../../utility/formValidation";
 import axios from "axios";
 import { inputField } from "../../sx/button";
+import { major, minor, textColor } from "../../sx/colors";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-
 
 export default function ChangePassword({ open, handleClose }) {
   const [inputs, setInputs] = useState([{ password: "", confirmPassword: "" }]);
@@ -84,20 +83,18 @@ export default function ChangePassword({ open, handleClose }) {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
         PaperProps={{
           style: {
-            backgroundColor: "#050215",
-            color: "white",
+            backgroundColor: major,
+            color: textColor,
             border: 2,
-            borderColor: "#2fdfc6",
+            borderColor: minor,
           },
         }}
       >
         <DialogTitle>{"Change Password"}</DialogTitle>
         <DialogContent>
           <Box
-            id="alert-dialog-slide-description"
             sx={{
               display: "flex",
               flexDirection: "column",

@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 import { useState } from "react";
 import PopUp from "./popUp";
-import { major, minor } from "../../sx/colors";
+import { major, minor, textColor } from "../../sx/colors";
 
 const style = {
   position: "absolute",
@@ -18,9 +18,9 @@ const style = {
   width: { xs: 400, md: 600 },
   height: 600,
   backgroundColor: major,
-  border:`2px solid ${minor}`,
+  border: `2px solid ${minor}`,
   borderRadius: 3,
-  color: "white",
+  color: textColor,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

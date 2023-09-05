@@ -2,6 +2,7 @@ import { Box, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { textColor } from "../../sx/colors";
 
 export default function SearchBox() {
   const navigate = useNavigate();
@@ -34,9 +35,9 @@ export default function SearchBox() {
               border: "none",
             },
             "& .MuiFormLabel-root.Mui-focused": {
-              color: "white",
+              color: textColor,
             },
-            input: { color: "white" },
+            input: { color: textColor },
           }}
           onChange={(e) => setSearchContent(e.target.value)}
         ></TextField>

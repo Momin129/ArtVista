@@ -10,7 +10,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { deleteUserUpload } from "../../../utility/api";
-import { major, minor } from "../../../sx/colors";
+import { major, minor, textColor } from "../../../sx/colors";
 import { minorButton } from "../../../sx/button";
 
 export default function UploadsList({ list, lastUploaded, setList }) {
@@ -44,7 +44,7 @@ export default function UploadsList({ list, lastUploaded, setList }) {
         {list.length > 0 ? (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: "#2dfdc6" }}>
+              <TableHead sx={{ backgroundColor: minor }}>
                 <TableRow>
                   <TableCell sx={{ fontWeight: "bold" }} align="center">
                     Upload Item
@@ -68,14 +68,14 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                     }}
                   >
                     <TableCell
-                      sx={{ color: "white" }}
+                      sx={{ color: textColor }}
                       align="center"
                       component="th"
                       scope="row"
                     >
                       {row.title}
                     </TableCell>
-                    <TableCell sx={{ color: "white" }} align="center">
+                    <TableCell sx={{ color: textColor }} align="center">
                       {row.createdAt.substring(0, row.createdAt.indexOf("T"))}
                     </TableCell>
                     <TableCell
@@ -117,10 +117,13 @@ export default function UploadsList({ list, lastUploaded, setList }) {
       </Box>
       <Button
         variant="contained"
-        sx={[minorButton,{
-          "&:disabled": { backgroundColor: "grey" },
-          marginTop: 3,
-        }]}
+        sx={[
+          minorButton,
+          {
+            "&:disabled": { backgroundColor: "grey" },
+            marginTop: 3,
+          },
+        ]}
         onClick={() => {
           if (list.length > 0) {
             if (lastUploaded == "Pending")

@@ -6,6 +6,7 @@ import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import AppsIcon from "@mui/icons-material/Apps";
 import ContactsIcon from "@mui/icons-material/Contacts";
+import { major } from "../../sx/colors";
 export default function CountBox({ name, count }) {
   return (
     <Box
@@ -19,7 +20,7 @@ export default function CountBox({ name, count }) {
         flexDirection: "column",
         borderRadius: 5,
         boxShadow: "10px 10px 0px #0e584d",
-        color: "#050215",
+        color: major,
       }}
     >
       {name == "Users" && <PeopleAltIcon sx={{ fontSize: 84 }} />}

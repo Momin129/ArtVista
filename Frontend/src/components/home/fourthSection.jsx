@@ -2,6 +2,7 @@ import { Box, Grid, Fade, Typography } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { fetchLatestModels } from "../../utility/api";
 import { centerAlign, size } from "../../sx/container";
+import { minor } from "../../sx/colors";
 
 export default function FourthSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -83,7 +84,7 @@ export default function FourthSection() {
                       top: "50%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
-                      color: "#2dfdc6",
+                      color: minor,
                       fontSize: 48,
                       fontWeight: "bold",
                     }}

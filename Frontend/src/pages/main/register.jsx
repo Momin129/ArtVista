@@ -7,6 +7,7 @@ import OTPMail from "../../components/register/otpMail";
 import { setOTP } from "../../utility/api/register";
 import { inputField, minorButton } from "../../sx/button";
 import { centerAlign, roundBorder, size, stack } from "../../sx/container";
+import { textColor } from "../../sx/colors";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -147,7 +148,7 @@ export default function Register() {
           variant="contained"
           sx={[
             {
-              "&:disabled": { backgroundColor: "grey", color: "white" },
+              "&:disabled": { backgroundColor: "grey", color: textColor },
             },
             minorButton,
           ]}
