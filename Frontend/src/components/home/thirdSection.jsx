@@ -1,5 +1,6 @@
 import { Box, Grid, Fade, Typography } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
+import { centerAlign, size } from "../../sx/container";
 
 export default function ThirdSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -8,23 +9,14 @@ export default function ThirdSection() {
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting);
       },
-      { rootMargin: "0px" },
+      { rootMargin: "0px" }
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
   });
   const ref = useRef(null);
   return (
-    <Box
-      sx={{
-        height: { xs: "max-content", md: "100%" },
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Box sx={[centerAlign, size, { height: { xs: "max-content" } }]}>
       <Grid
         ref={ref}
         container
@@ -50,16 +42,7 @@ export default function ThirdSection() {
             </Fade>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12} md={4} sx={[centerAlign]}>
           <Box>
             <Fade
               in={isIntersecting}
@@ -97,16 +80,7 @@ export default function ThirdSection() {
             </Fade>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12} md={4} sx={[centerAlign]}>
           <Box>
             <Fade
               in={isIntersecting}
@@ -144,16 +118,7 @@ export default function ThirdSection() {
             </Fade>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12} md={4} sx={[centerAlign]}>
           <Box>
             <Fade
               in={isIntersecting}

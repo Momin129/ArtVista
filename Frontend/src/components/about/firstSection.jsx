@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Grid, Typography, Box, Fade } from "@mui/material";
+import { centerAlign, stack } from "../../sx/container";
 
 export default function FirstSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -17,18 +18,7 @@ export default function FirstSection() {
   const ref = useRef(null);
   return (
     <>
-      <Grid
-        item
-        ref={ref}
-        xs={12}
-        md={6}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <Grid item ref={ref} xs={12} md={6} sx={[centerAlign, stack]}>
         <Fade
           in={isIntersecting}
           style={{ transitionDelay: isIntersecting ? "500ms" : "0ms" }}
@@ -57,17 +47,7 @@ export default function FirstSection() {
           </Typography>
         </Fade>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        md={6}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <Grid item xs={12} md={6} sx={[centerAlign, stack]}>
         <Box
           sx={{
             width: { md: 500 },

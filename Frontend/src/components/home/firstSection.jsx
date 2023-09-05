@@ -1,6 +1,9 @@
 import { Box, Button, Fade, Grid, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { centerAlign, size, stack } from "../../sx/container";
+import { minorButton } from "../../sx/button";
+import { minor } from "../../sx/colors";
 
 export default function FirstSection() {
   const naviagte = useNavigate();
@@ -18,28 +21,9 @@ export default function FirstSection() {
   });
   const ref = useRef(null);
   return (
-    <Box
-      sx={{
-        height: { md: "95%" },
-        backgroundColor: "#050215",
-        color: "white",
-        paddingX: { md: 40 },
-        paddingY: { xs: 5, md: 20 },
-      }}
-    >
-      <Grid container>
-        <Grid
-          ref={ref}
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+    <Box sx={[size, centerAlign]}>
+      <Grid container sx={{ width: "60%" }}>
+        <Grid ref={ref} item xs={12} md={6} sx={[centerAlign, stack]}>
           <Box sx={{ marginBottom: 3, paddingX: 10 }}>
             <Fade
               in={isIntersecting}
@@ -52,7 +36,7 @@ export default function FirstSection() {
                 }}
               >
                 Where History and Creativity Converges in{" "}
-                <Box component={"span"} sx={{ color: "#2dfdc6" }}>
+                <Box component={"span"} sx={{ color: minor }}>
                   3D
                 </Box>
               </Typography>
@@ -63,15 +47,7 @@ export default function FirstSection() {
             >
               <Button
                 variant="contained"
-                sx={{
-                  backgroundColor: "#2dfdc6",
-                  color: "black",
-                  fontWeight: "bolder",
-                  fontSize: { md: 36 },
-                  fontFamily: "sans-serif",
-                  paddingX: { xs: 5, md: 13 },
-                  "&:hover": { backgroundColor: "#2dfdc6" },
-                }}
+                sx={[minorButton, { fontSize: { md: 32 } }]}
                 onClick={() =>
                   naviagte("/displayModels", { state: { type: "demo" } })
                 }

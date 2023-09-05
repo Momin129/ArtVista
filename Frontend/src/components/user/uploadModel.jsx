@@ -28,7 +28,7 @@ const upload = {
   label: { color: "white" },
 };
 
-export default function Upload() {
+export default function UploadUserModel() {
   const navigate = useNavigate();
   const [file, setFile] = useState();
   const [inputs, setInputs] = useState([]);

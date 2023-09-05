@@ -11,6 +11,8 @@ import {
 
 import { useState } from "react";
 import { sendReply } from "../../../utility/api/admin";
+import { roundBorder } from "../../../sx/container";
+import { inputField, minorButton } from "../../../sx/button";
 
 const style = {
   position: "absolute",
@@ -45,13 +47,13 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
       <Modal keepMounted open={open} onClose={handleClose}>
         <Box sx={style}>
           <Box
-            sx={{
-              padding: 2,
-              border: 1,
-              borderRadius: 3,
-              borderColor: "#2fdfc6",
-              marginY: 1,
-            }}
+            sx={[
+              roundBorder,
+              {
+                padding: 2,
+                marginY: 1,
+              },
+            ]}
           >
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
               Name:
@@ -76,13 +78,13 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
           </Box>
 
           <Box
-            sx={{
-              padding: 2,
-              border: 1,
-              borderRadius: 3,
-              borderColor: "#2fdfc6",
-              marginY: 1,
-            }}
+            sx={[
+              roundBorder,
+              {
+                padding: 2,
+                marginY: 1,
+              },
+            ]}
           >
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>
               Comment:
@@ -103,34 +105,12 @@ export default function FeedbackPopUp({ open, handleClose, currentFeedback }) {
             rows={5}
             value={reply}
             label="Reply"
-            sx={{
-              border: 1,
-              color: "white",
-              borderColor: "#2dfdc6",
-              borderRadius: 3,
-              width: "100%",
-              "& fieldset": {
-                border: "none",
-              },
-              "& .MuiFormLabel-root.Mui-focused": {
-                color: "white",
-              },
-              "& .MuiInputBase-input": { color: "white" },
-              input: { color: "white" },
-              label: { color: "white" },
-            }}
+            sx={[inputField, { width: { md: 1 } }]}
             onChange={(e) => setReply(e.target.value)}
           />
           <Button
             variant="contained"
-            sx={{
-              backgroundColor: "#2fdfc6",
-              color: "#050215",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#2fdfc6" },
-              marginTop: 3,
-              width: "100%",
-            }}
+            sx={[minorButton, { width: 1, marginTop: 3 }]}
             onClick={handleReply}
           >
             Send

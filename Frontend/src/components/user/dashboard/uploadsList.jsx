@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { deleteUserUpload } from "../../../utility/api";
 
-export default function Uploads({ list, lastUploaded, setList }) {
+export default function UploadsList({ list, lastUploaded, setList }) {
   const navigate = useNavigate();
 
   const [uploadMsg, setUploadMsg] = useState("");

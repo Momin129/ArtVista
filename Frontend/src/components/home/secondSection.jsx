@@ -1,6 +1,9 @@
 import { Box, Grid, Fade, Typography, Button } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { centerAlign, size, stack } from "../../sx/container";
+import { minorButton } from "../../sx/button";
+import { minor } from "../../sx/colors";
 
 export default function SecondSection() {
   const navigate = useNavigate();
@@ -18,27 +21,9 @@ export default function SecondSection() {
   });
   const ref = useRef(null);
   return (
-    <Box
-      sx={{
-        height: { xs: "auto", md: "100%" },
-        backgroundColor: "#050215",
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Grid container sx={{ width: "80%" }}>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+    <Box sx={[size, centerAlign]}>
+      <Grid container sx={{ width: "60%" }}>
+        <Grid item xs={12} md={6} sx={[centerAlign, stack]}>
           <Box ref={ref}>
             <Fade
               in={isIntersecting}
@@ -60,16 +45,7 @@ export default function SecondSection() {
             </Fade>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={12} md={6} sx={[centerAlign]}>
           <Box ref={ref}>
             <Fade
               in={isIntersecting}
@@ -80,7 +56,7 @@ export default function SecondSection() {
                   sx={{ fontSize: { xs: 30, md: 86 }, fontWeight: "bold" }}
                 >
                   Welcome to
-                  <Box component={"span"} sx={{ color: "#2dfdc6" }}>
+                  <Box component={"span"} sx={{ color: minor }}>
                     ArtVista
                   </Box>
                 </Typography>
@@ -101,13 +77,7 @@ export default function SecondSection() {
                 </Typography>
                 <Button
                   variant="contained"
-                  sx={{
-                    backgroundColor: "#2dfdc6",
-                    color: "black",
-                    fontWeight: "bold",
-                    marginTop: 2,
-                    "&:hover": { backgroundColor: "#2dfdc6" },
-                  }}
+                  sx={[minorButton, { marginTop: 2 }]}
                   onClick={() => navigate("/about")}
                 >
                   About Us

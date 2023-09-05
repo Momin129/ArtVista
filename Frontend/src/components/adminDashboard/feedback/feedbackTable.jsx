@@ -13,12 +13,14 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import FeedbackPopUp from "./feedbackPopUp";
+import { major, minor } from "../../../sx/colors";
+import { minorButton } from "../../../sx/button";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#2fdfc6",
-    color: "#050215",
-    border: "2px solid #2fdfc6",
+    backgroundColor: minor,
+    color: major,
+    border: `2px solid ${minor}`,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 24,
@@ -26,8 +28,8 @@ const StyledTableCell = styled(TableCell)(() => ({
 
   [`&.${tableCellClasses.body}`]: {
     fontSize: 18,
-    backgroundColor: "#050215",
-    border: "2px solid #2fdfc6",
+    backgroundColor: major,
+    border: `2px solid ${minor}`,
     textAlign: "center",
     color: "white",
   },
@@ -55,7 +57,7 @@ export default function FeedbackTable({ list }) {
           overflowY: "auto",
           height: "60%",
           scrollbarWidth: "thin",
-          backgroundColor: "#050215",
+          backgroundColor: major,
         }}
       >
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -82,12 +84,7 @@ export default function FeedbackTable({ list }) {
                 >
                   <Button
                     variant="contained"
-                    sx={{
-                      backgroundColor: "#2fdfc6",
-                      color: "#050215",
-                      fontWeight: "bold",
-                      "&:hover": { backgroundColor: "#2fdfc6" },
-                    }}
+                    sx={[minorButton]}
                     onClick={() => {
                       handleCurrentFeedback(row);
                     }}
