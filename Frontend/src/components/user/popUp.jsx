@@ -2,7 +2,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-import { major, minor } from "../../sx/colors";
+import { major, minor, textColor } from "../../sx/colors";
 
 const style = {
   position: "absolute",
