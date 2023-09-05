@@ -16,7 +16,7 @@ const card = [
   centerAlign,
   roundBorder,
   stack,
-  { height: 400, width: 300, overflow: "hidden", gap: 2, padding: 1 },
+  { height: 400, width: 300, overflow: "hidden", gap: 3, padding: 1 },
 ];
 
 export { size, centerAlign, stack, roundBorder, card };

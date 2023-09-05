@@ -155,7 +155,7 @@ export default function UplaodTable() {
             fontSize: 36,
             fontWeight: "bold",
             textAlign: "center",
-            color: "white",
+            color: "black",
           }}
         >
           NO UPLOADS

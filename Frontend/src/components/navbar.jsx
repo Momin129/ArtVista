@@ -123,7 +123,7 @@ function NavBar() {
         component="nav"
         sx={{
           position: "fixed",
-          backgroundColor: major,
+          backgroundColor: "#a7f1e6",
         }}
       >
         <Toolbar sx={[centerAlign, { gap: { md: 5 } }]}>
@@ -153,7 +153,15 @@ function NavBar() {
             )}
           </Box>
           {showOn == "user" && <DropDown style={"md"} />}
-          <Typography variant="h4" component="div">
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{
+              color: "#0a423a",
+              fontWeight: "bold",
+              textShadow: "4px 4px 5px #116e60",
+            }}
+          >
             ArtVista
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>

@@ -79,6 +79,8 @@ export default function Contact() {
             width: { md: 600 },
             gap: 3,
             padding: { xs: 5, md: 0 },
+            backgroundColor: "#e9fcf9",
+            boxShadow: "8px 8px 8px #0a423a",
           },
         ]}
       >

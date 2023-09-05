@@ -36,7 +36,7 @@ export default function FirstSection() {
                 }}
               >
                 Where History and Creativity Converges in{" "}
-                <Box component={"span"} sx={{ color: minor }}>
+                <Box component={"span"} sx={{ color: "#158474" }}>
                   3D
                 </Box>
               </Typography>
@@ -79,7 +79,12 @@ export default function FirstSection() {
               <Box
                 component={"img"}
                 src="/images/firstSection.jpg"
-                sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
+                sx={{
+                  width: "100%",
+                  marginTop: 2,
+                  objectFit: "contain",
+                  boxShadow: 3,
+                }}
               ></Box>
             </Box>
           </Fade>

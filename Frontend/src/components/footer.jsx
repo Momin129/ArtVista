@@ -23,7 +23,7 @@ export default function Footer() {
         },
       ]}
     >
-      <Typography sx={{ fontSize: 36, fontWeight: "bold" }}>
+      <Typography sx={{ fontSize: 36, fontWeight: "bold", color: "#0a423a" }}>
         ArtVista
       </Typography>
       {!sessionStorage.getItem("userId") && (

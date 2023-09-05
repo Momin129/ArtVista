@@ -73,6 +73,7 @@ export default function Login() {
             width: { md: 700 },
             gap: 3,
             padding: { xs: 5, md: 0 },
+            boxShadow: "8px 8px 8px #0a423a",
           },
         ]}
       >

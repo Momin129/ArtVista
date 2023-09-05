@@ -38,7 +38,13 @@ export default function SecondSection() {
           in={isIntersecting}
           style={{ transitionDelay: isIntersecting ? "500ms" : "0ms" }}
         >
-          <Typography sx={{ fontSize: { xs: 48, md: 78 }, fontWeight: "bold" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: 48, md: 48 },
+              fontWeight: "bold",
+              color: "#158474",
+            }}
+          >
             Our Mission
           </Typography>
         </Fade>

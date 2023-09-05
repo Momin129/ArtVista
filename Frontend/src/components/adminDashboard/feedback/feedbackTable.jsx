@@ -18,9 +18,9 @@ import { minorButton } from "../../../sx/button";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: minor,
+    backgroundColor: "#0a423a",
     color: major,
-    border: `2px solid ${minor}`,
+    border: `2px solid ${"#0a423a"}`,
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 24,
@@ -29,7 +29,7 @@ const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 18,
     backgroundColor: major,
-    border: `2px solid ${minor}`,
+    border: `2px solid ${"#0a423a"}`,
     textAlign: "center",
     color: textColor,
   },

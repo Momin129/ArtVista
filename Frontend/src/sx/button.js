@@ -2,7 +2,7 @@ import { major, minor, textColor } from "./colors";
 
 const minorButton = {
   backgroundColor: minor,
-  color: major,
+  color: "black",
   fontWeight: "bold",
   "&:hover": { backgroundColor: minor },
 };

@@ -38,7 +38,13 @@ export default function FourthSection() {
           in={isIntersecting}
           style={{ transitionDelay: isIntersecting ? "500ms" : "0ms" }}
         >
-          <Typography sx={{ fontSize: { xs: 48, md: 64 }, fontWeight: "bold" }}>
+          <Typography
+            sx={{
+              fontSize: { xs: 48, md: 48 },
+              fontWeight: "bold",
+              color: "#158474",
+            }}
+          >
             Discover Art in a New Light
           </Typography>
         </Fade>

@@ -85,14 +85,7 @@ export default function Favourites({ favourites, setFavourites }) {
         ) : (
           <Grid container spacing={2}>
             {favourites.map((model, index) => (
-              <Grid
-                key={index}
-                item
-                lg={4}
-                xs={12}
-                sm={6}
-                sx={[centerAlign]}
-              >
+              <Grid key={index} item lg={4} xs={12} sm={6} sx={[centerAlign]}>
                 <Box
                   sx={[
                     centerAlign,
@@ -115,7 +108,7 @@ export default function Favourites({ favourites, setFavourites }) {
                   ></Box>
                   <Typography
                     sx={{
-                      color: major,
+                      color: "black",
                       fontSize: 20,
                       fontWeight: "bold",
                       textAlign: "center",
@@ -129,7 +122,7 @@ export default function Favourites({ favourites, setFavourites }) {
                   </Typography>
                   <Button
                     variant="contained"
-                    sx={[majorButton, { width: 1 }]}
+                    sx={[majorButton, { width: 1, color: "black" }]}
                     onClick={() => {
                       handleCurrentModel(model, index);
                       handleOpen();

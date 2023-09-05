@@ -22,7 +22,7 @@ export default function SecondSection() {
   const ref = useRef(null);
   return (
     <Box sx={[size, centerAlign]}>
-      <Grid container sx={{ width: "60%" }}>
+      <Grid container sx={{ width: "80%" }}>
         <Grid item xs={12} md={6} sx={[centerAlign, stack]}>
           <Box ref={ref}>
             <Fade
@@ -56,7 +56,7 @@ export default function SecondSection() {
                   sx={{ fontSize: { xs: 30, md: 86 }, fontWeight: "bold" }}
                 >
                   Welcome to
-                  <Box component={"span"} sx={{ color: minor }}>
+                  <Box component={"span"} sx={{ color: "#158474" }}>
                     ArtVista
                   </Box>
                 </Typography>

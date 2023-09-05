@@ -70,6 +70,7 @@ export default function Register() {
             width: { xs: 600, md: 700 },
             gap: 3,
             padding: { xs: 5, md: 0 },
+            boxShadow: "8px 8px 8px #0a423a",
           },
           roundBorder,
           centerAlign,

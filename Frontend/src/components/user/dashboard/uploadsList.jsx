@@ -43,16 +43,25 @@ export default function UploadsList({ list, lastUploaded, setList }) {
       <Box sx={{ overflowY: "auto", scrollbarWidth: "thin", height: 1 }}>
         {list.length > 0 ? (
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: minor }}>
+            <Table sx={{ minWidth: 650 }}>
+              <TableHead sx={{ backgroundColor: "#0a423a" }}>
                 <TableRow>
-                  <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  <TableCell
+                    sx={{ fontWeight: "bold", color: "white" }}
+                    align="center"
+                  >
                     Upload Item
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  <TableCell
+                    sx={{ fontWeight: "bold", color: "white" }}
+                    align="center"
+                  >
                     Date of Upload
                   </TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }} align="center">
+                  <TableCell
+                    sx={{ fontWeight: "bold", color: "white" }}
+                    align="center"
+                  >
                     Status
                   </TableCell>
                 </TableRow>
@@ -63,7 +72,7 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                     key={index}
                     sx={{
                       borderBottom: 2,
-                      borderColor: minor,
+                      borderColor: "#0a423a ",
                       "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
@@ -85,7 +94,7 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                           row.status === "Pending"
                             ? "yellow"
                             : row.status == "Aproved"
-                            ? "#2fdfc6"
+                            ? "#0a423a"
                             : "red",
                       }}
                       align="center"

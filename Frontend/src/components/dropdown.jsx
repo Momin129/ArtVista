@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function DropDown({ style }) {
   const styleMd = {
-    color: "#fff",
+    color: "black",
     fontWeight: "bold",
     display: { xs: "none", md: "block" },
   };

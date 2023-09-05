@@ -22,6 +22,7 @@ export default function SearchBox() {
       sx={{
         border: showInput ? 1 : "none",
         borderRadius: 3,
+        borderColor: "#0a423a",
         display: "flex",
         alignItems: "center",
         overflow: "hidden",
@@ -42,7 +43,7 @@ export default function SearchBox() {
           onChange={(e) => setSearchContent(e.target.value)}
         ></TextField>
       )}
-      <SearchIcon onClick={handleSearch} />
+      <SearchIcon onClick={handleSearch} sx={{ color: "#0a423a" }} />
     </Box>
   );
 }

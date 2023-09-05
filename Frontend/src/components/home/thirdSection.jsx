@@ -17,7 +17,7 @@ export default function ThirdSection() {
   });
   const ref = useRef(null);
   return (
-    <Box sx={[centerAlign, size, { height: { xs: "max-content" } }]}>
+    <Box sx={[centerAlign, size, { height: { xs: "max-content", md: "60%" } }]}>
       <Grid
         ref={ref}
         container
@@ -35,7 +35,7 @@ export default function ThirdSection() {
                 sx={{
                   fontWeight: "bold",
                   textAlign: "center",
-                  marginBottom: 3,
+                  marginY: 10,
                 }}
               >
                 What we provide
@@ -70,7 +70,7 @@ export default function ThirdSection() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    color: minor,
+                    color: "#158474",
                     fontSize: 48,
                     fontWeight: "bold",
                   }}

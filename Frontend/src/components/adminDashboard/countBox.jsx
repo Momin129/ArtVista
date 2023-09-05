@@ -23,16 +23,38 @@ export default function CountBox({ name, count }) {
         color: major,
       }}
     >
-      {name == "Users" && <PeopleAltIcon sx={{ fontSize: 84 }} />}
-      {name == "Paintings" && <ColorLensIcon sx={{ fontSize: 84 }} />}
-      {name == "Sculptures" && <SelfImprovementIcon sx={{ fontSize: 84 }} />}
-      {name == "Artifacts" && <ViewInArIcon sx={{ fontSize: 84 }} />}
-      {name == "Demo" && <AppsIcon sx={{ fontSize: 84 }} />}
-      {name == "Feedbacks" && <ContactsIcon sx={{ fontSize: 84 }} />}
-      <Typography sx={{ fontSize: { xs: 20, md: 20 }, fontWeight: "bold" }}>
+      {name == "Users" && (
+        <PeopleAltIcon sx={{ fontSize: 84, color: "black" }} />
+      )}
+      {name == "Paintings" && (
+        <ColorLensIcon sx={{ fontSize: 84, color: "black" }} />
+      )}
+      {name == "Sculptures" && (
+        <SelfImprovementIcon sx={{ fontSize: 84, color: "black" }} />
+      )}
+      {name == "Artifacts" && (
+        <ViewInArIcon sx={{ fontSize: 84, color: "black" }} />
+      )}
+      {name == "Demo" && <AppsIcon sx={{ fontSize: 84, color: "black" }} />}
+      {name == "Feedbacks" && (
+        <ContactsIcon sx={{ fontSize: 84, color: "black" }} />
+      )}
+      <Typography
+        sx={{
+          fontSize: { xs: 20, md: 20 },
+          fontWeight: "bold",
+          color: "black",
+        }}
+      >
         {name}
       </Typography>
-      <Typography sx={{ fontSize: { xs: 48, md: 48 }, fontWeight: "bold" }}>
+      <Typography
+        sx={{
+          fontSize: { xs: 48, md: 48 },
+          fontWeight: "bold",
+          color: "black",
+        }}
+      >
         {count}
       </Typography>
     </Box>

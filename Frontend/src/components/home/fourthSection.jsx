@@ -28,7 +28,7 @@ export default function FourthSection() {
 
   const ref = useRef(null);
   return (
-    <Box sx={[size, centerAlign, { height: { xs: "max-content" } }]}>
+    <Box sx={[size, centerAlign, { height: { xs: "max-content", md: "70%" } }]}>
       <Grid
         ref={ref}
         container
@@ -50,7 +50,7 @@ export default function FourthSection() {
                 sx={{
                   fontWeight: "bold",
                   textAlign: "center",
-                  marginBottom: 3,
+                  marginY: 10,
                 }}
               >
                 Our latest additions

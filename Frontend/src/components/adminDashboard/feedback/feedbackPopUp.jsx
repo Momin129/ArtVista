@@ -23,7 +23,7 @@ const style = {
   width: { xs: 350, md: 500 },
   height: "max-content",
   overflow: "auto",
-  bgcolor: "#050215",
+  bgcolor: major,
   border: `2px solid ${minor}`,
   borderRadius: 3,
   color: textColor,

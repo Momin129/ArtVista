@@ -33,7 +33,13 @@ export default function SearchPage() {
               <Grid key={index} item xs={12} md={3} sx={[centerAlign]}>
                 <Box sx={card}>
                   <CardImage source={item.thumbnail} />
-                  <Typography sx={{ textAlign: "center", fontWeight: "bold" }}>
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      textShadow: "2px 2px 2px black",
+                    }}
+                  >
                     {item.title}
                   </Typography>
                   <Button

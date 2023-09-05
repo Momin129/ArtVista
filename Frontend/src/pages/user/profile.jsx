@@ -36,12 +36,13 @@ export default function Profile() {
             gap: 3,
             padding: { xs: 5, md: 0 },
             paddingY: { xs: 5, md: 5 },
+            boxShadow: "8px 8px 8px #0a423a",
           },
         ]}
       >
         <Typography
           sx={{
-            fontSize: { xs: 36, md: 64 },
+            fontSize: { xs: 36, md: 48 },
             fontWeight: "bold",
             borderBottom: 1,
             borderBottomColor: minor,

@@ -170,7 +170,7 @@ export default function DisplayModels() {
                   width: 250,
                   height: { xs: 300, md: 250 },
                   marginLeft: { xs: 2, md: 3 },
-                  border: selectedIndex == index ? 2 : 0,
+                  border: selectedIndex == index ? 4 : 0,
                   borderColor: minor,
                 }}
                 onClick={() => {
@@ -188,6 +188,7 @@ export default function DisplayModels() {
               width: { xs: "90%", md: "30%" },
               height: { xs: "60%", md: "50%" },
               overflow: "hidden",
+              boxShadow: "8px 8px 8px #0a423a",
             }}
           >
             {currentModel.path != "" && (
@@ -197,16 +198,16 @@ export default function DisplayModels() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <InfoIcon
               onClick={handleOpen}
-              sx={{ color: minor, fontSize: 36 }}
+              sx={{ color: "#0a423a", fontSize: 36 }}
             />
             {currentModel.favourite ? (
               <FavoriteIcon
-                sx={{ color: minor, fontSize: 36 }}
+                sx={{ color: "#0a423a", fontSize: 36 }}
                 onClick={hadleFavourite}
               ></FavoriteIcon>
             ) : (
               <FavoriteBorderIcon
-                sx={{ color: minor, fontSize: 36 }}
+                sx={{ color: "#0a423a", fontSize: 36 }}
                 onClick={hadleFavourite}
               />
             )}

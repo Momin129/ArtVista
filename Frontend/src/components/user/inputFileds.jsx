@@ -81,7 +81,14 @@ export default function InputFileds() {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Typography sx={{ fontSize: { xs: 20, md: 32 }, fontWeight: "bold" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: 20, md: 24 },
+            fontWeight: "bold",
+            color: "#158474",
+            textShadow: "1px 1px 2px black",
+          }}
+        >
           Name:
         </Typography>
         <TextField
@@ -97,7 +104,14 @@ export default function InputFileds() {
       </Box>
       <Divider sx={{ width: 1, borderColor: minor }} />
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Typography sx={{ fontSize: { xs: 20, md: 32 }, fontWeight: "bold" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: 20, md: 24 },
+            fontWeight: "bold",
+            color: "#158474",
+            textShadow: "1px 1px 2px black",
+          }}
+        >
           Email:
         </Typography>
         <TextField
@@ -113,7 +127,14 @@ export default function InputFileds() {
       </Box>
       <Divider sx={{ width: 1, borderColor: minor }} />
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        <Typography sx={{ fontSize: { xs: 20, md: 32 }, fontWeight: "bold" }}>
+        <Typography
+          sx={{
+            fontSize: { xs: 20, md: 24 },
+            fontWeight: "bold",
+            color: "#158474",
+            textShadow: "1px 1px 2px black",
+          }}
+        >
           Mobile:
         </Typography>
         <TextField
