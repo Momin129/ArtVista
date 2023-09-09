@@ -1,6 +1,10 @@
 import { major, minor, textColor } from "./colors";
 
-const size = { height: 1, backgroundColor: major, color: textColor };
+const size = {
+  height: { xs: "max-content", md: 1 },
+  backgroundColor: major,
+  color: textColor,
+};
 
 const centerAlign = {
   display: "flex",

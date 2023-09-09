@@ -1,12 +1,8 @@
-import { Box, Button, Fade, Grid, Typography } from "@mui/material";
+import { Box, Fade, Grid, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { centerAlign, size, stack } from "../../sx/container";
-import { minorButton } from "../../sx/button";
-import { minor } from "../../sx/colors";
 
 export default function FirstSection() {
-  const naviagte = useNavigate();
   const [isIntersecting, setIsIntersecting] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,17 +18,18 @@ export default function FirstSection() {
   const ref = useRef(null);
   return (
     <Box sx={[size, centerAlign]}>
-      <Grid container sx={{ width: "60%" }}>
+      <Grid container sx={{ width: "80%" }}>
         <Grid ref={ref} item xs={12} md={6} sx={[centerAlign, stack]}>
-          <Box sx={{ marginBottom: 3, paddingX: 10 }}>
+          <Box sx={{ marginY: 3 }}>
             <Fade
               in={isIntersecting}
               style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
             >
               <Typography
                 sx={{
-                  fontSize: { xs: 36, sm: 56, md: 64 },
+                  fontSize: { xs: 56, md: 86 },
                   fontWeight: "bold",
+                  lineHeight: 0.95,
                 }}
               >
                 Where History and Creativity Converges in{" "}
@@ -40,20 +37,6 @@ export default function FirstSection() {
                   3D
                 </Box>
               </Typography>
-            </Fade>
-            <Fade
-              in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-            >
-              <Button
-                variant="contained"
-                sx={[minorButton, { fontSize: { md: 32 } }]}
-                onClick={() =>
-                  naviagte("/displayModels", { state: { type: "demo" } })
-                }
-              >
-                Get Demo
-              </Button>
             </Fade>
           </Box>
           <Box></Box>
@@ -78,13 +61,8 @@ export default function FirstSection() {
             >
               <Box
                 component={"img"}
+                sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
                 src="/images/firstSection.jpg"
-                sx={{
-                  width: "100%",
-                  marginTop: 2,
-                  objectFit: "contain",
-                  boxShadow: 3,
-                }}
               ></Box>
             </Box>
           </Fade>

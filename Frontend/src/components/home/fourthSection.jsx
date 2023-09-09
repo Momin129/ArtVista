@@ -2,7 +2,6 @@ import { Box, Grid, Fade, Typography } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { fetchLatestModels } from "../../utility/api";
 import { centerAlign, size } from "../../sx/container";
-import { minor } from "../../sx/colors";
 
 export default function FourthSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -28,14 +27,12 @@ export default function FourthSection() {
 
   const ref = useRef(null);
   return (
-    <Box sx={[size, centerAlign, { height: { xs: "max-content", md: "70%" } }]}>
+    <Box sx={[size, centerAlign]}>
       <Grid
         ref={ref}
         container
         sx={{
           width: "80%",
-          marginTop: { xs: 15, md: 0 },
-          marginBottom: { xs: 5, md: 0 },
         }}
         spacing={{ xs: 2, md: 0 }}
       >
@@ -67,32 +64,22 @@ export default function FourthSection() {
               >
                 <Box
                   sx={{
-                    width: { xs: 350, md: 400 },
-                    height: { xs: 350, md: 400 },
-                    overflow: "hidden",
-                    position: "relative",
+                    width: { md: 400 },
+                    height: { md: 400 },
                   }}
                 >
                   <Box
                     component={"img"}
                     src={item != null ? item.thumbnail : "/demo/demo1.jpg"}
-                    width={400}
+                    sx={{ width: 1, height: 1, objectFit: "fill" }}
                   ></Box>
-                  <Typography
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      color: minor,
-                      fontSize: 48,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {item != null ? item.title : "Title"}
-                  </Typography>
                 </Box>
               </Fade>
+              <Typography
+                sx={{ fontSize: 36, fontWeight: "bold", textAlign: "center" }}
+              >
+                {item.title}
+              </Typography>
             </Box>
           </Grid>
         ))}

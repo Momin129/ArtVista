@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { centerAlign, size, stack } from "../../sx/container";
 import { minorButton } from "../../sx/button";
-import { minor } from "../../sx/colors";
 
 export default function SecondSection() {
   const navigate = useNavigate();
@@ -53,7 +52,11 @@ export default function SecondSection() {
             >
               <Box>
                 <Typography
-                  sx={{ fontSize: { xs: 30, md: 86 }, fontWeight: "bold" }}
+                  sx={{
+                    fontSize: { xs: 30, md: 86 },
+                    fontWeight: "bold",
+                    lineHeight: 0.95,
+                  }}
                 >
                   Welcome to
                   <Box component={"span"} sx={{ color: "#158474" }}>

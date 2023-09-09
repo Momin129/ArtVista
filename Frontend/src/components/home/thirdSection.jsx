@@ -17,18 +17,18 @@ export default function ThirdSection() {
   });
   const ref = useRef(null);
   return (
-    <Box sx={[centerAlign, size, { height: { xs: "max-content", md: "60%" } }]}>
+    <Box sx={[centerAlign, size]}>
       <Grid
         ref={ref}
         container
-        sx={{ width: "80%", marginTop: { xs: 5, md: 0 } }}
+        sx={{ width: "80%" }}
         spacing={{ xs: 2, md: 0 }}
       >
         <Grid item xs={12}>
           <Box>
             <Fade
               in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
+              style={{ transitionDelay: isIntersecting ? "600ms" : "0ms" }}
             >
               <Typography
                 variant="h3"
@@ -47,7 +47,7 @@ export default function ThirdSection() {
           <Box>
             <Fade
               in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
+              style={{ transitionDelay: isIntersecting ? "600ms" : "0ms" }}
             >
               <Box
                 sx={{
@@ -85,7 +85,7 @@ export default function ThirdSection() {
           <Box>
             <Fade
               in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
+              style={{ transitionDelay: isIntersecting ? "600ms" : "0ms" }}
             >
               <Box
                 sx={{
@@ -123,7 +123,7 @@ export default function ThirdSection() {
           <Box>
             <Fade
               in={isIntersecting}
-              style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
+              style={{ transitionDelay: isIntersecting ? "600ms" : "0ms" }}
             >
               <Box
                 sx={{
