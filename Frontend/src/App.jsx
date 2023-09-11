@@ -10,12 +10,13 @@ import Footer from "./components/footer";
 import axios from "axios";
 import { useEffect } from "react";
 import Profile from "./pages/user/profile";
-import DisplayModels from "./pages/displayModels";
+// import DisplayModels from "./pages/displayModels";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UploadModel from "./pages/admin/uploadModel";
 import UploadUserModel from "./components/user/uploadModel";
 import Feedbacks from "./pages/admin/feedbacks";
 import SearchPage from "./pages/user/searchPage";
+import ShowModels from "./pages/showModels";
 
 function App() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/upload" element={<UploadUserModel />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/displayModels" element={<DisplayModels />} />
+        <Route path="/displayModels" element={<ShowModels />} />
         <Route path="/searchPage" element={<SearchPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/upload" element={<UploadModel />} />

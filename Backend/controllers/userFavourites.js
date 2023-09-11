@@ -42,6 +42,19 @@ const getFavourites = async (req, res) => {
   }
 };
 
+const getAllFavourites = async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const favList = await favSchema.find({ userId: userId });
+    const modelIds = favList.map((item) => item.modelId);
+    res.status(200).json(modelIds);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Something went wrong." });
+  }
+};
+
 const getModel = async (req, res) => {
   const type = req.query.type;
   const modelId = new mongoose.Types.ObjectId(req.query.modelId);
@@ -76,4 +89,5 @@ module.exports = {
   removeFavourite,
   getFavouritesList,
   getModel,
+  getAllFavourites,
 };

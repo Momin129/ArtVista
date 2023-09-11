@@ -21,7 +21,7 @@ function Model({ path }) {
     <>
       <Center>
         <Float speed={3} floatIntensity={3}>
-          <mesh scale={7}>
+          <mesh scale={5}>
             <primitive object={scene} />
           </mesh>
           <Controls />
@@ -34,7 +34,7 @@ function Model({ path }) {
 export default function GenerateModel({ currentModel }) {
   return (
     <Box sx={{ width: 1, height: 1 }}>
-      <Canvas style={{ padding: 5, backgroundColor: major}}>
+      <Canvas style={{ padding: 5, backgroundColor: major }}>
         <ambientLight />
         <Model path={currentModel} />
       </Canvas>
