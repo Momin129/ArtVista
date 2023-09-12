@@ -6,6 +6,7 @@ const {
   Artifacts,
   Demo,
 } = require("../models/storageModel");
+
 const addToFavourites = async (req, res) => {
   const { userId, modelId, type } = req.body;
   try {

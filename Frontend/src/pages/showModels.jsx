@@ -6,12 +6,24 @@ import Model from "../components/showModel/Model";
 import { useLocation } from "react-router-dom";
 import { TypesOfModel } from "../hooks/typeOfModels";
 import { UserFavourites } from "../hooks/userFavourites";
+import { minorButton } from "../sx/button";
+import FullScreen from "../components/showModel/FullScreen";
+import FavButtons from "../components/showModel/FavButtons";
 
 export default function ShowModels() {
   const { state } = useLocation();
   const { type, searchModel } = state;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currentModel, setCurrentModel] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [renderModel, setRenderModel] = useState(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const onSuccess = (data) => {
     if (searchModel) {
@@ -31,6 +43,18 @@ export default function ShowModels() {
         ...currentModel,
         favourite: false,
       });
+  };
+
+  const handleModelChange = (index) => {
+    setRenderModel(false);
+    setSelectedIndex(index);
+    const model = data[index];
+    if (favourites.includes(data[index]._id)) model.favourite = true;
+    else model.favourite = false;
+    setCurrentModel(model);
+    setTimeout(() => {
+      setRenderModel(true);
+    }, 0);
   };
 
   const { data, isLoading } = TypesOfModel(type, onSuccess);
@@ -93,14 +117,7 @@ export default function ShowModels() {
                         objectFit: "fill",
                       }}
                       onClick={() => {
-                        setSelectedIndex(index);
-                        const model = data[index];
-
-                        if (favourites.includes(data[index]._id))
-                          model.favourite = true;
-                        else model.favourite = false;
-
-                        setCurrentModel(model);
+                        handleModelChange(index);
                       }}
                     ></Box>
                   </Box>
@@ -118,17 +135,26 @@ export default function ShowModels() {
               }}
             >
               <Box component="span">
-                {currentModel.path && <Model currentModel={currentModel} />}
+                {currentModel.path && !open && renderModel && (
+                  <Model currentModel={currentModel} />
+                )}
               </Box>
             </Grid>
             <Grid item xs={12} md={3} sx={[centerAlign, stack]}>
               <Information currentModel={currentModel} />
-              <Box>
-                {currentModel.favourite ? (
-                  <Button variant="contained">Remove From Favourites</Button>
-                ) : (
-                  <Button variant="contained">Add To Favourite</Button>
-                )}
+              <Box sx={[centerAlign, stack, { marginTop: 3, gap: 3 }]}>
+                <FavButtons
+                  currentModel={currentModel}
+                  setCurrentModel={setCurrentModel}
+                  type={type}
+                />
+                <Button
+                  variant="contained"
+                  sx={[minorButton]}
+                  onClick={handleOpen}
+                >
+                  Fullscreen
+                </Button>
               </Box>
             </Grid>
           </Grid>
@@ -138,6 +164,13 @@ export default function ShowModels() {
           <Typography>Loading...</Typography>
         </Box>
       )}
+      {
+        <FullScreen
+          open={open}
+          handleClose={handleClose}
+          currentModel={currentModel}
+        />
+      }
     </>
   );
 }

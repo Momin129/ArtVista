@@ -4,7 +4,18 @@ import { centerAlign, stack } from "../../sx/container";
 
 export default function Information({ currentModel }) {
   return (
-    <Box sx={[centerAlign, stack, { height: 400, width: "90%" }]}>
+    <Box
+      sx={[
+        centerAlign,
+        stack,
+        {
+          height: 400,
+          width: "90%",
+          border: "2px solid #2fdfc6",
+          borderRadius: 3,
+        },
+      ]}
+    >
       <Typography sx={{ fontSize: 36, fontWeight: "bold" }}>
         {currentModel.title}
       </Typography>

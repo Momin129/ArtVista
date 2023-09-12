@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DropDown from "./dropdown";
 import SearchBox from "./user/searchBox";
-import { major, textColor } from "../sx/colors";
+import { textColor } from "../sx/colors";
 import { centerAlign } from "../sx/container";
 
 function NavBar() {
