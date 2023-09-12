@@ -9,6 +9,7 @@ import { UserFavourites } from "../hooks/userFavourites";
 import { minorButton } from "../sx/button";
 import FullScreen from "../components/showModel/FullScreen";
 import FavButtons from "../components/showModel/FavButtons";
+import Sidebar from "../components/showModel/SideBar";
 
 export default function ShowModels() {
   const { state } = useLocation();
@@ -16,6 +17,7 @@ export default function ShowModels() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currentModel, setCurrentModel] = useState([]);
   const [open, setOpen] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
   const [renderModel, setRenderModel] = useState(true);
 
   const handleOpen = () => {
@@ -23,6 +25,13 @@ export default function ShowModels() {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleOpenSidebar = () => {
+    setOpenSidebar(true);
+  };
+  const handleCloseSidebar = () => {
+    setOpenSidebar(false);
   };
 
   const onSuccess = (data) => {
@@ -84,6 +93,7 @@ export default function ShowModels() {
                 height: 1,
                 scrollbarWidth: "thin",
                 paddingY: 2,
+                display: { xs: "none", lg: "block" },
               }}
             >
               <Box sx={[centerAlign, stack]}>
@@ -132,15 +142,31 @@ export default function ShowModels() {
                 borderLeft: "2px solid #2fdfc6",
                 borderRight: "2px solid #2fdfc6",
                 padding: 2,
+                height: 1,
               }}
             >
-              <Box component="span">
+              <Button
+                variant="contained"
+                sx={[
+                  minorButton,
+                  { display: { xs: "block", lg: "none", margin: "0 auto" } },
+                ]}
+                onClick={handleOpenSidebar}
+              >
+                Open Sidebar
+              </Button>
+              <Box component="span" sx={{ width: 1, height: 1 }}>
                 {currentModel.path && !open && renderModel && (
                   <Model currentModel={currentModel} />
                 )}
               </Box>
             </Grid>
-            <Grid item xs={12} md={3} sx={[centerAlign, stack]}>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              sx={[centerAlign, stack, { paddingY: 1 }]}
+            >
               <Information currentModel={currentModel} />
               <Box sx={[centerAlign, stack, { marginTop: 3, gap: 3 }]}>
                 <FavButtons
@@ -171,6 +197,15 @@ export default function ShowModels() {
           currentModel={currentModel}
         />
       }
+      {data && openSidebar && (
+        <Sidebar
+          open={openSidebar}
+          handleClose={handleCloseSidebar}
+          data={data}
+          selectedIndex={selectedIndex}
+          handleModelChange={handleModelChange}
+        />
+      )}
     </>
   );
 }
