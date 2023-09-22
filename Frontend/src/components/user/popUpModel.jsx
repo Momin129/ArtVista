@@ -36,8 +36,12 @@ export default function PopUpModel({
   handleFavourite,
 }) {
   const [openInfo, setOpen] = useState(false);
-  const handleOpenInfo = () => setOpen(true);
-  const handleCloseInfo = () => setOpen(false);
+  const handleOpenInfo = () => {
+    setOpen(true);
+  };
+  const handleCloseInfo = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -50,7 +54,7 @@ export default function PopUpModel({
           >
             {currentModel.title}
           </Typography>
-          {currentModel.path != "" && (
+          {currentModel.path != "" && open && (
             <Box sx={{ width: "90%", height: "80%" }}>
               <GenerateModel currentModel={currentModel.path} />
             </Box>

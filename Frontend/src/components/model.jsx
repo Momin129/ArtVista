@@ -15,7 +15,11 @@ import { Suspense } from "react";
 
 function Loader() {
   const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
+  return (
+    <Html center style={{ fontSize: 24 }}>
+      {Math.round(progress)} % loaded
+    </Html>
+  );
 }
 
 function Controls() {
