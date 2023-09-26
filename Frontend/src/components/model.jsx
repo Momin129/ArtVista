@@ -41,7 +41,7 @@ function Model({ path }) {
           adjustCamera
           intensity={0.5}
           shadows="contact"
-          environment="city"
+          environment={null}
         >
           <mesh>
             <primitive object={scene} />

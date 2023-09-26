@@ -58,10 +58,10 @@ export default function DropDown({ style }) {
         </Button>
         {open && (
           <Box sx={style == "md" ? positionMd : positionSm}>
-            {dropDownList.map((item, index) => (
+            {dropDownList.map((item) => (
               <>
                 <Button
-                  key={index}
+                  key={item.buttonName}
                   sx={{ color: "black" }}
                   onClick={() => {
                     setOpen(false);
