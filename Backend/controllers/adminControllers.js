@@ -1,9 +1,5 @@
-const {
-  Paintings,
-  Sculptures,
-  Artifacts,
-  Demo,
-} = require("../models/storageModel");
+const { Paintings, Sculptures, Artifacts } = require("../models/storageModel");
+
 const User = require("../models/userModel");
 const Contact = require("../models/contactModel");
 const { UserUpload } = require("../models/userUploadModel");
@@ -18,17 +14,17 @@ const getNumbers = async (req, res) => {
     const noOfPainting = await Paintings.countDocuments();
     const noOfSculpture = await Sculptures.countDocuments();
     const noOfArtifact = await Artifacts.countDocuments();
-    const noOfDemo = await Demo.countDocuments();
     const noOfContact = await Contact.countDocuments();
+    const noOfUserUpload = await UserUpload.countDocuments();
 
     res.status(200).json({
       records: [
-        { name: "Users", count: noOfUser },
-        { name: "Paintings", count: noOfPainting },
-        { name: "Sculptures", count: noOfSculpture },
-        { name: "Artifacts", count: noOfArtifact },
-        { name: "Demo", count: noOfDemo },
-        { name: "Feedbacks", count: noOfContact },
+        { name: "Users", count: noOfUser, type: "user" },
+        { name: "Paintings", count: noOfPainting, type: "painting" },
+        { name: "Sculptures", count: noOfSculpture, type: "sculpture" },
+        { name: "Artifacts", count: noOfArtifact, type: "artifact" },
+        { name: "Feedbacks", count: noOfContact, type: "contact" },
+        { name: "User Uploads", count: noOfUserUpload, type: "userUploads" },
       ],
     });
   } catch (err) {
@@ -71,7 +67,7 @@ const getAllDetails = async (req, res) => {
     else if (type == "artifact") Schema = Artifacts;
     else if (type == "user") Schema = User;
     else if (type == "contact") Schema = Contact;
-    else Schema = Demo;
+    else Schema = UserUpload;
 
     const data = await Schema.find();
     res.status(200).json(data);

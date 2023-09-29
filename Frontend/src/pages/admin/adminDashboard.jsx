@@ -41,15 +41,8 @@ export default function AdminDashboard() {
       <Grid container spacing={3} sx={{ paddingY: { md: 10 } }}>
         {records.length != 0
           ? records.map((value, index) => (
-              <Grid
-                key={index}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                sx={[centerAlign, { cursor: "pointer" }]}
-              >
-                <CountBox name={value.name} count={value.count} />
+              <Grid key={index} item xs={12} sm={6} md={4} sx={[centerAlign]}>
+                <CountBox value={value}  />
               </Grid>
             ))
           : "Loading..."}
