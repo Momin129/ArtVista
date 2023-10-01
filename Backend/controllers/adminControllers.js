@@ -110,6 +110,25 @@ const getUploadEmail = async (req, res) => {
   }
 };
 
+const updateDetails = async (req, res) => {
+  try {
+    const { id, type, changes } = req.body;
+    let Schema;
+    if (type == "painting") Schema = Paintings;
+    else if (type == "sculpture") Schema = Sculptures;
+    else if (type == "artifact") Schema = Artifacts;
+    else if (type == "user") Schema = User;
+    else if (type == "contact") Schema = Contact;
+    else Schema = UserUpload;
+
+    const data = await Schema.findByIdAndUpdate({ _id: id }, { $set: changes });
+    res.status(200).json({ message: "Updated Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: "Something went wrong, please try again" });
+  }
+};
+
 module.exports = {
   getNumbers,
   getAllDetails,
@@ -118,4 +137,5 @@ module.exports = {
   aproveRequest,
   getFeedbacks,
   sendReply,
+  updateDetails,
 };

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import UplaodTable from "../../components/adminDashboard/uploadTable";
 import { major, textColor } from "../../sx/colors";
-import { centerAlign } from "../../sx/container";
+import { centerAlign, size, stack } from "../../sx/container";
 
 export default function AdminDashboard() {
   const [records, setRecords] = useState([]);
@@ -22,43 +22,52 @@ export default function AdminDashboard() {
     })();
   }, []);
   return (
-    <Box
-      sx={{
-        backgroundColor: major,
-        paddingY: { xs: 2, md: 5 },
-      }}
-    >
-      <Typography
-        sx={{
-          fontSize: { xs: 48, md: 64 },
-          fontWeight: "bold",
-          textAlign: "center",
-          color: textColor,
-        }}
-      >
-        Dashboard
-      </Typography>
-      <Grid container spacing={3} sx={{ paddingY: { md: 10 } }}>
-        {records.length != 0
-          ? records.map((value, index) => (
+    <>
+      {records.length != 0 ? (
+        <Box
+          sx={[
+            {
+              backgroundColor: major,
+              paddingY: { xs: 2, md: 5 },
+            },
+            centerAlign,
+            stack,
+          ]}
+        >
+          <Typography
+            sx={{
+              fontSize: { xs: 48, md: 64 },
+              fontWeight: "bold",
+              textAlign: "center",
+              color: textColor,
+            }}
+          >
+            Dashboard
+          </Typography>
+          <Grid container spacing={3} sx={[centerAlign, { paddingTop: 5 }]}>
+            {records.map((value, index) => (
               <Grid key={index} item xs={12} sm={6} md={4} sx={[centerAlign]}>
-                <CountBox value={value}  />
+                <CountBox value={value} />
               </Grid>
-            ))
-          : "Loading..."}
-      </Grid>
-      <Typography
-        sx={{
-          fontSize: { xs: 48, md: 64 },
-          fontWeight: "bold",
-          textAlign: "center",
-          color: textColor,
-          marginTop: { xs: 5, md: 20 },
-        }}
-      >
-        Upload Requests
-      </Typography>
-      <UplaodTable />
-    </Box>
+            ))}
+          </Grid>
+
+          <Typography
+            sx={{
+              fontSize: { xs: 48, md: 64 },
+              fontWeight: "bold",
+              textAlign: "center",
+              color: textColor,
+              marginTop: { xs: 5, md: 20 },
+            }}
+          >
+            Upload Requests
+          </Typography>
+          <UplaodTable />
+        </Box>
+      ) : (
+        <Box sx={[size, centerAlign]}>Loading ...</Box>
+      )}
+    </>
   );
 }

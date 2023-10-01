@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { TypesOfModel } from "../../hooks/typeOfModels";
 import {
   Box,
   Button,
@@ -16,6 +16,8 @@ import {
 import { centerAlign, size } from "../../sx/container";
 import { minorButton } from "../../sx/button";
 import { major, textColor } from "../../sx/colors";
+import { allDetails } from "../../hooks/getModelDetails";
+import IndividualModel from "../../components/adminDashboard/individualModel";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,17 +41,21 @@ const StyledTableCell = styled(TableCell)(() => ({
 const StyledTableRow = styled(TableRow)(() => ({}));
 
 export default function ShowModelList() {
-  const onSuccess = (data) => {
-    console.log(data);
-  };
   const { state } = useLocation();
   const { type } = state;
 
-  console.log(type);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const [current, setCurrent] = useState({});
 
-  const { data, isLoading } = TypesOfModel(type, onSuccess);
+  const { data, isLoading, isFetching, refetch } = allDetails(type);
 
-  if (isLoading) {
+  const handleCurrentRow = (row) => {
+    setCurrent(row);
+    handleOpen();
+  };
+
+  if (isLoading || isFetching) {
     return <Box sx={[size, centerAlign]}>Loading...</Box>;
   } else {
     return (
@@ -64,45 +70,70 @@ export default function ShowModelList() {
             height: "60%",
             scrollbarWidth: "thin",
             backgroundColor: major,
+            boxShadow: "none",
           }}
         >
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table
+            sx={{ minWidth: 700, tableLayout: "fixed" }}
+            aria-label="customized table"
+          >
             <TableHead>
               <TableRow>
-                <StyledTableCell>Title</StyledTableCell>
-                <StyledTableCell>Description</StyledTableCell>
+                <StyledTableCell>
+                  {type == "user" ? "Name" : "Title"}
+                </StyledTableCell>
+                <StyledTableCell>
+                  {type == "user" ? "Email" : "Description"}
+                </StyledTableCell>
                 <StyledTableCell>Option</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row, index) => (
-                <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.title}
-                  </StyledTableCell>
-                  <StyledTableCell>{row.info}</StyledTableCell>
-                  <StyledTableCell
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: 3,
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      sx={[minorButton]}
-                      onClick={() => {
-                        handleCurrentFeedback(row);
+              {data &&
+                data.map((row, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row">
+                      {row.title ? row.title : row.fullname}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      sx={{
+                        width: "50%",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
                       }}
                     >
-                      View
-                    </Button>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+                      {row.info ? row.info : row.email}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 3,
+                      }}
+                    >
+                      <Button
+                        variant="contained"
+                        sx={[minorButton]}
+                        onClick={() => {
+                          handleCurrentRow(row);
+                        }}
+                      >
+                        View
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
+        <IndividualModel
+          open={open}
+          setOpen={setOpen}
+          current={current}
+          type={type}
+          refetch={refetch}
+        />
       </Box>
     );
   }
