@@ -10,7 +10,13 @@ const {
   getFeedbacks,
   sendReply,
   updateDetails,
-} = require("../controllers/adminControllers");
+} = require("../controllers/admin/adminControllers");
+const {
+  upload,
+  uploadModel,
+  getModel,
+  deleteModel,
+} = require("../controllers/admin/adminUploadControllers");
 
 router.get("/getNumbers", getNumbers);
 router.get("/getAllDetails", getAllDetails);
@@ -20,4 +26,7 @@ router.get("/getFeedbacks", getFeedbacks);
 router.post("/aproveRequest", aproveRequest);
 router.post("/sendReply", sendReply);
 router.post("/updateDetails", updateDetails);
+router.post("/uploadModel", upload.single("file"), uploadModel);
+router.get("/file:filename", getModel);
+router.post("/deleteModel", deleteModel);
 module.exports = router;

@@ -11,8 +11,8 @@ export default function Model({ currentModel }) {
         overflow: "hidden",
       }}
     >
-      {currentModel.path != "" && (
-        <GenerateModel currentModel={currentModel.path} />
+      {currentModel.filename != "" && (
+        <GenerateModel currentModel={currentModel.filename} />
       )}
     </Box>
   );

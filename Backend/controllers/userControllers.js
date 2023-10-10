@@ -117,15 +117,19 @@ const getUserDetails = async (req, res) => {
 
 const sendOTP = async (req, res) => {
   const email = req.body.email;
+  console.log(email);
   const OTP = generateOTP();
   const options = {
-    from: process.env.MAIL,
+    from: "artvista.creative@gmail.com",
     to: email,
     subject: "OTP Verifaction from ArtVista",
     html: `<h1>OTP</h1><br/><p>Your OTP for registring into ArtVista: ${OTP}</p>`,
   };
-
-  SendMail(options, OTP, res);
+  try {
+    SendMail(options, OTP, res);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // verify if user is loged in or not

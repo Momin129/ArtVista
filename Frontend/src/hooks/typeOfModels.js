@@ -3,11 +3,14 @@ import axios from "axios";
 
 const fetchModel = ({ queryKey }) => {
   const type = queryKey[1];
-  const data = axios.get(`${import.meta.env.VITE_STORAGE_HOST}/api/getModel`, {
-    params: {
-      type: type,
-    },
-  });
+  const data = axios.get(
+    `${import.meta.env.VITE_HOST}/api/models/getModelList`,
+    {
+      params: {
+        type: type,
+      },
+    }
+  );
   return data;
 };
 

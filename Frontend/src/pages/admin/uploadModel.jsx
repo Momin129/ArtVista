@@ -59,7 +59,7 @@ export default function UploadModel() {
 
       try {
         await axios
-          .post(`${import.meta.env.VITE_STORAGE_HOST}/api/upload`, formData)
+          .post(`${import.meta.env.VITE_HOST}/api/admin/uploadModel`, formData)
           .then((result) => {
             setMsg(result.data.message);
             setSuccess(true);

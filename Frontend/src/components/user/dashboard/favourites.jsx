@@ -31,7 +31,7 @@ export default function Favourites({ favourites, setFavourites }) {
       _id: model._id,
       title: model.title,
       info: model.info,
-      path: model.path,
+      filename: model.filename,
       favourite: favourite.data.status,
       index: index,
     }));
@@ -84,55 +84,56 @@ export default function Favourites({ favourites, setFavourites }) {
           </Typography>
         ) : (
           <Grid container spacing={2}>
-            {favourites.map((model, index) => (
-              <Grid key={index} item lg={4} xs={12} sm={6} sx={[centerAlign]}>
-                <Box
-                  sx={[
-                    centerAlign,
-                    stack,
-                    {
-                      borderRadius: 2,
-                      backgroundColor: minor,
-                      padding: 1,
-                    },
-                  ]}
-                >
+            {favourites.length > 0 &&
+              favourites.map((model, index) => (
+                <Grid key={index} item lg={4} xs={12} sm={6} sx={[centerAlign]}>
                   <Box
-                    key={index}
-                    component="img"
-                    src={model.thumbnail}
-                    sx={{
-                      width: 250,
-                      height: { xs: 300, md: 250 },
-                    }}
-                  ></Box>
-                  <Typography
-                    sx={{
-                      color: "black",
-                      fontSize: 20,
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      wordWrap: "break-word",
-                      width: 250,
-                      height: 30,
-                      overflow: "hidden",
-                    }}
+                    sx={[
+                      centerAlign,
+                      stack,
+                      {
+                        borderRadius: 2,
+                        backgroundColor: minor,
+                        padding: 1,
+                      },
+                    ]}
                   >
-                    {model.title}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={[majorButton, { width: 1, color: "black" }]}
-                    onClick={() => {
-                      handleCurrentModel(model, index);
-                      handleOpen();
-                    }}
-                  >
-                    View
-                  </Button>
-                </Box>
-              </Grid>
-            ))}
+                    <Box
+                      key={index}
+                      component="img"
+                      src={model.thumbnail}
+                      sx={{
+                        width: 250,
+                        height: { xs: 300, md: 250 },
+                      }}
+                    ></Box>
+                    <Typography
+                      sx={{
+                        color: "black",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        width: 250,
+                        height: 30,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {model.title}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      sx={[majorButton, { width: 1, color: "black" }]}
+                      onClick={() => {
+                        handleCurrentModel(model, index);
+                        handleOpen();
+                      }}
+                    >
+                      View
+                    </Button>
+                  </Box>
+                </Grid>
+              ))}
           </Grid>
         )}
         <PopUpModel

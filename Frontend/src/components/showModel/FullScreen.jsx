@@ -33,7 +33,7 @@ export default function FullScreen({ open, handleClose, currentModel }) {
             </Button>
           </Box>
           <Box sx={{ height: "95%", width: 1 }}>
-            <GenerateModel currentModel={currentModel.path} />
+            <GenerateModel currentModel={currentModel.filename} />
           </Box>
         </Box>
       </Modal>

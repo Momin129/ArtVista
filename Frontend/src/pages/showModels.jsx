@@ -156,7 +156,7 @@ export default function ShowModels() {
                 Open Sidebar
               </Button>
               <Box component="span" sx={{ width: 1, height: 1 }}>
-                {currentModel.path && !open && renderModel && (
+                {currentModel.filename && !open && renderModel && (
                   <Model currentModel={currentModel} />
                 )}
               </Box>

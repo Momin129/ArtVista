@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const { Paintings, Sculptures, Artifacts } = require("../models/storageModel");
 
 const getLatestModels = async (req, res) => {

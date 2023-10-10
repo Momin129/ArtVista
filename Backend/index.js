@@ -16,6 +16,7 @@ app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api", require("./routes/favoritesRoute"));
 app.use("/api/home", require("./routes/homeRoutes"));
 app.use("/api/models", require("./routes/modelRoutes"));
+app.use("/api/userUploads", require("./routes/userUploads"));
 
 app.listen(process.env.PORT, () => {
   console.log(`Server started at PORT: ${process.env.PORT}`);

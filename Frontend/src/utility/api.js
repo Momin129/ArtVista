@@ -43,7 +43,7 @@ export const fetchUserUploads = async () => {
   try {
     const userId = sessionStorage.getItem("userId");
     const userUploads = await axios.get(
-      `${import.meta.env.VITE_STORAGE_HOST}/api/userUploads`,
+      `${import.meta.env.VITE_HOST}/api/userUploads`,
       {
         params: { userId: userId },
       }

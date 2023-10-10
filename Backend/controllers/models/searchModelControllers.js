@@ -2,6 +2,7 @@ const {
   Paintings,
   Sculptures,
   Artifacts,
+  Monuments,
 } = require("../../models/storageModel");
 
 const searchModels = async (req, res) => {
@@ -18,11 +19,15 @@ const searchModels = async (req, res) => {
     const artifacts = await Artifacts.find({
       title: { $regex: searchQuery, $options: "i" },
     });
+    const monuments = await Monuments.find({
+      title: { $regex: searchQuery, $options: "i" },
+    });
 
     searchedModels = searchedModels.concat(
       paintings.map((painting) => ({ ...painting._doc, type: "painting" })),
       sculptures.map((sculpture) => ({ ...sculpture._doc, type: "sculpture" })),
-      artifacts.map((artifact) => ({ ...artifact._doc, type: "artifact" }))
+      artifacts.map((artifact) => ({ ...artifact._doc, type: "artifact" })),
+      monuments.map((artifact) => ({ ...artifact._doc, type: "monument" }))
     );
 
     res.status(200).json(searchedModels);

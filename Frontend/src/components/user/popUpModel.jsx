@@ -54,9 +54,9 @@ export default function PopUpModel({
           >
             {currentModel.title}
           </Typography>
-          {currentModel.path != "" && open && (
+          {currentModel.filename != "" && open && (
             <Box sx={{ width: "90%", height: "80%" }}>
-              <GenerateModel currentModel={currentModel.path} />
+              <GenerateModel currentModel={currentModel.filename} />
             </Box>
           )}
           <Box sx={{ display: "flex", alignItems: "center" }}>

@@ -42,6 +42,7 @@ export default function DropDown({ style }) {
     { buttonName: "Paintings", type: "painting" },
     { buttonName: "Sculptures", type: "sculpture" },
     { buttonName: "Artifacts", type: "artifact" },
+    { buttonName: "Monumnets", type: "monument" },
     { buttonName: "User Models", type: "user" },
   ];
 

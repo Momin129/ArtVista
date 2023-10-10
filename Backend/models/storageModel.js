@@ -17,15 +17,11 @@ const storageSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  path: {
-    type: String,
-    required: true,
-  },
 });
 
 const Paintings = mongoose.model("Paintings", storageSchema);
 const Sculptures = mongoose.model("Sculptures", storageSchema);
 const Artifacts = mongoose.model("Artifacts", storageSchema);
-const Demo = mongoose.model("Demos", storageSchema);
+const Monuments = mongoose.model("Monuments", storageSchema);
 
-module.exports = { Paintings, Sculptures, Artifacts, Demo };
+module.exports = { Paintings, Sculptures, Artifacts, Monuments };

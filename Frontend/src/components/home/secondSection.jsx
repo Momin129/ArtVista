@@ -7,6 +7,7 @@ import { minorButton } from "../../sx/button";
 export default function SecondSection() {
   const navigate = useNavigate();
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [currentImage, setCurrentImage] = useState(1);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -17,7 +18,18 @@ export default function SecondSection() {
     observer.observe(ref.current);
 
     return () => observer.disconnect();
-  });
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => {
+        if (prev < 4) return prev + 1;
+        else return 1;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
   const ref = useRef(null);
   return (
     <Box sx={[size, centerAlign]}>
@@ -37,8 +49,8 @@ export default function SecondSection() {
               >
                 <Box
                   component={"img"}
-                  sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
-                  src="/images/secondSection.jpg"
+                  sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  src={`/images/home/${currentImage}.jpg`}
                 ></Box>
               </Box>
             </Fade>

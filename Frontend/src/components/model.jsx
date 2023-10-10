@@ -31,8 +31,10 @@ function Controls() {
   return <OrbitControls args={[camera, domElement]} />;
 }
 
-function Model({ path }) {
-  const { scene } = useGLTF(`${import.meta.env.VITE_STORAGE_HOST}/${path}`);
+function Model({ filename }) {
+  const { scene } = useGLTF(
+    `${import.meta.env.VITE_HOST}/api/models/model/${filename}`
+  );
 
   return (
     <>
@@ -59,7 +61,7 @@ export default function GenerateModel({ currentModel }) {
       <Canvas style={{ padding: 5, backgroundColor: major }}>
         <Suspense fallback={<Loader />}>
           <ambientLight />
-          <Model path={currentModel} />
+          <Model filename={currentModel} />
         </Suspense>
       </Canvas>
     </Box>

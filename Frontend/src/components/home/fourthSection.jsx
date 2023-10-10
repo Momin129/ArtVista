@@ -55,34 +55,35 @@ export default function FourthSection() {
             </Fade>
           </Box>
         </Grid>
-        {latest.map((item, index) => (
-          <Grid key={index} item xs={12} md={4} sx={[centerAlign]}>
-            <Box>
-              <Fade
-                in={isIntersecting}
-                style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
-              >
-                <Box
-                  sx={{
-                    width: { md: 400 },
-                    height: { md: 400 },
-                  }}
+        {latest &&
+          latest.map((item, index) => (
+            <Grid key={index} item xs={12} md={4} sx={[centerAlign]}>
+              <Box>
+                <Fade
+                  in={isIntersecting}
+                  style={{ transitionDelay: isIntersecting ? "300ms" : "0ms" }}
                 >
                   <Box
-                    component={"img"}
-                    src={item != null ? item.thumbnail : "/demo/demo1.jpg"}
-                    sx={{ width: 1, height: 1, objectFit: "fill" }}
-                  ></Box>
-                </Box>
-              </Fade>
-              <Typography
-                sx={{ fontSize: 36, fontWeight: "bold", textAlign: "center" }}
-              >
-                {item.title}
-              </Typography>
-            </Box>
-          </Grid>
-        ))}
+                    sx={{
+                      width: { md: 400 },
+                      height: { md: 400 },
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      src={item != null ? item.thumbnail : "/demo/demo1.jpg"}
+                      sx={{ width: 1, height: 1, objectFit: "fill" }}
+                    ></Box>
+                  </Box>
+                </Fade>
+                <Typography
+                  sx={{ fontSize: 36, fontWeight: "bold", textAlign: "center" }}
+                >
+                  {item.title}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
       </Grid>
     </Box>
   );

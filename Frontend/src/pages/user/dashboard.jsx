@@ -26,7 +26,6 @@ export default function Dashboard() {
       }
     })();
   }, []);
-
   return (
     <Box sx={[size, centerAlign, stack]}>
       <Box

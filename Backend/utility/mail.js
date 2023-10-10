@@ -1,16 +1,18 @@
 const nodemailer = require("nodemailer");
 const Contact = require("../models/contactModel");
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.MAIL,
-    pass: process.env.PASS,
+    user: "artvista.creative@gmail.com",
+    pass: "ipiiqckpcbvznzzq",
   },
 });
 
 const SendMail = (mailOptions, OTP, res) => {
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
+      console.log(error);
       res.status(400).json({ message: "Something went wrong." });
     } else {
       res.status(200).json(OTP);

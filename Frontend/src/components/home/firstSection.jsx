@@ -1,6 +1,8 @@
 import { Box, Fade, Grid, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { centerAlign, size, stack } from "../../sx/container";
+import GenerateModel from "../model";
+import GenerateRotateModel from "./modelRotate";
 
 export default function FirstSection() {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -57,13 +59,16 @@ export default function FirstSection() {
                 width: { md: 500 },
                 height: { md: 600 },
                 overflow: "hidden",
+                border: "4px solid #2fdfc6",
+                borderRadius: 3,
               }}
             >
-              <Box
+              <GenerateRotateModel currentModel={"horse.glb"} rotate={true} />
+              {/* <Box
                 component={"img"}
                 sx={{ width: "100%", marginTop: 2, objectFit: "contain" }}
                 src="/images/firstSection.jpg"
-              ></Box>
+              ></Box> */}
             </Box>
           </Fade>
         </Grid>
