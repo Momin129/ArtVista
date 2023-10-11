@@ -21,6 +21,7 @@ export default function Dashboard() {
         const list = await fetchUserUploads();
         setList(list);
         list.length > 0 && setLastUploaded(list.slice(-1)[0].status);
+        console.log(list);
       } catch (error) {
         console.log(error);
       }

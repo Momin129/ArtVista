@@ -41,6 +41,32 @@ export default function UploadsList({ list, lastUploaded, setList }) {
         Uploads
       </Typography>
       <Box sx={{ overflowY: "auto", scrollbarWidth: "thin", height: 1 }}>
+        <Button
+          variant="contained"
+          sx={[
+            minorButton,
+            {
+              "&:disabled": { backgroundColor: "grey" },
+              marginY: 3,
+            },
+          ]}
+          onClick={() => {
+            if (list.length > 0) {
+              if (lastUploaded == "Pending")
+                setUploadMsg(
+                  "You can't upload until last model is approved or rejected"
+                );
+              else navigate("/upload");
+            } else navigate("/upload");
+          }}
+        >
+          Upload New
+        </Button>
+        <Typography
+          sx={{ fontWeight: "bold", color: "red", textAlign: "center" }}
+        >
+          {uploadMsg}
+        </Typography>
         {list.length > 0 ? (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }}>
@@ -92,7 +118,7 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                         fontWeight: "bold",
                         color:
                           row.status === "Pending"
-                            ? "yellow"
+                            ? "orange"
                             : row.status == "Aproved"
                             ? "#0a423a"
                             : "red",
@@ -124,32 +150,6 @@ export default function UploadsList({ list, lastUploaded, setList }) {
           </Typography>
         )}
       </Box>
-      <Button
-        variant="contained"
-        sx={[
-          minorButton,
-          {
-            "&:disabled": { backgroundColor: "grey" },
-            marginTop: 3,
-          },
-        ]}
-        onClick={() => {
-          if (list.length > 0) {
-            if (lastUploaded == "Pending")
-              setUploadMsg(
-                "You can't upload until last model is approved or rejected"
-              );
-            else navigate("/upload");
-          } else navigate("/upload");
-        }}
-      >
-        Upload New
-      </Button>
-      <Typography
-        sx={{ fontWeight: "bold", color: minor, textAlign: "center" }}
-      >
-        {uploadMsg}
-      </Typography>
     </>
   );
 }

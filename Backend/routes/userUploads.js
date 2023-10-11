@@ -1,10 +1,13 @@
-const { upload, getUserUploads } = require("../controllers/userUploads");
+const {
+  upload,
+  getUserUploads,
+  uploadImages,
+} = require("../controllers/userUploads");
 
 const express = require("express");
 const router = express.Router();
 
-router.post("/uploadImages", upload.array("images"), (req, res) => {
-  res.json(req.files);
-});
+router.post("/uploadImages", upload.array("files"), uploadImages);
 router.get("/", getUserUploads);
+
 module.exports = router;

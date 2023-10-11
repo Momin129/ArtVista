@@ -15,7 +15,7 @@ import axios from "axios";
 
 export default function UploadUserModel() {
   const navigate = useNavigate();
-  const [file, setFile] = useState();
+  const [files, setFiles] = useState();
   const [inputs, setInputs] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -27,16 +27,8 @@ export default function UploadUserModel() {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleThumbnail = (event) => {
-    const data = new FileReader();
-    data.readAsDataURL(event.target.files[0]);
-    data.addEventListener("load", () => {
-      setInputs((values) => ({ ...values, [event.target.name]: data.result }));
-    });
-  };
-
   const handleFile = (event) => {
-    setFile(event.target.files[0]);
+    setFiles(event.target.files);
   };
 
   const handleSubmit = async () => {
@@ -51,16 +43,18 @@ export default function UploadUserModel() {
     } else {
       const userId = sessionStorage.getItem("userId");
       const formData = new FormData();
-      formData.append("userId", userId);
+      formData.append("user_id", userId);
       formData.append("title", inputs.title);
-      formData.append("thumbnail", inputs.thumbnail);
       formData.append("info", inputs.info);
-      formData.append("type", inputs.type);
-      formData.append("file", file);
-
+      for (const file of files) {
+        formData.append("files", file);
+      }
       try {
         await axios
-          .post(`${import.meta.env.VITE_STORAGE_HOST}/api/userUpload`, formData)
+          .post(
+            `${import.meta.env.VITE_HOST}/api/userUploads/uploadImages`,
+            formData
+          )
           .then((result) => {
             setMsg(result.data.message);
             setSuccess(true);
@@ -113,16 +107,15 @@ export default function UploadUserModel() {
           multiline
           rows={5}
         />
-        <InputLabel sx={{ color: "white" }}>Thumbnail for model</InputLabel>
+        <InputLabel sx={{ color: "black" }}>Images for model</InputLabel>
         <TextField
-          name="thumbnail"
+          name="files"
           type="file"
           sx={inputField}
-          onChange={handleThumbnail}
+          inputProps={{ multiple: true }}
+          onChange={handleFile}
         />
-        <InputLabel sx={{ color: "white" }}>Model File</InputLabel>
-        <TextField type="file" sx={inputField} onChange={handleFile} />
-        <Button variant="contained" sx={[minorButton]} onClick={handleSubmit}>
+        <Button sx={minorButton} onClick={handleSubmit}>
           Submit
         </Button>
       </Box>

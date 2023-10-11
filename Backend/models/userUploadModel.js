@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userUploadSchema = mongoose.Schema(
   {
-    userId: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
@@ -11,14 +11,6 @@ const userUploadSchema = mongoose.Schema(
       required: true,
     },
     info: {
-      type: String,
-      required: true,
-    },
-    thumbnail: {
-      type: String,
-      required: true,
-    },
-    path: {
       type: String,
       required: true,
     },
