@@ -2,7 +2,7 @@ const {
   upload,
   getUserUploads,
   uploadImages,
-} = require("../controllers/userUploads");
+} = require("../controllers/users/userUploads");
 
 const express = require("express");
 const router = express.Router();

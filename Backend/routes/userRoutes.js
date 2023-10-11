@@ -9,7 +9,7 @@ const {
   updateUserDetails,
   changePassword,
   sendOTP,
-} = require("../controllers/userControllers");
+} = require("../controllers/users/userControllers");
 
 router.post("/register", register);
 router.post("/validate", emailMobileExists);

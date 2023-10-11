@@ -6,7 +6,7 @@ const {
   getFavouritesList,
   getModel,
   getAllFavourites,
-} = require("../controllers/userFavourites");
+} = require("../controllers/users/userFavourites");
 
 const router = express.Router();
 

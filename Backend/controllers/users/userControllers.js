@@ -1,8 +1,8 @@
-const User = require("../models/userModel");
+const User = require("../../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
-const { generateOTP } = require("../utility/randomOtp");
-const { SendMail } = require("../utility/mail");
+const { generateOTP } = require("../../utility/randomOtp");
+const { SendMail } = require("../../utility/mail");
 
 // chekc if email and mobile number already exists or not
 const emailMobileExists = async (req, res) => {
