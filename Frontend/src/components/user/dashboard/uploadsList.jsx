@@ -9,25 +9,13 @@ import Paper from "@mui/material/Paper";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { deleteUserUpload } from "../../../utility/api";
-import { major, minor, textColor } from "../../../sx/colors";
+import { major, textColor } from "../../../sx/colors";
 import { minorButton } from "../../../sx/button";
 
-export default function UploadsList({ list, lastUploaded, setList }) {
+export default function UploadsList({ list, lastUploaded }) {
   const navigate = useNavigate();
 
   const [uploadMsg, setUploadMsg] = useState("");
-  const handleDeleteUpload = (id, currentIndex) => {
-    console.log(id, currentIndex);
-    (async () => {
-      const response = await deleteUserUpload(id);
-      console.log(response);
-      if (response)
-        setList((products) =>
-          products.filter((_, index) => index !== currentIndex)
-        );
-    })();
-  };
 
   return (
     <>
@@ -126,14 +114,9 @@ export default function UploadsList({ list, lastUploaded, setList }) {
                       align="center"
                     >
                       {row.status}
-                      {row.status == "Rejected" && (
-                        <Button
-                          variant="contained"
-                          color="error"
-                          sx={{ marginLeft: 3, fontWeight: "bold" }}
-                          onClick={() => handleDeleteUpload(row._id, index)}
-                        >
-                          Delete
+                      {row.status == "Approved" && (
+                        <Button variant="contained" sx={minorButton}>
+                          Pay
                         </Button>
                       )}
                     </TableCell>
