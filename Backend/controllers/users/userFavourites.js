@@ -1,11 +1,11 @@
 const { default: mongoose } = require("mongoose");
-const favSchema = require("../models/favourites");
+const favSchema = require("../../models/favourites");
 const {
   Paintings,
   Sculptures,
   Artifacts,
   Demo,
-} = require("../models/storageModel");
+} = require("../../models/storageModel");
 
 const addToFavourites = async (req, res) => {
   const { userId, modelId, type } = req.body;

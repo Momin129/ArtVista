@@ -1,6 +1,6 @@
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
-const { UserUpload } = require("../models/userUploadModel");
+const { UserUpload } = require("../../models/userUploadModel");
 const mongoose = require("mongoose");
 
 const storage = new GridFsStorage({
