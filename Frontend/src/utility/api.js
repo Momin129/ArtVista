@@ -63,7 +63,7 @@ export const fetchUploadRequests = async () => {
       const email = await axios.get(
         `${import.meta.env.VITE_HOST}/api/admin/uploadEmail`,
         {
-          params: { userId: requestList.data[item].userId },
+          params: { userId: requestList.data[item].user_id },
         }
       );
       requestList.data[item].email = email.data;

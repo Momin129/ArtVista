@@ -15,6 +15,7 @@ import {
 } from "../../utility/api";
 import PopUpModel from "./popUpModel";
 import { major, minor, textColor } from "../../sx/colors";
+import { downloadZip } from "../../utility/api/admin";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,25 +40,11 @@ const StyledTableRow = styled(TableRow)(() => ({}));
 
 export default function UplaodTable() {
   const [list, setList] = useState([]);
-  const [current, setCurrent] = useState({
-    _id: "",
-    title: "",
-    info: "",
-    path: "",
-  });
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const handleCurrentModel = (item) => {
-    setCurrent((prev) => ({
-      ...prev,
-      _id: item._id,
-      title: item.title,
-      info: item.info,
-      path: item.path,
-    }));
-    handleOpen();
+    (async () => {
+      downloadZip(item.user_id);
+    })();
   };
 
   const handleAprove = async (item, currentIndex) => {
@@ -125,7 +112,7 @@ export default function UplaodTable() {
                         handleCurrentModel(row);
                       }}
                     >
-                      View
+                      Download
                     </Button>
                     <Button
                       variant="contained"
@@ -161,11 +148,6 @@ export default function UplaodTable() {
           NO UPLOADS
         </Typography>
       )}
-      <PopUpModel
-        open={open}
-        currentModel={current}
-        handleClose={handleClose}
-      />
     </>
   );
 }
