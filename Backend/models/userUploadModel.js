@@ -14,11 +14,13 @@ const userUploadSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    filename: { type: String },
     status: {
       type: String,
       default: "Pending",
       required: true,
     },
+    payment_id: { type: String },
   },
   { timestamps: true }
 );

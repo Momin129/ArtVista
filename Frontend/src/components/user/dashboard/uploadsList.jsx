@@ -11,11 +11,72 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { major, textColor } from "../../../sx/colors";
 import { minorButton } from "../../../sx/button";
+import axios from "axios";
+import { getUserDetails } from "../../../utility/api/userDetails";
 
 export default function UploadsList({ list, lastUploaded }) {
   const navigate = useNavigate();
-
+  const user_id = sessionStorage.getItem("userId");
   const [uploadMsg, setUploadMsg] = useState("");
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  const checkoutHandler = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    const {
+      data: { key },
+    } = await axios.get(`${import.meta.env.VITE_HOST}/api/getKey`);
+
+    const {
+      data: { order },
+    } = await axios.post(`${import.meta.env.VITE_HOST}/api/payment/checkout`, {
+      amount,
+    });
+
+    const details = await getUserDetails();
+
+    console.log(details);
+
+    const options = {
+      key,
+      amount: order.amount,
+      currency: "INR",
+      name: "ArtVista",
+      description:
+        "From Relics to 3D Realities: Rediscover Jammu and Kashmir's Past.",
+      order_id: order.id,
+      callback_url: `${
+        import.meta.env.VITE_HOST
+      }/api/payment/paymentverification?user_id=${user_id}`,
+      prefill: {
+        name: details.fullname,
+        email: details.email,
+        contact: details.mobile,
+      },
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
+  };
 
   return (
     <>
@@ -114,8 +175,12 @@ export default function UploadsList({ list, lastUploaded }) {
                       align="center"
                     >
                       {row.status}
-                      {row.status == "Approved" && (
-                        <Button variant="contained" sx={minorButton}>
+                      {row.status == "Aproved" && (
+                        <Button
+                          variant="contained"
+                          sx={[minorButton, { marginLeft: 3 }]}
+                          onClick={() => checkoutHandler(1000)}
+                        >
                           Pay
                         </Button>
                       )}
