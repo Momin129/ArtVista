@@ -57,8 +57,7 @@ export default function UplaodTable() {
   };
 
   const handleReject = async (item, currentIndex) => {
-    const filename = item.path.split("\\")[1];
-    const response = await fetchRejectRequest(item._id, filename);
+    const response = await fetchRejectRequest(item._id);
     if (response) {
       setList((products) =>
         products.filter((_, index) => index !== currentIndex)

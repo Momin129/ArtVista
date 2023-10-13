@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -47,12 +47,18 @@ export default function ShowModelList() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const [current, setCurrent] = useState({});
-
   const { data, isLoading, isFetching, refetch } = allDetails(type);
+  const navigate = useNavigate();
 
   const handleCurrentRow = (row) => {
-    setCurrent(row);
-    handleOpen();
+    if (type == "userUploads" && !row.filename) {
+      navigate("/admin/upload", {
+        state: { id: row._id, title: row.title, info: row.info },
+      });
+    } else {
+      setCurrent(row);
+      handleOpen();
+    }
   };
 
   if (isLoading || isFetching) {

@@ -11,6 +11,21 @@ mongoose.connection.once("open", () => {
   });
 });
 
+const updateModel = async (req, res) => {
+  const { filename } = req.file;
+  const { id, thumbnail } = req.body;
+  try {
+    await UserUpload.findOneAndUpdate(
+      { _id: id },
+      { thumbnail: thumbnail, filename: filename }
+    );
+    res.status(200).json({ message: "Updated Successfully." });
+  } catch (error) {
+    console.log(error);
+    req.status(400).json({ message: "Somethign went wrong." });
+  }
+};
+
 const downloadZip = async (req, res) => {
   const commonId = req.query.commonId;
 
@@ -52,29 +67,4 @@ const downloadZip = async (req, res) => {
   }
 };
 
-const deleteUserUploads = async (req, res) => {
-  const upload_id = req.params.upload_id;
-  try {
-    const record = await UserUpload.findById(upload_id);
-    if (record) {
-      const filesToDelete = await bucket
-        .find({
-          "metadata.commonId": "64d9b143beb112f5c3c02ddf",
-        })
-        .toArray();
-
-      for (const file of filesToDelete) {
-        await bucket.delete(file._id);
-      }
-      await UserUpload.deleteOne({ _id: upload_id });
-      res.status(200).json({ message: "Files deleted successfully." });
-    } else res.status(400).json({ message: "No such record" });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      message: "Something went wrong while deleting user upload images.",
-    });
-  }
-};
-
-module.exports = { deleteUserUploads, downloadZip };
+module.exports = { downloadZip, updateModel };

@@ -8,6 +8,7 @@ const {
 } = require("../../models/storageModel");
 
 const mongoose = require("mongoose");
+const { UserUpload } = require("../../models/userUploadModel");
 
 let bucket;
 mongoose.connection.once("open", () => {
@@ -32,20 +33,32 @@ const upload = multer({ storage });
 const uploadModel = async (req, res) => {
   try {
     const { filename } = req.file;
-    const { title, info, thumbnail, type } = req.body;
+    const { upload_id, title, info, thumbnail, type } = req.body;
 
     let Schema;
-    if (type == "painting") Schema = Paintings;
-    else if (type == "sculpture") Schema = Sculptures;
-    else if (type == "artifact") Schema = Artifacts;
-    else Schema = Monuments;
 
-    await Schema.create({
-      title: title,
-      info: info,
-      filename: filename,
-      thumbnail: thumbnail,
-    });
+    if (type == "userUploads") {
+      await UserUpload.findOneAndUpdate(
+        { _id: upload_id },
+        {
+          title: title,
+          info: info,
+          thumbnail: thumbnail,
+          filename: filename,
+        }
+      );
+    } else {
+      if (type == "painting") Schema = Paintings;
+      else if (type == "sculpture") Schema = Sculptures;
+      else if (type == "artifact") Schema = Artifacts;
+      else if (type == "monuments") Schema = Monuments;
+      await Schema.create({
+        title: title,
+        info: info,
+        filename: filename,
+        thumbnail: thumbnail,
+      });
+    }
     res.status(200).json({ message: "Model Uploaded Successfully." });
   } catch (error) {
     console.log(error);

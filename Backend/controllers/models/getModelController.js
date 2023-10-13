@@ -28,7 +28,7 @@ const getModelList = async (req, res) => {
 
   try {
     if (type == "user") {
-      getmodel = await Schema.find({ status: "Aproved" });
+      getmodel = await Schema.find({ status: "Payed" });
     } else {
       getmodel = await Schema.find();
     }

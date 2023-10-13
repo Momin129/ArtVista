@@ -10,6 +10,13 @@ const { UserUpload } = require("../../models/userUploadModel");
 const mongoose = require("mongoose");
 const { SendReply } = require("../../utility/mail");
 
+let bucket;
+mongoose.connection.once("open", () => {
+  bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "uploads",
+  });
+});
+
 const getNumbers = async (req, res) => {
   try {
     const noOfUser = await User.countDocuments();
@@ -90,14 +97,58 @@ const getUploadRequest = async (req, res) => {
 };
 
 const aproveRequest = async (req, res) => {
-  const id = req.body.id;
+  const upload_id = req.body.upload_id;
   try {
-    await UserUpload.findByIdAndUpdate(id, {
-      status: "Aproved",
-    });
-    res.status(200).json(true);
+    const record = await UserUpload.findById(upload_id);
+    if (record) {
+      const filesToDelete = await bucket
+        .find({
+          "metadata.commonId": record.user_id.toString(),
+        })
+        .toArray();
+
+      for (const file of filesToDelete) {
+        await bucket.delete(file._id);
+      }
+      await UserUpload.findOneAndUpdate(
+        { _id: upload_id },
+        { status: "Aproved" }
+      );
+      res.status(200).json({ message: "Model Aproved." });
+    } else res.status(400).json({ message: "No such record" });
   } catch (error) {
-    res.status(400).json({ message: "Something went wrong." });
+    console.log(error);
+    res.status(400).json({
+      message: "Something went wrong update user model.",
+    });
+  }
+};
+
+const rejectRequest = async (req, res) => {
+  const upload_id = req.body.upload_id;
+  try {
+    const record = await UserUpload.findById(upload_id);
+    if (record) {
+      const filesToDelete = await bucket
+        .find({
+          "metadata.commonId": record.user_id.toString(),
+        })
+        .toArray();
+
+      for (const file of filesToDelete) {
+        await bucket.delete(file._id);
+      }
+      await UserUpload.findOneAndUpdate(
+        { _id: upload_id },
+        { status: "Rejected" }
+      );
+      res.status(200).json({ message: "Files deleted successfully." });
+    } else res.status(400).json({ message: "No such record" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "Something went wrong while deleting user upload images.",
+    });
   }
 };
 
@@ -140,4 +191,5 @@ module.exports = {
   getFeedbacks,
   sendReply,
   updateDetails,
+  rejectRequest,
 };

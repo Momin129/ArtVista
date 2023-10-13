@@ -88,17 +88,15 @@ export const fetchAproveRequest = async (id) => {
   }
 };
 
-export const fetchRejectRequest = async (id, filename) => {
-  console.log(id);
+export const fetchRejectRequest = async (id) => {
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_STORAGE_HOST}/api/rejectRequest`,
+      `${import.meta.env.VITE_HOST}/api/admin/rejectRequest`,
       {
-        id: id,
-        filename: filename,
+        upload_id: id,
       }
     );
-    return response.data;
+    return response.data.message;
   } catch (error) {
     console.log(error);
   }

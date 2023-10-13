@@ -7,19 +7,31 @@ import {
   Alert,
   InputLabel,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import SelectType from "../../components/user/dropdown";
 import { inputField, minorButton } from "../../sx/button";
 import { size, centerAlign, stack, roundBorder } from "../../sx/container";
 import { textColor } from "../../sx/colors";
+import { useLocation } from "react-router-dom";
 
 export default function UploadModel() {
+  const { state } = useLocation();
+  const { id, title, info } = state ?? "";
+
   const [file, setFile] = useState();
   const [inputs, setInputs] = useState([]);
   const [msg, setMsg] = useState("");
   const [success, setSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (state) {
+      setInputs((values) => ({ ...values, ["title"]: title }));
+      setInputs((values) => ({ ...values, ["info"]: info }));
+      setInputs((values) => ({ ...values, ["type"]: "userUploads" }));
+    }
+  }, []);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -54,8 +66,9 @@ export default function UploadModel() {
       formData.append("title", inputs.title);
       formData.append("thumbnail", inputs.thumbnail);
       formData.append("info", inputs.info);
-      formData.append("type", inputs.type);
+      formData.append("type", id ? "userUploads" : inputs.type);
       formData.append("file", file);
+      id ? formData.append("upload_id", id) : "";
 
       try {
         await axios
@@ -110,7 +123,7 @@ export default function UploadModel() {
           multiline
           rows={5}
         />
-        <SelectType inputs={inputs} handleChange={handleChange} />
+        <SelectType inputs={inputs} handleChange={handleChange} id={id} />
         <InputLabel sx={{ color: textColor }}>Thumbnail for model</InputLabel>
         <TextField
           name="thumbnail"

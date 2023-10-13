@@ -10,6 +10,7 @@ const {
   getFeedbacks,
   sendReply,
   updateDetails,
+  rejectRequest,
 } = require("../controllers/admin/adminControllers");
 const {
   upload,
@@ -18,8 +19,8 @@ const {
   deleteModel,
 } = require("../controllers/admin/adminUploadControllers");
 const {
-  deleteUserUploads,
   downloadZip,
+  updateModel,
 } = require("../controllers/admin/adminUserUploadsController");
 
 router.get("/getNumbers", getNumbers);
@@ -28,12 +29,13 @@ router.get("/uploadRequest", getUploadRequest);
 router.get("/uploadEmail", getUploadEmail);
 router.get("/getFeedbacks", getFeedbacks);
 router.post("/aproveRequest", aproveRequest);
+router.post("/rejectRequest", rejectRequest);
 router.post("/sendReply", sendReply);
 router.post("/updateDetails", updateDetails);
+router.post("/updateUserModel", updateModel);
 router.post("/uploadModel", upload.single("file"), uploadModel);
 router.get("/file:filename", getModel);
 router.post("/deleteModel", deleteModel);
-router.delete("/deleteUserUpload/:upload_id", deleteUserUploads);
 router.get("/downloadZip", downloadZip);
 
 module.exports = router;
